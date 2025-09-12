@@ -1,1 +1,28 @@
-<h1>Hello</h1>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Mapbox GL JS map</title>
+        <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
+        <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
+        <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css'/>
+        <link rel="stylesheet" href="./css/index.css">
+    </head>
+
+    <body>
+        <div id="map"></div>
+        <script>
+            mapboxgl.accessToken = 'pk.eyJ1IjoiYXlhYW43bSIsImEiOiJjbWZoZTA1c3IwYjg2MnNxMnB6Y3kwdHB6In0.bmb3F3SzeBHWPfmNitzl4w';
+
+            const map = new mapboxgl.Map({
+                container: 'map', // container ID
+	            center: [-74.5, 40], // starting position [lng, lat]
+	            zoom: 9, // starting zoom
+                minZoom: 8,
+                style: "mapbox://styles/ayaan7m/cmfhdj6gw006i01qu2774d2nz",
+            });
+        </script>
+
+    </body>
+</html>
