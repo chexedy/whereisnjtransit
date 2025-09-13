@@ -1,0 +1,35 @@
+{
+    "stations": {
+        "type": "FeatureCollection",
+        "features": [
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Secaucus Junction"
+                },
+                "geometry": {
+                    "coordinates": [
+                        -74.07491528372118,
+                        40.76173202115925
+                    ],
+                    "type": "Point"
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Newark Penn Station"
+                },
+                "geometry": {
+                    "coordinates": [
+                        -74.1640951041384,
+                        40.734433112373154
+                    ],
+                    "type": "Point"
+                }
+            }
+        ]
+    }
+}
