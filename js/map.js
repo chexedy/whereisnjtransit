@@ -51,13 +51,9 @@ fetch('./json/northeastcorridor.json')
                 });
 
                 map.on('click', 'stations-layer', (e) => {
-                    const props = e.features[0].properties;
-                    new mapboxgl.Popup(
-
-                    )
-                        .setLngLat(e.lngLat)
-                        .setHTML(`<h3>${props.title}</h3><p>${props.description}</p>`)
-                        .addTo(map);
+                    const feature = e.features[0];
+                    const { description, lines } = feature.properties;
+                    updateStationStatus(map, description, lines);
                 });
 
                 map.on('mouseenter', 'stations-layer', () => {
@@ -69,3 +65,15 @@ fetch('./json/northeastcorridor.json')
             });
         });
     });
+
+document.getElementById("locationButton").addEventListener("click", () => {
+    console.log("Hi");
+    navigator.geolocation.getCurrentPosition(
+        (pos) => {
+            const { longitude, latitude } = pos.coords;
+            map.flyTo({ center: [longitude, latitude], zoom: 14, essential: true });
+        },
+        (err) => console.error(err),
+        { enableHighAccuracy: true, timeout: 6000 }
+    );
+})

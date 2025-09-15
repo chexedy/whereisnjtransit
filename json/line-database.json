@@ -1,0 +1,40 @@
+{
+    "line-database": {
+        "one": {
+            "name": "Northeast Corridor",
+            "image": "../assets/icons/lines/northeastcorridor.svg"
+        },
+        "two": {
+            "name": "Morris & Essex",
+            "image": "../assets/icons/lines/morrisessex.svg"
+        },
+        "three": {
+            "name": "North Jersey Coast",
+            "image": "../assets/icons/lines/northjerseycoast.svg"
+        },
+        "four": {
+            "name": "Main/Bergen",
+            "image": "../assets/icons/lines/mainbergen.svg"
+        },
+        "five": {
+            "name": "Montclair-Boonton",
+            "image": "../assets/icons/lines/montclairboonton.svg"
+        },
+        "six": {
+            "name": "Raritan Valley",
+            "image": "../assets/icons/lines/raritanvalley.svg"
+        },
+        "seven": {
+            "name": "Pascack Valley",
+            "image": "../assets/icons/lines/pascackvalley.svg"
+        },
+        "eight": {
+            "name": "Atlantic City Line",
+            "image": "../assets/icons/lines/atlanticcity.svg"
+        },
+        "nine": {
+            "name": "River LINE",
+            "image": "../assets/icons/lines/riverline.svg"
+        }
+    }
+}

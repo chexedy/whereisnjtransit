@@ -6,7 +6,8 @@
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Secaucus Junction"
+                    "description": "Secaucus Junction",
+                    "lines": "one two three four five seven"
                 },
                 "geometry": {
                     "coordinates": [

@@ -6,26 +6,87 @@
     <title>where is NJ Transit?</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 
+    <script src="./json/line-database.json"></script>
+
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
     <script src="./js/ui.js"></script>
 
     <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css' />
     <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./css/sidebar.css">
+    <link rel="stylesheet" href="./css/ui.css">
 </head>
 
 <body>
+    <div class="welcome" id="welcomeScreen">
+        <h1>where is NJ Transit?</h1>
+        <br>
+        <h4>Welcome! This is a interactive live map that displays the current location of the NJ Transit Rail network,
+            along with the current status at each of the rail stations. Choose the routes you like in the sidebar to get
+            started!</h4>
+        <br>
+        <button class="welcome_button" onclick="welcome_button()" id="welcomeButton">
+            <span>Enter</span>
+        </button>
+    </div>
+
+    <div class="station_status" id="stationStatus">
+        <h1 id="stationStatusName">Current Station</h1>
+        <br>
+        <div class="station_routes" id="stationRoutes">
+            <div class="station_route_1" id="stationRouteCurrent">
+                <img src="./assets/icons/lines/northeastcorridor.svg" alt="Route Icon">
+                <span>Northeast Corridor</span>
+            </div>
+            <div class="station_route_2" id="stationRouteCurrent" style="display: flex;">
+                <img src="./assets/icons/lines/morrisessex.svg" alt="Route Icon">
+                <span>Morris & Essex</span>
+            </div>
+            <div class="station_route_3" id="stationRouteCurrent" style="display: none;">
+                <img src="../assets/icons/lines/northjerseycoast.svg" alt="Route Icon">
+                <span>North Jersey Coast</span>
+            </div>
+            <div class="station_route_4" id="stationRouteCurrent" style="display: none;">
+                <img src="./assets/icons/lines/mainbergen.svg" alt="Route Icon">
+                <span>Main/Bergen</span>
+            </div>
+            <div class="station_route_5" id="stationRouteCurrent" style="display: none;">
+                <img src="./assets/icons/lines/montclairboonton.svg" alt="Route Icon">
+                <span>Montclair-Boonton</span>
+            </div>
+            <div class="station_route_6" id="stationRouteCurrent" style="display: none;">
+                <img src="./assets/icons/lines/raritanvalley.svg" alt="Route Icon">
+                <span>Raritan Valley</span>
+            </div>
+            <div class="station_route_7" id="stationRouteCurrent" style="display: none;">
+                <img src="./assets/icons/lines/pascackvalley.svg" alt="Route Icon">
+                <span>Pascack Valley</span>
+            </div>
+            <div class="station_route_8" id="stationRouteCurrent" style="display: none;">
+                <img src="./assets/icons/lines/atlanticcity.svg" alt="Route Icon">
+                <span>Atlantic City Line</span>
+            </div>
+            <div class="station_route_9" id="stationRouteCurrent" style="display: none;">
+                <img src="./assets/icons/lines/riverline.svg" alt="Route Icon">
+                <span>River LINE</span>
+            </div>
+        </div>
+        <br>
+        <button class="station_close" onclick="station_close()" id="stationClose">
+            <span>Close</span>
+        </button>
+    </div>
+
     <div class="sidebar" style="display: none;" id="mainSidebar">
         <h1>Rail Routes</h1>
         <h4>Click on a route to enable/disable it</h4>
 
         <div class="sidebar_routes">
             <button class="sidebar_route_button" id="NortheastCorridor">
-                <img src="./assets/icons/lines/northeastcorridor.svg" alt="Train">
+                <img src="./assets/icons/lines/northeastcorridor.svg" alt="Route Icon">
                 <span>Northeast Corridor</span>
             </button>
             <button class="sidebar_route_button" id="RaritanValley">
-                <img src="./assets/icons/lines/raritanvalley.svg" alt="Train">
+                <img src="./assets/icons/lines/raritanvalley.svg" alt="Route Icon">
                 <span>Raritan Valley</span>
             </button>
         </div>
@@ -44,6 +105,12 @@
 
     <div class="sidebar_opener">
         <button class="sidebar_button" onclick="sidebar_open()">☰</button>
+    </div>
+
+    <div class="location" id="userLocation">
+        <button class="location_button" id="locationButton">
+            <img src="./assets/icons/service/location.png" alt="Location">
+        </button>
     </div>
 
     <div id="map"></div>
