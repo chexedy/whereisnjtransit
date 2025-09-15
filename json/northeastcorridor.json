@@ -1,5 +1,5 @@
 {
-    "stations": {
+    "northeastcorridor": {
         "type": "FeatureCollection",
         "features": [
             {
@@ -26,6 +26,34 @@
                     "coordinates": [
                         -74.1640951041384,
                         40.734433112373154
+                    ],
+                    "type": "Point"
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "New York Penn Station"
+                },
+                "geometry": {
+                    "coordinates": [
+                        -73.9928241569253,
+                        40.75011271707385
+                    ],
+                    "type": "Point"
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Newark Liberty International Airport"
+                },
+                "geometry": {
+                    "coordinates": [
+                        -74.19073797057773,
+                        40.704415497260555
                     ],
                     "type": "Point"
                 }

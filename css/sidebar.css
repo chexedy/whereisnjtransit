@@ -1,0 +1,115 @@
+.sidebar_opener {
+    top: 1vw;
+    left: 1vw;
+    position: fixed;
+    width: 2.5%;
+    aspect-ratio: 1 / 1;
+    background: rgb(245, 240, 226);
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 1000;
+    padding: 0.5rem 0.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar_opener:hover {
+    transform: scale(1.05);
+}
+
+.sidebar_button {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(0.5rem, 3vw, 2rem);
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.sidebar_button:hover {
+    transform: scale(1.1);
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 15%;
+    height: 100vh;
+    background-color: rgb(245, 240, 226);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    z-index: 998;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.sidebar h1 {
+    text-align: center;
+    font-family: "Ubuntu";
+}
+
+.sidebar h4 {
+    text-align: center;
+    font-family: "Ubuntu";
+}
+
+.sidebar_routes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar_route_button {
+    align-items: center;
+    width: 80%;
+    text-align: center;
+    font-size: 1.2em;
+    font-family: "Ubuntu";
+    border-radius: 50px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.sidebar_route_button:hover {
+    transform: scale(1.1);
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.links img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+@media (max-width: 1135px) {
+    .sidebar_opener {
+        width: 10%;
+        aspect-ratio: 1 / 1;
+        top: 2vw;
+        left: 81vw;
+    }
+
+    .sidebar {
+        width: 80%;
+    }
+
+    .sidebar_button {
+        font-size: 2.5rem;
+    }
+}

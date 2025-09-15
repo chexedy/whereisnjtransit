@@ -7,11 +7,45 @@
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
+    <script src="./js/ui.js"></script>
+
     <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css' />
     <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/sidebar.css">
 </head>
 
 <body>
+    <div class="sidebar" style="display: none;" id="mainSidebar">
+        <h1>Rail Routes</h1>
+        <h4>Click on a route to enable/disable it</h4>
+
+        <div class="sidebar_routes">
+            <button class="sidebar_route_button" id="NortheastCorridor">
+                <img src="./assets/icons/lines/northeastcorridor.svg" alt="Train">
+                <span>Northeast Corridor</span>
+            </button>
+            <button class="sidebar_route_button" id="RaritanValley">
+                <img src="./assets/icons/lines/raritanvalley.svg" alt="Train">
+                <span>Raritan Valley</span>
+            </button>
+        </div>
+        <br>
+        <div class="about">
+
+        </div>
+        <br>
+        <div class="links">
+            <a href="https://github.com/chexedy/whereisnjtransit" target="_blank"><img
+                    src="./assets/icons/links/github-mark.png" alt="GitHub"></a>
+            <a href="https://www.linkedin.com/in/ayaan7m/" target="_blank"><img src="./assets/icons/links/linkedin.jpg"
+                    alt="GitHub"></a>
+        </div>
+    </div>
+
+    <div class="sidebar_opener">
+        <button class="sidebar_button" onclick="sidebar_open()">☰</button>
+    </div>
+
     <div id="map"></div>
     <script src="./js/map.js"></script>
 </body>
