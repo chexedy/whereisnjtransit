@@ -21,7 +21,8 @@
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Newark Penn Station"
+                    "description": "Newark Penn Station",
+                    "lines": "one three six"
                 },
                 "geometry": {
                     "coordinates": [
@@ -35,7 +36,8 @@
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "New York Penn Station"
+                    "description": "New York Penn Station",
+                    "lines": "one two three five six"
                 },
                 "geometry": {
                     "coordinates": [
@@ -49,7 +51,8 @@
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Newark Liberty International Airport"
+                    "description": "Newark Liberty International Airport",
+                    "lines": "one three"
                 },
                 "geometry": {
                     "coordinates": [

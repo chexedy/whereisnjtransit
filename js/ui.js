@@ -1,4 +1,4 @@
-const database = {};
+let database;
 fetch("../json/line-database.json")
     .then(response => response.json())
     .then(data => {
@@ -56,9 +56,8 @@ function adjust_sidebar() {
 }
 
 function updateStationStatus(map, name, lines) {
-    console.log(lines);
     document.getElementById("stationStatusName").textContent = name;
-    split_lines = lines.split(" ")
+    split_lines = lines.split(" ");
 
     const routeDivs = document.querySelectorAll(".station_routes > div");
     routeDivs.forEach(div => div.style.display = "none");
@@ -67,13 +66,12 @@ function updateStationStatus(map, name, lines) {
         const data = database[x];
         if (!data) return;
 
-        const div = routeDivs[i];
+        const div = document.getElementById("stationRoute" + x)
         const img = div.querySelector("img");
         const span = div.querySelector("span");
 
         img.src = data.image;
         span.textContent = data.name;
-
         div.style.display = "flex";
     })
 
