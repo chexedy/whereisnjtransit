@@ -1,10 +1,9 @@
 .welcome {
-    display: block;
+    display: flex;
     width: 40%;
     height: 60vh;
     background: rgb(245, 240, 226);
     z-index: 1010;
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -26,18 +25,16 @@
 }
 
 .welcome_button {
-    align-items: center;
-    width: 60%;
-    height: 10%;
-    text-align: center;
-    font-size: 1.2em;
-    font-family: "Ubuntu";
-    border-radius: 50px;
+    display: flex;
     align-items: center;
     justify-content: center;
+    width: 60%;
+    height: 10%;
+    font-size: 1.2em;
+    font-family: "Ubuntu";
+    border-radius: 8px;
     cursor: pointer;
     transition: background 0.2s, transform 0.2s;
-    display: flex;
     gap: 0.5rem;
     flex-wrap: nowrap;
 }
@@ -75,7 +72,7 @@
 .station_status h1 {
     font-family: "Ubuntu";
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
 }
 
@@ -86,17 +83,15 @@
 }
 
 .station_close {
+    display: flex;
     align-items: center;
     width: 40%;
     height: 5%;
-    text-align: center;
     font-size: 1.2em;
     font-family: "Ubuntu";
-    border-radius: 50px;
-    align-items: center;
+    border-radius: 8px;
     cursor: pointer;
     transition: background 0.2s, transform 0.2s;
-    display: flex;
     gap: 0.5rem;
     flex-wrap: nowrap;
 }
@@ -115,30 +110,30 @@
     transform: scale(1.1);
 }
 
-.station_routes {
+.station_status .station_routes {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: end;
+    align-items: start;
     gap: 0.5rem;
     width: 80%;
     font-family: "Ubuntu", sans-serif;
     font-size: 1.2em;
+    padding: 0;
 }
 
 .station_routes>div {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    width: 100%;
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
+    width: 80%;
+    border-radius: 8px;
     transition: background 0.2s, transform 0.2s;
 }
 
 .station_routes>div:hover {
+    transform: scale(1.1);
     background: rgba(0, 0, 0, 0.05);
-    transform: scale(1.02);
 }
 
 .station_routes img {
@@ -149,11 +144,29 @@
 
 .station_routes span {
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.sidebar_opener {
-    top: 1vw;
-    left: 1vw;
+.station_routes h4 {
+    margin: 0;
+    font-size: 1em;
+    line-height: 1em;
+    height: 24px;
+    color: red;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar_opener,
+.location {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    line-height: normal;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     width: 2.5%;
     aspect-ratio: 1 / 1;
@@ -162,13 +175,19 @@
     font-size: 2rem;
     cursor: pointer;
     z-index: 1000;
-    padding: 0.5rem 0.5rem;
+    padding: 0.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    color: inherit;
+}
+
+.sidebar_opener {
+    top: 1vw;
+    left: 1vw;
 }
 
 .sidebar_opener:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 .sidebar_button {
@@ -200,6 +219,9 @@
     z-index: 998;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
 }
 
 .sidebar h1 {
@@ -216,29 +238,29 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
 .sidebar_route_button {
-    align-items: center;
-    width: 80%;
-    text-align: center;
-    font-size: 1.2em;
-    font-family: "Ubuntu";
-    border-radius: 50px;
+    display: flex;
     align-items: center;
     justify-content: center;
+    width: 80%;
+    font-size: 1.2em;
+    font-family: "Ubuntu";
+    border-radius: 8px;
     cursor: pointer;
     transition: background 0.2s, transform 0.2s;
-    display: flex;
     gap: 0.5rem;
     flex-wrap: nowrap;
+    color: black;
+    text-decoration: none;
 }
 
 .sidebar_route_button img {
     flex: 0 1 auto;
-    width: 20%;
+    width: 15%;
     height: auto;
     min-width: 16px;
 }
@@ -261,6 +283,7 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    margin-top: auto;
 }
 
 .links img {
@@ -272,27 +295,14 @@
 .location {
     bottom: 2vw;
     right: 1vw;
-    position: fixed;
-    width: 2.5%;
-    aspect-ratio: 1 / 1;
-    background: rgb(245, 240, 226);
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
-    z-index: 1000;
-    padding: 0.5rem 0.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .location img {
-    border: none;
-    background-color: transparent;
     max-width: 100%;
 }
 
 .location:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 .location_button {
@@ -325,6 +335,10 @@
 
     .station_status {
         width: 80%;
+    }
+
+    .station_status .station_routes {
+        font-size: 0.9em;
     }
 
     .station_close span {
@@ -370,4 +384,5 @@
         width: 7%;
         aspect-ratio: 1 / 1;
     }
+
 }
