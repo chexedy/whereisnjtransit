@@ -47,6 +47,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: black;
 }
 
 .welcome_button:hover {
@@ -94,6 +95,7 @@
     transition: background 0.2s, transform 0.2s;
     gap: 0.5rem;
     flex-wrap: nowrap;
+    color: black;
 }
 
 .station_close span {
@@ -104,6 +106,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: black;
 }
 
 .station_close:hover {
@@ -114,7 +117,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: start;
+    align-items: center;
     gap: 0.5rem;
     width: 80%;
     font-family: "Ubuntu", sans-serif;
@@ -122,40 +125,44 @@
     padding: 0;
 }
 
-.station_routes>div {
+.station_route {
+    cursor: pointer;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 0.5rem;
-    width: 80%;
+    width: 100%;
+    padding: 0.5rem 1rem;
     border-radius: 8px;
+    font-family: "Ubuntu", sans-serif;
     transition: background 0.2s, transform 0.2s;
 }
 
-.station_routes>div:hover {
+.station_route:hover {
+    background: rgba(0, 0, 0, 0.2);
     transform: scale(1.1);
-    background: rgba(0, 0, 0, 0.05);
 }
 
-.station_routes img {
+.station_route img {
     width: 24px;
     height: 24px;
     flex-shrink: 0;
 }
 
-.station_routes span {
+.station_route span {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    min-width: 0;
+    flex: 1 1 auto;
 }
 
-.station_routes h4 {
+.station_route h4 {
     margin: 0;
-    font-size: 1em;
-    line-height: 1em;
-    height: 24px;
+    font-size: 0.9em;
+    white-space: nowrap;
+    flex-shrink: 0;
     color: red;
-    display: flex;
-    align-items: center;
 }
 
 .sidebar_opener,
@@ -178,12 +185,12 @@
     padding: 0.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    color: inherit;
 }
 
 .sidebar_opener {
     top: 1vw;
     left: 1vw;
+    color: black;
 }
 
 .sidebar_opener:hover {
@@ -354,7 +361,7 @@
         width: 7%;
         aspect-ratio: 1 / 1;
         top: 2vw;
-        left: 81vw;
+        left: 2vw;
     }
 
     .sidebar {
