@@ -37,6 +37,7 @@
     transition: background 0.2s, transform 0.2s;
     gap: 0.5rem;
     flex-wrap: nowrap;
+    background: white;
 }
 
 .welcome_button span {
@@ -69,11 +70,6 @@
     border-radius: 25px;
     padding-bottom: 2.5vh;
     position: absolute;
-    cursor: grab;
-}
-
-.station_status:active {
-    cursor: grabbing;
 }
 
 .station_status h1 {
@@ -96,17 +92,21 @@
 
 .draggable_station_status {
     position: absolute;
-    top: 12px;
+    bottom: 12px;
     right: 12px;
-    width: 48px;
-    height: 48px;
+    width: 6%;
+    aspect-ratio: 1 / 1;
+    cursor: grab;
+}
+
+.draggable_station_status:active {
+    cursor: grabbing;
 }
 
 .station_close {
     display: flex;
     align-items: center;
     width: 40%;
-    height: 5%;
     font-size: 1.2em;
     font-family: "Ubuntu";
     border-radius: 8px;
@@ -115,6 +115,7 @@
     gap: 0.5rem;
     flex-wrap: nowrap;
     color: black;
+    background: white;
 }
 
 .station_close span {
@@ -282,6 +283,7 @@
     gap: 0.5rem;
     flex-wrap: nowrap;
     color: black;
+    background: white;
     text-decoration: none;
 }
 

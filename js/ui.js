@@ -84,16 +84,14 @@ function updateStationStatus(map, name, lines) {
 window.addEventListener("resize", adjust_sidebar)
 
 const stationStatus = document.getElementById("stationStatus");
+const dragHandle = document.querySelector(".draggable_station_status");
 
 let offsetX = 0, offsetY = 0, isDragging = false;
 
-stationStatus.addEventListener("mousedown", startDrag);
-stationStatus.addEventListener("touchstart", startDrag, { passive: false });
+dragHandle.addEventListener("mousedown", startDrag);
+dragHandle.addEventListener("touchstart", startDrag, { passive: false });
 
 function startDrag(e) {
-    // prevent drag if target is a button, link, or inside them
-    if (e.target.closest("button, a")) return;
-
     e.preventDefault();
     isDragging = true;
 
@@ -118,7 +116,7 @@ function onDrag(e) {
 
     stationStatus.style.left = (clientX - offsetX) + "px";
     stationStatus.style.top = (clientY - offsetY) + "px";
-    stationStatus.style.transform = "none"; // stop centering after drag
+    stationStatus.style.transform = "none";
 }
 
 function stopDrag() {

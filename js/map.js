@@ -1,4 +1,4 @@
-mapboxgl.accessToken = 'pk.eyJ1IjoiYXlhYW43bSIsImEiOiJjbWZoZTA1c3IwYjg2MnNxMnB6Y3kwdHB6In0.bmb3F3SzeBHWPfmNitzl4w';
+mapboxgl.accessToken = 'pk.eyJ1IjoiYXlhYW43bSIsImEiOiJjbWZoZDZrd3YwYXNyMnFxNjFoYzBrNWozIn0.59Ytrv3w2xPkUr3FYRxMbg';
 const bounds = [
     [-76.58039, 38.80348],
     [-72.79608, 41.75203]
@@ -18,7 +18,7 @@ map.on('load', () => {
     map.setMinZoom(currentZoom);
 });
 
-fetch('./json/northeastcorridor.json')
+fetch('./json/stations.json')
     .then(res => res.json())
     .then(data => {
         map.on('load', () => {
@@ -66,14 +66,38 @@ fetch('./json/northeastcorridor.json')
         });
     });
 
+fetch('./json/northeastcorridortrack.json')
+    .then(res => res.json())
+    .then(data => {
+        map.on('load', () => {
+            map.addSource('route', {
+                type: 'geojson',
+                data: data.northeastcorridortrack
+            });
+
+            map.addLayer({
+                'id': 'route',
+                'type': 'line',
+                'source': 'route',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-color': 'rgb(239, 62, 66)',
+                    'line-width': 8
+                }
+            });
+        });
+    });
+
 document.getElementById("locationButton").addEventListener("click", () => {
-    console.log("Hi");
     navigator.geolocation.getCurrentPosition(
         (pos) => {
             const { longitude, latitude } = pos.coords;
             map.flyTo({ center: [longitude, latitude], zoom: 14, essential: true });
         },
         (err) => console.error(err),
-        { enableHighAccuracy: true, timeout: 6000 }
+        { enableHighAccuracy: false, timeout: 6000 }
     );
 })
