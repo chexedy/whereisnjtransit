@@ -58,7 +58,7 @@
     display: none;
     width: 40%;
     background: rgb(245, 240, 226);
-    z-index: 980;
+    z-index: 1060;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
@@ -68,6 +68,12 @@
     transform: translate(-50%, -50%);
     border-radius: 25px;
     padding-bottom: 2.5vh;
+    position: absolute;
+    cursor: grab;
+}
+
+.station_status:active {
+    cursor: grabbing;
 }
 
 .station_status h1 {
@@ -81,6 +87,19 @@
     padding: 5%;
     font-family: "Ubuntu";
     text-align: center;
+}
+
+.station_status button,
+.station_status a {
+    cursor: pointer;
+}
+
+.draggable_station_status {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 48px;
+    height: 48px;
 }
 
 .station_close {
@@ -209,6 +228,7 @@
     text-align: center;
     cursor: pointer;
     transition: background 0.2s, transform 0.2s;
+    color: black;
 }
 
 .sidebar_button:hover {

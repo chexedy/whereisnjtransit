@@ -14,6 +14,9 @@ function welcome_button() {
 function station_open() {
     const screen = document.getElementById("stationStatus");
     screen.style.display = "flex";
+    screen.style.left = "50%";
+    screen.style.top = "50%";
+    screen.style.transform = "translate(-50%, -50%)";
 }
 
 function station_close() {
@@ -79,3 +82,49 @@ function updateStationStatus(map, name, lines) {
 }
 
 window.addEventListener("resize", adjust_sidebar)
+
+const stationStatus = document.getElementById("stationStatus");
+
+let offsetX = 0, offsetY = 0, isDragging = false;
+
+stationStatus.addEventListener("mousedown", startDrag);
+stationStatus.addEventListener("touchstart", startDrag, { passive: false });
+
+function startDrag(e) {
+    // prevent drag if target is a button, link, or inside them
+    if (e.target.closest("button, a")) return;
+
+    e.preventDefault();
+    isDragging = true;
+
+    const rect = stationStatus.getBoundingClientRect();
+    const clientX = e.type.includes("touch") ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type.includes("touch") ? e.touches[0].clientY : e.clientY;
+
+    offsetX = clientX - rect.left;
+    offsetY = clientY - rect.top;
+
+    document.addEventListener("mousemove", onDrag);
+    document.addEventListener("mouseup", stopDrag);
+    document.addEventListener("touchmove", onDrag, { passive: false });
+    document.addEventListener("touchend", stopDrag);
+}
+
+function onDrag(e) {
+    if (!isDragging) return;
+
+    const clientX = e.type.includes("touch") ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type.includes("touch") ? e.touches[0].clientY : e.clientY;
+
+    stationStatus.style.left = (clientX - offsetX) + "px";
+    stationStatus.style.top = (clientY - offsetY) + "px";
+    stationStatus.style.transform = "none"; // stop centering after drag
+}
+
+function stopDrag() {
+    isDragging = false;
+    document.removeEventListener("mousemove", onDrag);
+    document.removeEventListener("mouseup", stopDrag);
+    document.removeEventListener("touchmove", onDrag);
+    document.removeEventListener("touchend", stopDrag);
+}

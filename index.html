@@ -9,7 +9,6 @@
     <script src="./json/line-database.json"></script>
 
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
-    <script src="./js/ui.js"></script>
 
     <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css' />
     <link rel="stylesheet" href="./css/index.css">
@@ -30,12 +29,19 @@
     </div>
 
     <div class="station_status" id="stationStatus">
+        <img src="./assets/icons/service/draggable.svg" alt="Drag" class="draggable_station_status">
+
         <h1 id="stationStatusName">Current Station</h1>
+
         <div class="station_routes" id="stationRoutes">
             <div class="station_route" id="stationRouteone">
                 <img src="./assets/icons/lines/northeastcorridor.svg" alt="Route Icon">
                 <span>Northeast Corridor</span>
                 <h4>LATE</h4>
+            </div>
+            <div class="station_route">
+                <h4>New York Penn Station - 3 MINS</h4>
+                <h4>Trenton - 5 MINS</h4>
             </div>
             <div class="station_route" id="stationRoutetwo" style="display: none;">
                 <img src="./assets/icons/lines/morrisessex.svg" alt="Route Icon">
@@ -78,7 +84,9 @@
                 <h4>LATE</h4>
             </div>
         </div>
+
         <br>
+
         <button class="station_close" onclick="station_close()" id="stationClose">
             <span>Close</span>
         </button>
@@ -151,6 +159,8 @@
 
     <div id="map"></div>
     <script src="./js/map.js"></script>
+    <script src="./js/ui.js"></script>
+
 </body>
 
 </html>

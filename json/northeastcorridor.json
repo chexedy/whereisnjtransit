@@ -61,6 +61,186 @@
                     ],
                     "type": "Point"
                 }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "North Elizabeth",
+                    "lines": "one three"
+                },
+                "geometry": {
+                    "coordinates": [
+                        -74.20620449170995,
+                        40.68020601191924
+                    ],
+                    "type": "Point"
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Elizabeth",
+                    "lines": "one three"
+                },
+                "geometry": {
+                    "coordinates": [
+                        -74.21552027327937,
+                        40.6674151568219
+                    ],
+                    "type": "Point"
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Linden",
+                    "lines": "one three"
+                },
+                "geometry": {
+                    "coordinates": [
+                        -74.25168471485176,
+                        40.62967418778871
+                    ],
+                    "type": "Point"
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Rahway",
+                    "lines": "one three"
+                },
+                "geometry": {
+                    "coordinates": [
+                        -74.27662886876844,
+                        40.606403637890196
+                    ],
+                    "type": "Point"
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Metropark",
+                    "lines": "one"
+                },
+                "geometry": {
+                    "coordinates": [
+                        -74.32987879613401,
+                        40.568285113385315
+                    ],
+                    "type": "Point"
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Metuchen",
+                    "lines": "one"
+                },
+                "geometry": {
+                    "coordinates": [
+                        -74.36047368928128,
+                        40.540852857265776
+                    ],
+                    "type": "Point"
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Edison",
+                    "lines": "one"
+                },
+                "geometry": {
+                    "coordinates": [
+                        -74.41094980443353,
+                        40.51922800118925
+                    ],
+                    "type": "Point"
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "New Brunswick",
+                    "lines": "one"
+                },
+                "geometry": {
+                    "coordinates": [
+                        -74.44624848873185,
+                        40.496788802233084
+                    ],
+                    "type": "Point"
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Jersey Avenue",
+                    "lines": "one"
+                },
+                "geometry": {
+                    "coordinates": [
+                        -74.46748268984915,
+                        40.47676590763308
+                    ],
+                    "type": "Point"
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Princeton Junction",
+                    "lines": "one"
+                },
+                "geometry": {
+                    "coordinates": [
+                        -74.62413375167266,
+                        40.315997770328835
+                    ],
+                    "type": "Point"
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Hamilton",
+                    "lines": "one"
+                },
+                "geometry": {
+                    "coordinates": [
+                        -74.70404147592134,
+                        40.25537273985216
+                    ],
+                    "type": "Point"
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Trenton",
+                    "lines": "one"
+                },
+                "geometry": {
+                    "coordinates": [
+                        -74.75389318270167,
+                        40.21854104008378
+                    ],
+                    "type": "Point"
+                }
             }
         ]
     }
