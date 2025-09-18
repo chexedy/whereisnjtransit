@@ -55,6 +55,66 @@
     transform: scale(1.1);
 }
 
+.station_departures {
+    display: none;
+    width: 40%;
+    background: white;
+    z-index: 1070;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 25px;
+    padding-bottom: 2.5vh;
+    position: absolute;
+}
+
+.station_departures h1 {
+    font-family: "Ubuntu";
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.station_departures h4 {
+    padding: 5%;
+    font-family: "Ubuntu";
+    text-align: center;
+}
+
+.station_departure_close {
+    display: flex;
+    align-items: center;
+    width: 40%;
+    font-size: 1.2em;
+    font-family: "Ubuntu";
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+    color: black;
+    background: rgb(245, 240, 226);
+}
+
+.station_departure_close span {
+    font-family: "Ubuntu";
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: clamp(0.6rem, 1.2vw, 1rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: black;
+}
+
+.station_departure_close:hover {
+    transform: scale(1.1);
+}
+
 .station_status {
     display: none;
     width: 40%;

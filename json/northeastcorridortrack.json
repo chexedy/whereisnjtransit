@@ -4,7 +4,9 @@
         "features": [
             {
                 "type": "Feature",
-                "properties": {},
+                "properties": {
+                    "offset": -8
+                },
                 "geometry": {
                     "coordinates": [
                         [
@@ -46,7 +48,16 @@
                         [
                             -74.07575224060915,
                             40.761342713874086
-                        ],
+                        ]
+                    ],
+                    "type": "LineString"
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {},
+                "geometry": {
+                    "coordinates": [
                         [
                             -74.08604593375343,
                             40.756678500305185
