@@ -1,5 +1,5 @@
 let database;
-fetch("../json/line-database.json")
+fetch("json/line-database.json")
     .then(response => response.json())
     .then(data => {
         database = data["line-database"];

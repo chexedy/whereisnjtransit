@@ -6,13 +6,13 @@
     <title>where is NJ Transit?</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 
-    <script src="./json/line-database.json"></script>
+    <script src="json/line-database.json"></script>
 
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
 
     <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css' />
-    <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./css/ui.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/ui.css">
 </head>
 
 <body>
@@ -39,48 +39,48 @@
     </div>
 
     <div class="station_status" id="stationStatus">
-        <img src="./assets/icons/service/draggable.svg" alt="Drag" class="draggable_station_status">
+        <img src="assets/icons/service/draggable.svg" alt="Drag" class="draggable_station_status">
 
         <h1 id="stationStatusName">Current Station</h1>
 
         <div class="station_routes" id="stationRoutes">
             <div class="station_route" id="stationRouteone">
-                <img src="./assets/icons/lines/northeastcorridor.svg" alt="Route Icon">
+                <img src="assets/icons/lines/northeastcorridor.svg" alt="Route Icon">
                 <span>Northeast Corridor</span>
                 <h4>DEPARTURES</h4>
             </div>
             <div class="station_route" id="stationRoutetwo" style="display: none;">
-                <img src="./assets/icons/lines/morrisessex.svg" alt="Route Icon">
+                <img src="assets/icons/lines/morrisessex.svg" alt="Route Icon">
                 <span>Morris & Essex</span>
                 <h4>DEPARTURES</h4>
             </div>
             <div class="station_route" id="stationRoutethree" style="display: none;">
-                <img src="../assets/icons/lines/northjerseycoast.svg" alt="Route Icon">
+                <img src="assets/icons/lines/northjerseycoast.svg" alt="Route Icon">
                 <span>North Jersey Coast</span>
                 <h4>DEPARTURES</h4>
             </div>
             <div class="station_route" id="stationRoutefour" style="display: none;">
-                <img src="./assets/icons/lines/mainbergen.svg" alt="Route Icon">
+                <img src="assets/icons/lines/mainbergen.svg" alt="Route Icon">
                 <span>Main/Bergen</span>
                 <h4>DEPARTURES</h4>
             </div>
             <div class="station_route" id="stationRoutefive" style="display: none;">
-                <img src="./assets/icons/lines/montclairboonton.svg" alt="Route Icon">
+                <img src="assets/icons/lines/montclairboonton.svg" alt="Route Icon">
                 <span>Montclair-Boonton</span>
                 <h4>DEPARTURES</h4>
             </div>
             <div class="station_route" id="stationRoutesix" style="display: none;">
-                <img src="./assets/icons/lines/raritanvalley.svg" alt="Route Icon">
+                <img src="assets/icons/lines/raritanvalley.svg" alt="Route Icon">
                 <span>Raritan Valley</span>
                 <h4>DEPARTURES</h4>
             </div>
             <div class="station_route" id="stationRouteseven" style="display: none;">
-                <img src="./assets/icons/lines/pascackvalley.svg" alt="Route Icon">
+                <img src="assets/icons/lines/pascackvalley.svg" alt="Route Icon">
                 <span>Pascack Valley</span>
                 <h4>DEPARTURES</h4>
             </div>
             <div class="station_route" id="stationRouteeight" style="display: none;">
-                <img src="./assets/icons/lines/atlanticcity.svg" alt="Route Icon">
+                <img src="assets/icons/lines/atlanticcity.svg" alt="Route Icon">
                 <span>Atlantic City Line</span>
                 <h4>DEPARTURES</h4>
             </div>
@@ -99,35 +99,35 @@
 
         <div class="sidebar_routes">
             <button class="sidebar_route_button" id="NortheastCorridor">
-                <img src="./assets/icons/lines/northeastcorridor.svg" alt="Route Icon">
+                <img src="assets/icons/lines/northeastcorridor.svg" alt="Route Icon">
                 <span>Northeast Corridor</span>
             </button>
             <button class="sidebar_route_button" id="RaritanValley">
-                <img src="../assets/icons/lines/morrisessex.svg" alt="Route Icon">
+                <img src="assets/icons/lines/morrisessex.svg" alt="Route Icon">
                 <span>Morris & Essex</span>
             </button>
             <button class="sidebar_route_button" id="RaritanValley">
-                <img src="./assets/icons/lines/northjerseycoast.svg" alt="Route Icon">
+                <img src="assets/icons/lines/northjerseycoast.svg" alt="Route Icon">
                 <span>North Jersey Coast</span>
             </button>
             <button class="sidebar_route_button" id="RaritanValley">
-                <img src="./assets/icons/lines/mainbergen.svg" alt="Route Icon">
+                <img src="assets/icons/lines/mainbergen.svg" alt="Route Icon">
                 <span>Main/Bergen</span>
             </button>
             <button class="sidebar_route_button" id="RaritanValley">
-                <img src="./assets/icons/lines/montclairboonton.svg" alt="Route Icon">
+                <img src="assets/icons/lines/montclairboonton.svg" alt="Route Icon">
                 <span>Montclair-Boonton</span>
             </button>
             <button class="sidebar_route_button" id="RaritanValley">
-                <img src="./assets/icons/lines/raritanvalley.svg" alt="Route Icon">
+                <img src="assets/icons/lines/raritanvalley.svg" alt="Route Icon">
                 <span>Raritan Valley</span>
             </button>
             <button class="sidebar_route_button" id="RaritanValley">
-                <img src="./assets/icons/lines/pascackvalley.svg" alt="Route Icon">
+                <img src="assets/icons/lines/pascackvalley.svg" alt="Route Icon">
                 <span>Pascack Valley</span>
             </button>
             <button class="sidebar_route_button" id="RaritanValley">
-                <img src="./assets/icons/lines/atlanticcity.svg" alt="Route Icon">
+                <img src="assets/icons/lines/atlanticcity.svg" alt="Route Icon">
                 <span>Atlantic City Line</span>
             </button>
         </div>
@@ -139,7 +139,7 @@
         <div class="links">
             <a href="https://github.com/chexedy/whereisnjtransit" target="_blank"><img
                     src="./assets/icons/links/github-mark.png" alt="GitHub"></a>
-            <a href="https://www.linkedin.com/in/ayaan7m/" target="_blank"><img src="./assets/icons/links/linkedin.jpg"
+            <a href="https://www.linkedin.com/in/ayaan7m/" target="_blank"><img src="assets/icons/links/linkedin.jpg"
                     alt="GitHub"></a>
         </div>
     </div>
@@ -150,13 +150,13 @@
 
     <div class="location" id="userLocation">
         <button class="location_button" id="locationButton">
-            <img src="./assets/icons/service/location.png" alt="Location">
+            <img src="assets/icons/service/location.png" alt="Location">
         </button>
     </div>
 
     <div id="map"></div>
-    <script src="./js/map.js"></script>
-    <script src="./js/ui.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/ui.js"></script>
 
 </body>
 

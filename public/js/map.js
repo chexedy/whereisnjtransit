@@ -12,7 +12,7 @@ const map = new mapboxgl.Map({
 });
 
 async function addTrackLines() {
-    const res = await fetch('./json/line-database.json');
+    const res = await fetch('json/line-database.json');
     const data = await res.json();
 
     for (const key in data["line-database"]) {
@@ -38,16 +38,17 @@ async function addTrackLines() {
                 'line-color': line.color,
                 'line-width': 8,
                 'line-offset': ['get', 'offset']
-            }
+            },
+            "minzoom": 9
         });
     }
 }
 
 async function addStations() {
-    const res = await fetch('./json/stations.json');
+    const res = await fetch('json/stations.json');
     const data = await res.json();
 
-    map.loadImage("../assets/icons/service/station.png", (error, image) => {
+    map.loadImage("assets/icons/service/station.png", (error, image) => {
         if (error) throw error;
 
         if (!map.hasImage('station-icon')) {

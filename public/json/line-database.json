@@ -2,58 +2,58 @@
     "line-database": {
         "one": {
             "name": "Northeast Corridor",
-            "image": "../assets/icons/lines/northeastcorridor.svg",
+            "image": "assets/icons/lines/northeastcorridor.svg",
             "id": "northeastcorridortrack",
-            "url": "../json/northeastcorridortrack.json",
+            "url": "json/northeastcorridortrack.json",
             "color": "rgb(239, 62, 66)"
         },
         "two": {
             "name": "Morris & Essex",
-            "image": "../assets/icons/lines/morrisessex.svg",
+            "image": "assets/icons/lines/morrisessex.svg",
             "id": "morrisessextrack",
-            "url": "../json/morrisessextrack.json",
+            "url": "json/morrisessextrack.json",
             "color": "rgb(0, 149, 59)"
         },
         "three": {
             "name": "North Jersey Coast",
-            "image": "../assets/icons/lines/northjerseycoast.svg",
+            "image": "assets/icons/lines/northjerseycoast.svg",
             "id": "northjerseycoasttrack",
-            "url": "../json/northjerseycoasttrack.json",
+            "url": "json/northjerseycoasttrack.json",
             "color": "rgb(0, 156, 219)"
         },
         "four": {
             "name": "Main/Bergen",
-            "image": "../assets/icons/lines/mainbergen.svg",
+            "image": "assets/icons/lines/mainbergen.svg",
             "id": "mainbergentrack",
-            "url": "../json/mainbergentrack.json",
+            "url": "json/mainbergentrack.json",
             "color": "rgb(242, 184, 38)"
         },
         "five": {
             "name": "Montclair-Boonton",
-            "image": "../assets/icons/lines/montclairboonton.svg",
+            "image": "assets/icons/lines/montclairboonton.svg",
             "id": "montclairboontontrack",
-            "url": "../json/montclairboontontrack.json",
+            "url": "json/montclairboontontrack.json",
             "color": "rgb(195, 99, 102)"
         },
         "six": {
             "name": "Raritan Valley",
-            "image": "../assets/icons/lines/raritanvalley.svg",
+            "image": "assets/icons/lines/raritanvalley.svg",
             "id": "raritanvalleytrack",
-            "url": "../json/raritanvalleytrack.json",
+            "url": "json/raritanvalleytrack.json",
             "color": "rgb(255, 153, 62)"
         },
         "seven": {
             "name": "Pascack Valley",
-            "image": "../assets/icons/lines/pascackvalley.svg",
+            "image": "assets/icons/lines/pascackvalley.svg",
             "id": "pascackvalleytrack",
-            "url": "../json/pascackvalleytrack.json",
+            "url": "json/pascackvalleytrack.json",
             "color": "rgb(163, 79, 139)"
         },
         "eight": {
             "name": "Atlantic City Line",
-            "image": "../assets/icons/lines/atlanticcity.svg",
+            "image": "assets/icons/lines/atlanticcity.svg",
             "id": "atlanticcitytrack",
-            "url": "../json/atlanticcitytrack.json",
+            "url": "json/atlanticcitytrack.json",
             "color": "rgb(46, 85, 165)"
         }
     }
