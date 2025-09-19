@@ -21,6 +21,13 @@
             "url": "../json/northjerseycoasttrack.json",
             "color": "rgb(0, 156, 219)"
         },
+        "four": {
+            "name": "Main/Bergen",
+            "image": "../assets/icons/lines/mainbergen.svg",
+            "id": "mainbergentrack",
+            "url": "../json/mainbergentrack.json",
+            "color": "rgb(242, 184, 38)"
+        },
         "five": {
             "name": "Montclair-Boonton",
             "image": "../assets/icons/lines/montclairboonton.svg",
@@ -41,13 +48,6 @@
             "id": "pascackvalleytrack",
             "url": "../json/pascackvalleytrack.json",
             "color": "rgb(163, 79, 139)"
-        },
-        "four": {
-            "name": "Main/Bergen",
-            "image": "../assets/icons/lines/mainbergen.svg",
-            "id": "mainbergentrack",
-            "url": "../json/mainbergentrack.json",
-            "color": "rgb(242, 184, 38)"
         },
         "eight": {
             "name": "Atlantic City Line",

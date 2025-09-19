@@ -63,15 +63,14 @@ async function addStations() {
             id: 'stations-layer',
             type: 'symbol',
             source: 'stations',
-            minzoom: 0,
-            maxzoom: 24,
             layout: {
                 'icon-image': 'station-icon',
                 'icon-size': 0.175,
                 'icon-allow-overlap': true,
                 'text-field': ['get', 'description'],
-                'text-offset': [0, 1.2],
+                'text-offset': [0, 1.5],
                 'text-anchor': 'top',
+                'text-size': 20,
             },
         });
 

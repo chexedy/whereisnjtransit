@@ -26,8 +26,23 @@
                 },
                 "geometry": {
                     "coordinates": [
-                        -74.1640951041384,
-                        40.734433112373154
+                        -74.16398769712278,
+                        40.73448367467873
+                    ],
+                    "type": "Point"
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Newark Broad St.",
+                    "lines": "two five"
+                },
+                "geometry": {
+                    "coordinates": [
+                        -74.17192501963154,
+                        40.747558737578856
                     ],
                     "type": "Point"
                 }
@@ -116,8 +131,8 @@
                 },
                 "geometry": {
                     "coordinates": [
-                        -74.27662886876844,
-                        40.606403637890196
+                        -74.27660851685232,
+                        40.60639909887533
                     ],
                     "type": "Point"
                 }
