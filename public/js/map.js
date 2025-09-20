@@ -39,7 +39,7 @@ async function addTrackLines() {
                 'line-width': 8,
                 'line-offset': ['get', 'offset']
             },
-            "minzoom": 9
+            "minzoom": 10
         });
     }
 }
