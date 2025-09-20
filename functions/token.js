@@ -1,16 +1,16 @@
-export default {
-    async fetch(request, env) {
-        const token = await env.NJT_token.get("NJT_current_token");
+export async function onRequestGet(context) {
+    const kv = context.env.NJT_token;
 
-        if (!token) {
-            // TOKEN MISSING
-            return new Response(JSON.stringify({ error: "Token missing" }), {
-                headers: { "Content-Type": "application/json" },
-            });
-        }
+    const token = await kv.get("NJT_current_token");
 
-        return new Response(JSON.stringify({ token }), {
+    if (!token) {
+        return new Response(JSON.stringify({ error: "Token missing" }), {
+            status: 404,
             headers: { "Content-Type": "application/json" },
         });
-    },
-};
+    }
+
+    return new Response(JSON.stringify({ token }), {
+        headers: { "Content-Type": "application/json" },
+    });
+}
