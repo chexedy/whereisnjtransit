@@ -1,95 +1,575 @@
 {
-    "northeastcorridor": {
+    "stations": {
         "type": "FeatureCollection",
         "features": [
             {
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Secaucus Junction",
-                    "lines": "one two three four five seven"
+                    "description": "30th St. Philadelphia.",
+                    "lines": ""
                 },
                 "geometry": {
+                    "type": "Point",
                     "coordinates": [
-                        -74.07575224060915,
-                        40.761342713874086
-                    ],
-                    "type": "Point"
+                        -75.182327,
+                        39.956565
+                    ]
                 }
             },
             {
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Newark Penn Station",
-                    "lines": "one three six"
+                    "description": "Absecon",
+                    "lines": ""
                 },
                 "geometry": {
+                    "type": "Point",
                     "coordinates": [
-                        -74.16398769712278,
-                        40.73448367467873
-                    ],
-                    "type": "Point"
+                        -74.502094,
+                        39.424333
+                    ]
                 }
             },
             {
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Newark Broad St.",
-                    "lines": "two five"
+                    "description": "Allendale",
+                    "lines": ""
                 },
                 "geometry": {
+                    "type": "Point",
                     "coordinates": [
-                        -74.17192501963154,
-                        40.747558737578856
-                    ],
-                    "type": "Point"
+                        -74.130957,
+                        41.030902
+                    ]
                 }
             },
             {
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "New York Penn Station",
-                    "lines": "one two three five six"
+                    "description": "Allenhurst",
+                    "lines": ""
                 },
                 "geometry": {
+                    "type": "Point",
                     "coordinates": [
-                        -73.99264373803736,
-                        40.75018997360027
-                    ],
-                    "type": "Point"
+                        -74.006769,
+                        40.237659
+                    ]
                 }
             },
             {
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Newark Liberty International Airport",
-                    "lines": "one three"
+                    "description": "Anderson Street",
+                    "lines": ""
                 },
                 "geometry": {
+                    "type": "Point",
                     "coordinates": [
-                        -74.19073797057773,
-                        40.704415497260555
-                    ],
-                    "type": "Point"
+                        -74.043781,
+                        40.894458
+                    ]
                 }
             },
             {
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "North Elizabeth",
-                    "lines": "one three"
+                    "description": "Annandale",
+                    "lines": ""
                 },
                 "geometry": {
+                    "type": "Point",
                     "coordinates": [
-                        -74.20620449170995,
-                        40.68020601191924
-                    ],
-                    "type": "Point"
+                        -74.878569,
+                        40.645173
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Asbury Park",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.014786,
+                        40.215359
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Atco",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.907588,
+                        39.783547
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Atlantic City",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.441486,
+                        39.363299
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Avenel",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.27753,
+                        40.57762
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Basking Ridge",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.55527,
+                        40.711378
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Bay Head",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.046183,
+                        40.077178
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Bay Street",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.208681,
+                        40.808178
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Belmar",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.027301,
+                        40.18059
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Berkeley Heights",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.442649,
+                        40.682345
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Bernardsville",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.571023,
+                        40.716845
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Bloomfield",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.200043,
+                        40.792709
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Boonton",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.407736,
+                        40.903378
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Bound Brook",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.530617,
+                        40.560929
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Bradley Beach",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.018891,
+                        40.203751
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Brick Church",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.218612,
+                        40.765134
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Bridgewater",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.551741,
+                        40.559904
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Broadway",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.115236,
+                        40.922505
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Campbell Hall",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.266554,
+                        41.450917
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Chatham",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.384812,
+                        40.740137
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Cherry Hill",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -75.041661,
+                        39.928447
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Clifton",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.153206,
+                        40.867998
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Convent",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.443435,
+                        40.779038
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Roselle Park",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.266323,
+                        40.66715
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Cranford",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.303226,
+                        40.655523
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Delawanna",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.131262,
+                        40.831369
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Denville",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.481513,
+                        40.8839
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Dover",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.555887,
+                        40.883415
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Dunellen",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.463043,
+                        40.590869
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "East Orange",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.210464,
+                        40.760977
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Edison Station",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.410972,
+                        40.519148
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Egg Harbor",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.648028,
+                        39.526441
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Elberon",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -73.99762,
+                        40.265292
+                    ]
                 }
             },
             {
@@ -97,14 +577,374 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Elizabeth",
-                    "lines": "one three"
+                    "lines": ""
                 },
                 "geometry": {
+                    "type": "Point",
                     "coordinates": [
-                        -74.21552027327937,
-                        40.6674151568219
-                    ],
-                    "type": "Point"
+                        -74.215174,
+                        40.667857
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Emerson",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.027474,
+                        40.975036
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Essex Street",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.051893,
+                        40.878973
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Fanwood",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.385003,
+                        40.64106
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Far Hills",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.633734,
+                        40.68571
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Garfield",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.10556,
+                        40.866669
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Garwood",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.324794,
+                        40.652569
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Gillette",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.468317,
+                        40.678251
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Gladstone",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.666371,
+                        40.720284
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Glen Ridge",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.204655,
+                        40.80059
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Glen Rock Boro Hall",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.1293,
+                        40.96137
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Glen Rock Main Line",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.133485,
+                        40.962206
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Hackettstown",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.835352,
+                        40.851444
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Hammonton",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.79946,
+                        39.631673
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Harriman",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.13987,
+                        41.293354
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Hawthorne",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.152411,
+                        40.942539
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Hazlet",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.190393,
+                        40.415385
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "High Bridge",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.895863,
+                        40.666884
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Highland Avenue",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.243744,
+                        40.766863
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Hillsdale",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.041033,
+                        41.002414
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Hoboken",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.028046,
+                        40.734843
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Hohokus",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.113521,
+                        40.997369
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Lake Hopatcong",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.665697,
+                        40.904219
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Lebanon",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.835766,
+                        40.636903
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Lincoln Park",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.301826,
+                        40.924138
+                    ]
                 }
             },
             {
@@ -112,29 +952,164 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Linden",
-                    "lines": "one three"
+                    "lines": ""
                 },
                 "geometry": {
+                    "type": "Point",
                     "coordinates": [
-                        -74.25168471485176,
-                        40.62967418778871
-                    ],
-                    "type": "Point"
+                        -74.251772,
+                        40.629485
+                    ]
                 }
             },
             {
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Rahway",
-                    "lines": "one three"
+                    "description": "Lindenwold",
+                    "lines": ""
                 },
                 "geometry": {
+                    "type": "Point",
                     "coordinates": [
-                        -74.27660851685232,
-                        40.60639909887533
-                    ],
-                    "type": "Point"
+                        -75.000314,
+                        39.833809
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Little Falls",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.235372,
+                        40.880669
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Little Silver",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.041054,
+                        40.326715
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Long Branch",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -73.988331,
+                        40.297145
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Lyndhurst",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.122696,
+                        40.814165
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Lyons",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.54947,
+                        40.684844
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Madison",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.415105,
+                        40.757028
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Mahwah",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.14662,
+                        41.094416
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Manasquan",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.047688,
+                        40.120573
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Maplewood",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.275427,
+                        40.731149
+                    ]
                 }
             },
             {
@@ -142,14 +1117,14 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Metropark",
-                    "lines": "one"
+                    "lines": ""
                 },
                 "geometry": {
+                    "type": "Point",
                     "coordinates": [
-                        -74.32987879613401,
-                        40.568285113385315
-                    ],
-                    "type": "Point"
+                        -74.329394,
+                        40.56864
+                    ]
                 }
             },
             {
@@ -157,29 +1132,284 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Metuchen",
-                    "lines": "one"
+                    "lines": ""
                 },
                 "geometry": {
+                    "type": "Point",
                     "coordinates": [
-                        -74.36047368928128,
-                        40.540852857265776
-                    ],
-                    "type": "Point"
+                        -74.360671,
+                        40.540736
+                    ]
                 }
             },
             {
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Edison",
-                    "lines": "one"
+                    "description": "Middletown NJ",
+                    "lines": ""
                 },
                 "geometry": {
+                    "type": "Point",
                     "coordinates": [
-                        -74.41094980443353,
-                        40.51922800118925
-                    ],
-                    "type": "Point"
+                        -74.116131,
+                        40.38978
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Middletown NY",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.37039,
+                        41.457488
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Millburn",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.303755,
+                        40.725622
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Millington",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.523606,
+                        40.673513
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Montclair Heights",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.2025,
+                        40.857536
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Montvale",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.029152,
+                        41.040879
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Morris Plains",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.478197,
+                        40.828637
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Morristown",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.474086,
+                        40.797113
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Mount Olive",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.730653,
+                        40.907376
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Mount Tabor",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.481915,
+                        40.875904
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Mountain Avenue",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.205306,
+                        40.848715
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Mountain Lakes",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.433604,
+                        40.885947
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Mountain Station",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.253024,
+                        40.755365
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Mountain View",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.268158,
+                        40.914402
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Murray Hill",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.403134,
+                        40.695068
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Nanuet",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.014794,
+                        41.090015
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Netcong",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.707317,
+                        40.897552
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Netherwood",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.403455,
+                        40.629148
+                    ]
                 }
             },
             {
@@ -187,29 +1417,314 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "New Brunswick",
-                    "lines": "one"
+                    "lines": ""
                 },
                 "geometry": {
+                    "type": "Point",
                     "coordinates": [
-                        -74.44624848873185,
-                        40.496788802233084
-                    ],
-                    "type": "Point"
+                        -74.445751,
+                        40.497278
+                    ]
                 }
             },
             {
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Jersey Avenue",
-                    "lines": "one"
+                    "description": "New Providence",
+                    "lines": ""
                 },
                 "geometry": {
+                    "type": "Point",
                     "coordinates": [
-                        -74.46748268984915,
-                        40.47676590763308
-                    ],
-                    "type": "Point"
+                        -74.386501,
+                        40.712022
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "New York Penn Station",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -73.99264373803736,
+                        40.75018997360027
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Newark Broad St.",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.17192501963154,
+                        40.747558737578856
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Newark Penn Station",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.16398769712278,
+                        40.73448367467873
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "North Branch",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.683802,
+                        40.59202
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "North Elizabeth",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.206165,
+                        40.680265
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "New Bridge Landing",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.035044,
+                        40.910856
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Oradell",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.029983,
+                        40.953478
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Orange",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.233103,
+                        40.771883
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Otisville",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.529212,
+                        41.471784
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Park Ridge",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.036164,
+                        41.032305
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Passaic",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.133933,
+                        40.849411
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Paterson",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.16733,
+                        40.914887
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Peapack",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.658469,
+                        40.708794
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Pearl River",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.02232,
+                        41.058181
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Perth Amboy",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.273752,
+                        40.509398
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Plainfield",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.420163,
+                        40.618425
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Plauderville",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.102695,
+                        40.884916
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Point Pleasant",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.048191,
+                        40.092718
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Port Jervis",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.694622,
+                        41.374899
+                    ]
                 }
             },
             {
@@ -217,29 +1732,329 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Princeton Junction",
-                    "lines": "one"
+                    "lines": ""
                 },
                 "geometry": {
+                    "type": "Point",
                     "coordinates": [
-                        -74.62413375167266,
-                        40.315997770328835
-                    ],
-                    "type": "Point"
+                        -74.623753,
+                        40.316316
+                    ]
                 }
             },
             {
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Hamilton",
-                    "lines": "one"
+                    "description": "Radburn",
+                    "lines": ""
                 },
                 "geometry": {
+                    "type": "Point",
                     "coordinates": [
-                        -74.70404147592134,
-                        40.25537273985216
-                    ],
-                    "type": "Point"
+                        -74.121617,
+                        40.939914
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Rahway",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.276692,
+                        40.606338
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Ramsey",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.141877,
+                        41.056422
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Raritan",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.634364,
+                        40.571005
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Red Bank",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.074538,
+                        40.348284
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Ridgewood",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.120592,
+                        40.980629
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "River Edge",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.02914,
+                        40.935146
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Rutherford",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.100563,
+                        40.828248
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Salisbury Mills-Cornwall",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.101871,
+                        41.437073
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Short Hills",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.323754,
+                        40.725249
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Sloatsburg",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.191307,
+                        41.157138
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Somerville",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.61397,
+                        40.566075
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "South Amboy",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.28014,
+                        40.484308
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "South Orange",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.260538,
+                        40.745952
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Spring Lake",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.035481,
+                        40.150557
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Spring Valley",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.043991,
+                        41.111978
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Stirling",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.493723,
+                        40.674579
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Suffern",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.153442,
+                        41.11354
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Summit",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.357807,
+                        40.716549
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Teterboro",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.062676,
+                        40.864858
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Towaco",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.343842,
+                        40.922809
+                    ]
                 }
             },
             {
@@ -247,14 +2062,449 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Trenton",
-                    "lines": "one"
+                    "lines": ""
                 },
                 "geometry": {
+                    "type": "Point",
                     "coordinates": [
-                        -74.75389318270167,
-                        40.21854104008378
-                    ],
-                    "type": "Point"
+                        -74.753926,
+                        40.218515
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Tuxedo",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.18446,
+                        41.194208
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Upper Montclair",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.209368,
+                        40.842004
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Waldwick",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.123412,
+                        41.012734
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Walnut Street",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.20963,
+                        40.817218
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Watchung Avenue",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.206934,
+                        40.829514
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Watsessing Avenue",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.198451,
+                        40.782743
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Westfield",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.347629,
+                        40.649448
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Westwood",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.032696,
+                        40.990817
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Whitehouse Station",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.77066,
+                        40.615611
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Woodbridge",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.277751,
+                        40.55661
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Woodcliff Lake",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.040775,
+                        41.021078
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Wood-Ridge",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.078719,
+                        40.843974
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Monmouth Park",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.015172,
+                        40.313425
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Hamilton",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.70412,
+                        40.255309
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Jersey Ave.",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.467363,
+                        40.476912
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Aberdeen-Matawan",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.223702,
+                        40.420161
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Newark Liberty Airport Station",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.190717,
+                        40.704415
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Montclair State University",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.197439,
+                        40.869782
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Union",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.238605,
+                        40.683663
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Secaucus Lower Level",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.075821,
+                        40.761188
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Secaucus Upper Level",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.07451388627567,
+                        40.76188464993638
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Walter Rand Transportation Center",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -75.12021,
+                        39.943258
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Ramsey Route 17 Station",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.145485,
+                        41.07513
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Bergenline Ave.",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.022271,
+                        40.782225
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Mount Arlington",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.632731,
+                        40.89659
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Wayne/Route 23 Transit Center",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.256971,
+                        40.900254
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Meadowlands Sports Complex",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.072114,
+                        40.813053
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Pennsauken Transit Center",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -75.061796,
+                        39.977769
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Wesmont",
+                    "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.096951,
+                        40.854979
+                    ]
                 }
             }
         ]

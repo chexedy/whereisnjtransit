@@ -33,13 +33,14 @@ async function addTrackLines() {
             'layout': {
                 'line-join': 'round',
                 'line-cap': 'round',
+                "visibility": "visible"
             },
             'paint': {
                 'line-color': line.color,
                 'line-width': 8,
                 'line-offset': ['get', 'offset']
             },
-            "minzoom": 10
+            "minzoom": 10,
         });
     }
 }
@@ -57,7 +58,7 @@ async function addStations() {
 
         map.addSource('stations', {
             type: 'geojson',
-            data: data.northeastcorridor
+            data: data.stations
         });
 
         map.addLayer({
@@ -88,6 +89,18 @@ async function addStations() {
             map.getCanvas().style.cursor = '';
         });
     });
+}
+
+function toggleLayerVisibility(layer) {
+    const route = document.getElementById(layer);
+
+    if (map.getLayoutProperty(layer, "visibility") == "visible") {
+        map.setLayoutProperty(layer, "visibility", "none")
+        route.style.background = "lightgrey";
+    } else {
+        map.setLayoutProperty(layer, "visibility", "visible")
+        route.style.background = "white";
+    }
 }
 
 async function loadMapLayers() {
