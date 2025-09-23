@@ -40,7 +40,7 @@ async function addTrackLines() {
                 'line-width': 8,
                 'line-offset': ['get', 'offset']
             },
-            "minzoom": 10,
+            "minzoom": 10
         });
     }
 }
@@ -73,7 +73,7 @@ async function addStations() {
                 'text-offset': [0, 1.5],
                 'text-anchor': 'top',
                 'text-size': 20,
-            },
+            }
         });
 
         map.on('click', 'stations-layer', (e) => {
@@ -91,15 +91,20 @@ async function addStations() {
     });
 }
 
+const disabledLayers = new Set();
+
 function toggleLayerVisibility(layer) {
     const route = document.getElementById(layer);
 
-    if (map.getLayoutProperty(layer, "visibility") == "visible") {
-        map.setLayoutProperty(layer, "visibility", "none")
-        route.style.background = "lightgrey";
-    } else {
+    if (disabledLayers.has(layer)) {
+        disabledLayers.delete(layer);
         map.setLayoutProperty(layer, "visibility", "visible")
         route.style.background = "white";
+    } else {
+        disabledLayers.add(layer);
+
+        map.setLayoutProperty(layer, "visibility", "none")
+        route.style.background = "lightgrey";
     }
 }
 
