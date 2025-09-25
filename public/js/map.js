@@ -6,7 +6,7 @@ const bounds = [
 const map = new maplibregl.Map({
     container: 'map',
     center: [-74.1, 40.75],
-    style: "https://tiles.openfreemap.org/styles/bright",
+    style: "https://tiles.openfreemap.org/styles/positron",
     maxBounds: bounds
 });
 
@@ -48,48 +48,44 @@ async function addStations() {
     const res = await fetch('json/stations.json');
     const data = await res.json();
 
-    map.loadImage("assets/icons/service/station.png", (error, image) => {
-        if (error) {
-            console.error("Station icon failed to load:", error);
-            return;
+    const stationimage = await map.loadImage('https://upload.wikimedia.org/wikipedia/commons/7/7c/201408_cat.png');
+
+    if (!map.hasImage('station-icon')) {
+        map.addImage('station-icon', stationimage);
+
+    }
+
+    map.addSource('stations', {
+        type: 'geojson',
+        data: data.stations
+    });
+
+    map.addLayer({
+        id: 'stations-layer',
+        type: 'symbol',
+        source: 'stations',
+        layout: {
+            'icon-image': 'station-icon',
+            'icon-size': 1,
+            'icon-allow-overlap': true,
+            'text-field': ['get', 'description'],
+            'text-offset': [0, 1.5],
+            'text-anchor': 'top',
+            'text-size': 20,
         }
+    });
 
-        if (!map.hasImage('station-icon')) {
-            map.addImage('station-icon', image);
-        }
+    map.on('click', 'stations-layer', (e) => {
+        const feature = e.features[0];
+        const { description, lines } = feature.properties;
+        updateStationStatus(map, description, lines);
+    });
 
-        map.addSource('stations', {
-            type: 'geojson',
-            data: data.stations
-        });
-
-        map.addLayer({
-            id: 'stations-layer',
-            type: 'symbol',
-            source: 'stations',
-            layout: {
-                'icon-image': 'station-icon',
-                'icon-size': 0.175,
-                'icon-allow-overlap': true,
-                'text-field': ['get', 'description'],
-                'text-offset': [0, 1.5],
-                'text-anchor': 'top',
-                'text-size': 20,
-            }
-        });
-
-        map.on('click', 'stations-layer', (e) => {
-            const feature = e.features[0];
-            const { description, lines } = feature.properties;
-            updateStationStatus(map, description, lines);
-        });
-
-        map.on('mouseenter', 'stations-layer', () => {
-            map.getCanvas().style.cursor = 'pointer';
-        });
-        map.on('mouseleave', 'stations-layer', () => {
-            map.getCanvas().style.cursor = '';
-        });
+    map.on('mouseenter', 'stations-layer', () => {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+    map.on('mouseleave', 'stations-layer', () => {
+        map.getCanvas().style.cursor = '';
     });
 }
 
@@ -111,10 +107,8 @@ function toggleLayerVisibility(layer) {
 }
 
 async function loadMapLayers() {
-    console.log("Hello");
     await addStations();
     await addTrackLines();
-    console.log("Added")
 }
 
 map.on('style.load', () => {
