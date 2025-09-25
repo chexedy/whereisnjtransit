@@ -1,13 +1,12 @@
-mapboxgl.accessToken = 'pk.eyJ1IjoiYXlhYW43bSIsImEiOiJjbWZoZDZrd3YwYXNyMnFxNjFoYzBrNWozIn0.59Ytrv3w2xPkUr3FYRxMbg';
 const bounds = [
     [-76.58039, 38.80348],
     [-72.79608, 41.75203]
 ]
 
-const map = new mapboxgl.Map({
+const map = new maplibregl.Map({
     container: 'map',
     center: [-74.1, 40.75],
-    style: "mapbox://styles/ayaan7m/cmfhdj6gw006i01qu2774d2nz",
+    style: "https://tiles.openfreemap.org/styles/bright",
     maxBounds: bounds
 });
 
@@ -50,7 +49,10 @@ async function addStations() {
     const data = await res.json();
 
     map.loadImage("assets/icons/service/station.png", (error, image) => {
-        if (error) throw error;
+        if (error) {
+            console.error("Station icon failed to load:", error);
+            return;
+        }
 
         if (!map.hasImage('station-icon')) {
             map.addImage('station-icon', image);
@@ -109,11 +111,13 @@ function toggleLayerVisibility(layer) {
 }
 
 async function loadMapLayers() {
-    await addTrackLines();
+    console.log("Hello");
     await addStations();
+    await addTrackLines();
+    console.log("Added")
 }
 
-map.on('load', () => {
+map.on('style.load', () => {
     map.fitBounds(bounds, { padding: 40, animate: false });
 
     const currentZoom = map.getZoom();

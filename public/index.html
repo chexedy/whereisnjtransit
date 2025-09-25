@@ -8,9 +8,9 @@
 
     <script src="json/line-database.json"></script>
 
-    <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
+    <script src="https://unpkg.com/maplibre-gl/dist/maplibre-gl.js"></script>
+    <link href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css" rel="stylesheet" />
 
-    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css' />
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/ui.css">
 </head>
@@ -31,7 +31,9 @@
     <div class="station_departures" id="stationDepartures">
         <h1 id="stationDeparturesName">Current Station</h1>
 
+        <div class="station_schedule" id="stationSchedule">
 
+        </div>
 
         <button class="station_departure_close" onclick="departures_close()" id="stationDepartureClose">
             <span>Close</span>

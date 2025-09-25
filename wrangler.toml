@@ -1,7 +1,0 @@
-name = "whereisnjtransit"              
-account_id = "ad7aff53c897da1a9e84fb9e1504f75a"   
-compatibility_date = "2025-09-19" 
-
-[[kv_namespaces]]
-binding = "NJT_token"             
-id = "d5336213e2644146a293b46bc5da2ffa"
