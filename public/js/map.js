@@ -1,16 +1,29 @@
 mapboxgl.accessToken = "pk.eyJ1IjoiYXlhYW43bSIsImEiOiJjbWZoZDZrd3YwYXNyMnFxNjFoYzBrNWozIn0.59Ytrv3w2xPkUr3FYRxMbg";
 
-const bounds = [
-    [-76.58039, 38.80348],
-    [-72.79608, 41.75203]
-]
+async function mapCheck() {
+    try {
+        const res = await fetch("https://whereisnjtransit-other.ayaan7m.workers.dev/track-map-load")
 
-const map = new mapboxgl.Map({
-    container: 'map',
-    center: [-74.1, 40.75],
-    style: "mapbox://styles/ayaan7m/cmfhdj6gw006i01qu2774d2nz",
-    maxBounds: bounds
-});
+        if (!res.ok) {
+            const data = await res.json();
+            document.body.innerHTML = `
+      <div style="text-align:center;padding:50px;font-size:1.5rem;color:red;">
+        ${data.message}<br>
+        I apologize, but the site will be unaccessible until the next month. Unfortunately, Mapbox (the software I use to host the maps) has a limit of 50,000 requests a month. It is pretty expensive for me to go over this limit, thus I have to shutdown the site until the next month starts. Sorry about that! 🚆
+      </div>`;
+            return;
+        }
+
+        initMap();
+    } catch (err) {
+        console.error("Error contacting Worker:", err);
+        document.body.innerHTML = `
+      <div style="text-align:center;padding:50px;font-size:1.5rem;color:red;">
+        ⚠️ Could not check Mapbox usage, please try again later.<br>
+        Contact me on GitHub (@chexedy) if the error persists for a while. 
+      </div>`;
+    }
+}
 
 async function addTrackLines() {
     const res = await fetch('json/line-database.json');
@@ -116,22 +129,38 @@ async function loadMapLayers() {
     await addStations();
 }
 
-map.on('style.load', () => {
-    map.fitBounds(bounds, { padding: 40, animate: false });
+function initMap() {
+    const bounds = [
+        [-76.58039, 38.80348],
+        [-72.79608, 41.75203]
+    ]
 
-    const currentZoom = map.getZoom();
-    map.setMinZoom(currentZoom);
+    const map = new mapboxgl.Map({
+        container: 'map',
+        center: [-74.1, 40.75],
+        style: "mapbox://styles/ayaan7m/cmfhdj6gw006i01qu2774d2nz",
+        maxBounds: bounds
+    });
 
-    loadMapLayers();
-});
+    map.on('style.load', () => {
+        map.fitBounds(bounds, { padding: 40, animate: false });
 
-document.getElementById("locationButton").addEventListener("click", () => {
-    navigator.geolocation.getCurrentPosition(
-        (pos) => {
-            const { longitude, latitude } = pos.coords;
-            map.flyTo({ center: [longitude, latitude], zoom: 14, essential: true });
-        },
-        (err) => console.error(err),
-        { enableHighAccuracy: false, timeout: 6000 }
-    );
-})
+        const currentZoom = map.getZoom();
+        map.setMinZoom(currentZoom);
+
+        loadMapLayers();
+    });
+
+    document.getElementById("locationButton").addEventListener("click", () => {
+        navigator.geolocation.getCurrentPosition(
+            (pos) => {
+                const { longitude, latitude } = pos.coords;
+                map.flyTo({ center: [longitude, latitude], zoom: 14, essential: true });
+            },
+            (err) => console.error(err),
+            { enableHighAccuracy: false, timeout: 6000 }
+        );
+    })
+}
+
+mapCheck();
