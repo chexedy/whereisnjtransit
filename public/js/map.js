@@ -1,12 +1,14 @@
+mapboxgl.accessToken = "pk.eyJ1IjoiYXlhYW43bSIsImEiOiJjbWZoZDZrd3YwYXNyMnFxNjFoYzBrNWozIn0.59Ytrv3w2xPkUr3FYRxMbg";
+
 const bounds = [
     [-76.58039, 38.80348],
     [-72.79608, 41.75203]
 ]
 
-const map = new maplibregl.Map({
+const map = new mapboxgl.Map({
     container: 'map',
     center: [-74.1, 40.75],
-    style: "https://tiles.openfreemap.org/styles/positron",
+    style: "mapbox://styles/ayaan7m/cmfhdj6gw006i01qu2774d2nz",
     maxBounds: bounds
 });
 
@@ -48,46 +50,49 @@ async function addStations() {
     const res = await fetch('json/stations.json');
     const data = await res.json();
 
-    const stationimage = await map.loadImage('https://upload.wikimedia.org/wikipedia/commons/7/7c/201408_cat.png');
+    map.loadImage("assets/icons/service/station.png", (error, image) => {
+        if (error) throw error;
 
-    if (!map.hasImage('station-icon')) {
-        map.addImage('station-icon', stationimage);
-
-    }
-
-    map.addSource('stations', {
-        type: 'geojson',
-        data: data.stations
-    });
-
-    map.addLayer({
-        id: 'stations-layer',
-        type: 'symbol',
-        source: 'stations',
-        layout: {
-            'icon-image': 'station-icon',
-            'icon-size': 1,
-            'icon-allow-overlap': true,
-            'text-field': ['get', 'description'],
-            'text-offset': [0, 1.5],
-            'text-anchor': 'top',
-            'text-size': 20,
+        if (!map.hasImage('station-icon')) {
+            map.addImage('station-icon', image);
         }
-    });
 
-    map.on('click', 'stations-layer', (e) => {
-        const feature = e.features[0];
-        const { description, lines } = feature.properties;
-        updateStationStatus(map, description, lines);
-    });
+        map.addSource('stations', {
+            type: 'geojson',
+            data: data.stations
+        });
 
-    map.on('mouseenter', 'stations-layer', () => {
-        map.getCanvas().style.cursor = 'pointer';
-    });
-    map.on('mouseleave', 'stations-layer', () => {
-        map.getCanvas().style.cursor = '';
+        map.addLayer({
+            id: 'stations-layer',
+            type: 'symbol',
+            source: 'stations',
+            layout: {
+                'icon-image': 'station-icon',
+                'icon-size': 0.175,
+                'icon-allow-overlap': true,
+                'text-field': ['get', 'description'],
+                'text-offset': [0, 1.5],
+                'text-anchor': 'top',
+                'text-size': 20,
+            },
+        });
+
+        map.on('click', 'stations-layer', (e) => {
+            const feature = e.features[0];
+            const { description, lines } = feature.properties;
+            updateStationStatus(map, description, lines);
+        });
+
+        map.on('mouseenter', 'stations-layer', () => {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+        map.on('mouseleave', 'stations-layer', () => {
+            map.getCanvas().style.cursor = '';
+        });
     });
 }
+
 
 const disabledLayers = new Set();
 
@@ -107,8 +112,8 @@ function toggleLayerVisibility(layer) {
 }
 
 async function loadMapLayers() {
-    await addStations();
     await addTrackLines();
+    await addStations();
 }
 
 map.on('style.load', () => {
