@@ -531,14 +531,14 @@
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Edison Station",
+                    "description": "Edison",
                     "lines": ""
                 },
                 "geometry": {
                     "type": "Point",
                     "coordinates": [
-                        -74.410972,
-                        40.519148
+                        -74.41095608333289,
+                        40.519253641633355
                     ]
                 }
             },
@@ -1122,8 +1122,8 @@
                 "geometry": {
                     "type": "Point",
                     "coordinates": [
-                        -74.329394,
-                        40.56864
+                        -74.32989362181141,
+                        40.568280118962974
                     ]
                 }
             },
@@ -1137,8 +1137,8 @@
                 "geometry": {
                     "type": "Point",
                     "coordinates": [
-                        -74.360671,
-                        40.540736
+                        -74.3604706589988,
+                        40.54081824924984
                     ]
                 }
             },
@@ -1767,8 +1767,8 @@
                 "geometry": {
                     "type": "Point",
                     "coordinates": [
-                        -74.276692,
-                        40.606338
+                        -74.27660851685232,
+                        40.60639909887533
                     ]
                 }
             },

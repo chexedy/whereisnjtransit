@@ -9,7 +9,7 @@ async function mapCheck() {
             document.body.innerHTML = `
       <div style="text-align:center;padding:50px;font-size:1.5rem;color:red;">
         ${data.message}<br>
-        I apologize, but the site will be unaccessible until the next month. Unfortunately, Mapbox (the software I use to host the maps) has a limit of 50,000 requests a month. It is pretty expensive for me to go over this limit, thus I have to shutdown the site until the next month starts. Sorry about that! 🚆
+        I apologize, but the site will be unaccessible until the next month. Unfortunately, Mapbox (the software I use to host the maps) has a limit of 50,000 requests a month. It is pretty expensive for me to go over this limit, thus I have to shutdown the site until the next month starts. Sorry about that!
       </div>`;
             return;
         }
@@ -25,7 +25,7 @@ async function mapCheck() {
     }
 }
 
-async function addTrackLines() {
+async function addTrackLines(map) {
     const res = await fetch('json/line-database.json');
     const data = await res.json();
 
@@ -59,7 +59,7 @@ async function addTrackLines() {
     }
 }
 
-async function addStations() {
+async function addStations(map) {
     const res = await fetch('json/stations.json');
     const data = await res.json();
 
@@ -124,9 +124,9 @@ function toggleLayerVisibility(layer) {
     }
 }
 
-async function loadMapLayers() {
-    await addTrackLines();
-    await addStations();
+async function loadMapLayers(map) {
+    await addTrackLines(map);
+    await addStations(map);
 }
 
 function initMap() {
@@ -148,7 +148,7 @@ function initMap() {
         const currentZoom = map.getZoom();
         map.setMinZoom(currentZoom);
 
-        loadMapLayers();
+        loadMapLayers(map);
     });
 
     document.getElementById("locationButton").addEventListener("click", () => {
