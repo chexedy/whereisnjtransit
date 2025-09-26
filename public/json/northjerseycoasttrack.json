@@ -280,6 +280,25 @@
                     ],
                     "type": "LineString"
                 }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "offset": -8
+                },
+                "geometry": {
+                    "coordinates": [
+                        [
+                            -74.27660851685232,
+                            40.60639909887533
+                        ],
+                        [
+                            -74.28461724927145,
+                            40.59940350014014
+                        ]
+                    ],
+                    "type": "LineString"
+                }
             }
         ]
     }

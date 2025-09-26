@@ -26,63 +26,24 @@
         </button>
     </div>
 
-    <div class="station_departures" id="stationDepartures">
-        <h1 id="stationDeparturesName">Current Station</h1>
-
-        <div class="station_schedule" id="stationSchedule">
-
-        </div>
-
-        <button class="station_departure_close" onclick="departures_close()" id="stationDepartureClose">
-            <span>Close</span>
-        </button>
-    </div>
-
     <div class="station_status" id="stationStatus">
         <img src="assets/icons/service/draggable.svg" alt="Drag" class="draggable_station_status">
 
         <h1 id="stationStatusName">Current Station</h1>
 
         <div class="station_routes" id="stationRoutes">
-            <div class="station_route" id="stationRouteone">
-                <img src="assets/icons/lines/northeastcorridor.svg" alt="Route Icon">
-                <span>Northeast Corridor</span>
-                <h4>DEPARTURES</h4>
-            </div>
-            <div class="station_route" id="stationRoutetwo" style="display: none;">
-                <img src="assets/icons/lines/morrisessex.svg" alt="Route Icon">
-                <span>Morris & Essex</span>
-                <h4>DEPARTURES</h4>
-            </div>
-            <div class="station_route" id="stationRoutethree" style="display: none;">
-                <img src="assets/icons/lines/northjerseycoast.svg" alt="Route Icon">
-                <span>North Jersey Coast</span>
-                <h4>DEPARTURES</h4>
-            </div>
-            <div class="station_route" id="stationRoutefour" style="display: none;">
-                <img src="assets/icons/lines/mainbergen.svg" alt="Route Icon">
-                <span>Main/Bergen</span>
-                <h4>DEPARTURES</h4>
-            </div>
-            <div class="station_route" id="stationRoutefive" style="display: none;">
-                <img src="assets/icons/lines/montclairboonton.svg" alt="Route Icon">
-                <span>Montclair-Boonton</span>
-                <h4>DEPARTURES</h4>
-            </div>
-            <div class="station_route" id="stationRoutesix" style="display: none;">
-                <img src="assets/icons/lines/raritanvalley.svg" alt="Route Icon">
-                <span>Raritan Valley</span>
-                <h4>DEPARTURES</h4>
-            </div>
-            <div class="station_route" id="stationRouteseven" style="display: none;">
-                <img src="assets/icons/lines/pascackvalley.svg" alt="Route Icon">
-                <span>Pascack Valley</span>
-                <h4>DEPARTURES</h4>
-            </div>
-            <div class="station_route" id="stationRouteeight" style="display: none;">
-                <img src="assets/icons/lines/atlanticcity.svg" alt="Route Icon">
-                <span>Atlantic City Line</span>
-                <h4>DEPARTURES</h4>
+            <div class="station_route" id="default">
+                <img src="assets/icons/lines/northeastcorridor.svg">
+                <div class="station_route_inner">
+                    <div>
+                        <h1>New York -SEC</h1>
+                        <h3>NEC Train 6767</h3>
+                    </div>
+                    <div>
+                        <h1>2:39 PM @ Track 1</h1>
+                        <h3>Status: Delayed 2m</h3>
+                    </div>
+                </div>
             </div>
         </div>
 

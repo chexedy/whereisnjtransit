@@ -1,4 +1,5 @@
 mapboxgl.accessToken = "pk.eyJ1IjoiYXlhYW43bSIsImEiOiJjbWZoZDZrd3YwYXNyMnFxNjFoYzBrNWozIn0.59Ytrv3w2xPkUr3FYRxMbg";
+let map;
 
 async function mapCheck() {
     try {
@@ -25,7 +26,7 @@ async function mapCheck() {
     }
 }
 
-async function addTrackLines(map) {
+async function addTrackLines() {
     const res = await fetch('json/line-database.json');
     const data = await res.json();
 
@@ -54,12 +55,12 @@ async function addTrackLines(map) {
                 'line-width': 8,
                 'line-offset': ['get', 'offset']
             },
-            "minzoom": 10
+            "minzoom": 8
         });
     }
 }
 
-async function addStations(map) {
+async function addStations() {
     const res = await fetch('json/stations.json');
     const data = await res.json();
 
@@ -82,18 +83,20 @@ async function addStations(map) {
             layout: {
                 'icon-image': 'station-icon',
                 'icon-size': 0.175,
-                'icon-allow-overlap': true,
+                'icon-allow-overlap': false,
                 'text-field': ['get', 'description'],
                 'text-offset': [0, 1.5],
                 'text-anchor': 'top',
-                'text-size': 20,
+                'text-size': 15,
+                'text-allow-overlap': false,
+                'symbol-sort-key': ['get', 'sortKey']
             },
         });
 
         map.on('click', 'stations-layer', (e) => {
             const feature = e.features[0];
-            const { description, lines } = feature.properties;
-            updateStationStatus(map, description, lines);
+            const { description } = feature.properties;
+            updateStationStatus(map, description);
         });
 
         map.on('mouseenter', 'stations-layer', () => {
@@ -124,9 +127,9 @@ function toggleLayerVisibility(layer) {
     }
 }
 
-async function loadMapLayers(map) {
-    await addTrackLines(map);
-    await addStations(map);
+async function loadMapLayers() {
+    await addTrackLines();
+    await addStations();
 }
 
 function initMap() {
@@ -135,7 +138,7 @@ function initMap() {
         [-72.79608, 41.75203]
     ]
 
-    const map = new mapboxgl.Map({
+    map = new mapboxgl.Map({
         container: 'map',
         center: [-74.1, 40.75],
         style: "mapbox://styles/ayaan7m/cmfhdj6gw006i01qu2774d2nz",

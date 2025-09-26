@@ -7,7 +7,8 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "30th St. Philadelphia.",
-                    "lines": ""
+                    "lines": "",
+                    "sortKey": -100
                 },
                 "geometry": {
                     "type": "Point",
@@ -127,7 +128,8 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Atlantic City",
-                    "lines": ""
+                    "lines": "",
+                    "sortKey": -100
                 },
                 "geometry": {
                     "type": "Point",
@@ -1417,13 +1419,14 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "New Brunswick",
-                    "lines": ""
+                    "lines": "",
+                    "sortKey": -100
                 },
                 "geometry": {
                     "type": "Point",
                     "coordinates": [
-                        -74.445751,
-                        40.497278
+                        -74.44624145707355,
+                        40.49679662541081
                     ]
                 }
             },
@@ -1447,7 +1450,8 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "New York Penn Station",
-                    "lines": ""
+                    "lines": "",
+                    "sortKey": -100
                 },
                 "geometry": {
                     "type": "Point",
@@ -1477,7 +1481,8 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Newark Penn Station",
-                    "lines": ""
+                    "lines": "",
+                    "sortKey": -99
                 },
                 "geometry": {
                     "type": "Point",
@@ -1737,8 +1742,8 @@
                 "geometry": {
                     "type": "Point",
                     "coordinates": [
-                        -74.623753,
-                        40.316316
+                        -74.62413313806263,
+                        40.31598902415962
                     ]
                 }
             },
@@ -2017,7 +2022,8 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Summit",
-                    "lines": ""
+                    "lines": "",
+                    "sortKey": -100
                 },
                 "geometry": {
                     "type": "Point",
@@ -2062,13 +2068,14 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Trenton",
-                    "lines": ""
+                    "lines": "",
+                    "sortKey": -100
                 },
                 "geometry": {
                     "type": "Point",
                     "coordinates": [
-                        -74.753926,
-                        40.218515
+                        -74.75390887652284,
+                        40.21853309878642
                     ]
                 }
             },
@@ -2277,8 +2284,8 @@
                 "geometry": {
                     "type": "Point",
                     "coordinates": [
-                        -74.70412,
-                        40.255309
+                        -74.70408529844168,
+                        40.255357808841836
                     ]
                 }
             },
@@ -2292,8 +2299,8 @@
                 "geometry": {
                     "type": "Point",
                     "coordinates": [
-                        -74.467363,
-                        40.476912
+                        -74.46751385175135,
+                        40.47670947822036
                     ]
                 }
             },
@@ -2332,7 +2339,8 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Montclair State University",
-                    "lines": ""
+                    "lines": "",
+                    "sortKey": -100
                 },
                 "geometry": {
                     "type": "Point",
@@ -2377,7 +2385,8 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Secaucus Upper Level",
-                    "lines": ""
+                    "lines": "",
+                    "sortKey": 0
                 },
                 "geometry": {
                     "type": "Point",
@@ -2414,21 +2423,6 @@
                     "coordinates": [
                         -74.145485,
                         41.07513
-                    ]
-                }
-            },
-            {
-                "type": "Feature",
-                "properties": {
-                    "title": "Train Station",
-                    "description": "Bergenline Ave.",
-                    "lines": ""
-                },
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        -74.022271,
-                        40.782225
                     ]
                 }
             },

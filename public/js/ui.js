@@ -11,19 +11,8 @@ function welcome_button() {
     screen.style.display = "none";
 }
 
-function departures_open() {
-    const screen = document.getElementById("stationDepartures");
-    screen.style.display = "flex";
-}
-
-function departures_close() {
-    const screen = document.getElementById("stationDepartures");
-    screen.style.display = "none";
-}
-
 function station_open() {
     const screen = document.getElementById("stationStatus");
-    departures_close();
     screen.style.display = "flex";
     screen.style.left = "50%";
     screen.style.top = "50%";
@@ -33,7 +22,6 @@ function station_open() {
 function station_close() {
     const screen = document.getElementById("stationStatus");
     screen.style.display = "none";
-    departures_close();
 }
 
 function sidebar_open() {
@@ -70,26 +58,8 @@ function adjust_sidebar() {
     }
 }
 
-function updateStationStatus(map, name, lines) {
+function updateStationStatus(map, name) {
     document.getElementById("stationStatusName").textContent = name;
-    document.getElementById("stationDeparturesName").textContent = name;
-    split_lines = lines.split(" ");
-
-    const routeDivs = document.querySelectorAll(".station_routes > div");
-    routeDivs.forEach(div => div.style.display = "none");
-
-    split_lines.forEach((x, i) => {
-        const data = database[x];
-        if (!data) return;
-
-        const div = document.getElementById("stationRoute" + x)
-        const img = div.querySelector("img");
-        const span = div.querySelector("span");
-
-        img.src = data.image;
-        span.textContent = data.name;
-        div.style.display = "flex";
-    })
 
     station_open();
 }
@@ -139,11 +109,3 @@ function stopDrag() {
     document.removeEventListener("touchmove", onDrag);
     document.removeEventListener("touchend", stopDrag);
 }
-
-const routes = document.querySelectorAll(".station_route");
-
-routes.forEach(route => {
-    route.addEventListener("click", () => {
-        departures_open();
-    })
-})
