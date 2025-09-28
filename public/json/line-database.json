@@ -1,60 +1,68 @@
 {
     "line-database": {
-        "one": {
+        "Northeast Corridor Line": {
             "name": "Northeast Corridor",
             "image": "assets/icons/lines/northeastcorridor.svg",
             "id": "northeastcorridortrack",
             "url": "json/northeastcorridortrack.json",
-            "color": "rgb(239, 62, 66)"
+            "color": "rgb(239, 62, 66)",
+            "abbreviation": "NEC"
         },
-        "two": {
+        "Morris & Essex Line": {
             "name": "Morris & Essex",
             "image": "assets/icons/lines/morrisessex.svg",
             "id": "morrisessextrack",
             "url": "json/morrisessextrack.json",
-            "color": "rgb(0, 149, 59)"
+            "color": "rgb(0, 149, 59)",
+            "abbreviation": "M&E"
         },
-        "three": {
+        "North Jersey Coast Line": {
             "name": "North Jersey Coast",
             "image": "assets/icons/lines/northjerseycoast.svg",
             "id": "northjerseycoasttrack",
             "url": "json/northjerseycoasttrack.json",
-            "color": "rgb(0, 156, 219)"
+            "color": "rgb(0, 156, 219)",
+            "abbreviation": "NJCL"
         },
-        "four": {
+        "Main/Bergen Line": {
             "name": "Main/Bergen",
             "image": "assets/icons/lines/mainbergen.svg",
             "id": "mainbergentrack",
             "url": "json/mainbergentrack.json",
-            "color": "rgb(242, 184, 38)"
+            "color": "rgb(242, 184, 38)",
+            "abbreviation": "MAIN/BERG"
         },
-        "five": {
+        "Montclair-Boonton Line": {
             "name": "Montclair-Boonton",
             "image": "assets/icons/lines/montclairboonton.svg",
             "id": "montclairboontontrack",
             "url": "json/montclairboontontrack.json",
-            "color": "rgb(195, 99, 102)"
+            "color": "rgb(195, 99, 102)",
+            "abbreviation": "MOBO"
         },
-        "six": {
+        "Raritan Valley Line": {
             "name": "Raritan Valley",
             "image": "assets/icons/lines/raritanvalley.svg",
             "id": "raritanvalleytrack",
             "url": "json/raritanvalleytrack.json",
-            "color": "rgb(255, 153, 62)"
+            "color": "rgb(255, 153, 62)",
+            "abbreviation": "RARV"
         },
-        "seven": {
+        "Pascack Valley Line": {
             "name": "Pascack Valley",
             "image": "assets/icons/lines/pascackvalley.svg",
             "id": "pascackvalleytrack",
             "url": "json/pascackvalleytrack.json",
-            "color": "rgb(163, 79, 139)"
+            "color": "rgb(163, 79, 139)",
+            "abbreviation": "PASC"
         },
-        "eight": {
+        "Atlantic City Line": {
             "name": "Atlantic City Line",
             "image": "assets/icons/lines/atlanticcity.svg",
             "id": "atlanticcitytrack",
             "url": "json/atlanticcitytrack.json",
-            "color": "rgb(46, 85, 165)"
+            "color": "rgb(46, 85, 165)",
+            "abbreviation": "ACRL"
         }
     }
 }

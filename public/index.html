@@ -32,14 +32,16 @@
         <h1 id="stationStatusName">Current Station</h1>
 
         <div class="station_routes" id="stationRoutes">
-            <div class="station_route" id="default">
+            <h3 id="NoCurrentDepartures" style="display: none;">No current departures. Contact me on GitHub if you think
+                this is a mistake.</h3>
+            <div class="station_route" id="default" style="display: none;">
                 <img src="assets/icons/lines/northeastcorridor.svg">
-                <div class="station_route_inner">
-                    <div>
+                <div class="station_route_inner" id="station_route_inner">
+                    <div id="station_route_inner1" class="station_route_inner1">
                         <h1>New York -SEC</h1>
                         <h3>NEC Train 6767</h3>
                     </div>
-                    <div>
+                    <div id="station_route_inner2" class="station_route_inner2">
                         <h1>2:39 PM @ Track 1</h1>
                         <h3>Status: Delayed 2m</h3>
                     </div>

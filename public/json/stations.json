@@ -1449,7 +1449,7 @@
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "New York Penn Station",
+                    "description": "New York",
                     "lines": "",
                     "sortKey": -100
                 },

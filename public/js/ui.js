@@ -58,12 +58,6 @@ function adjust_sidebar() {
     }
 }
 
-function updateStationStatus(map, name) {
-    document.getElementById("stationStatusName").textContent = name;
-
-    station_open();
-}
-
 window.addEventListener("resize", adjust_sidebar)
 
 const stationStatus = document.getElementById("stationStatus");

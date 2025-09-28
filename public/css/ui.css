@@ -147,7 +147,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: 0.5rem;
-    width: 80%;
+    width: 90%;
     font-family: "Ubuntu", sans-serif;
     font-size: 1.2em;
     overflow-y: auto;
@@ -159,7 +159,8 @@
     align-items: stretch;
     gap: 0.5rem;
     cursor: pointer;
-    width: 90%;
+    width: 80%;
+    height: 6vh;
     padding: 0.5rem 1rem;
     border-radius: 10px;
     transition: background 0.2s, transform 0.2s;
@@ -225,6 +226,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 
 .station_route_inner h1,
@@ -234,7 +236,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: clamp(0.7rem, 1.5vw, 1rem);
+    font-size: calc(0.4 * 1em + 1vh);
 }
 
 .draggable_station_status {
