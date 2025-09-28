@@ -1465,7 +1465,7 @@
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Newark Broad St.",
+                    "description": "Newark Broad Street",
                     "lines": ""
                 },
                 "geometry": {
@@ -2323,7 +2323,7 @@
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Newark Liberty Airport Station",
+                    "description": "Newark Airport",
                     "lines": ""
                 },
                 "geometry": {
@@ -2375,8 +2375,8 @@
                 "geometry": {
                     "type": "Point",
                     "coordinates": [
-                        -74.075821,
-                        40.761188
+                        -74.0757470859154,
+                        40.7613300856884
                     ]
                 }
             },
@@ -2460,14 +2460,14 @@
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Meadowlands Sports Complex",
+                    "description": "Meadowlands",
                     "lines": ""
                 },
                 "geometry": {
                     "type": "Point",
                     "coordinates": [
-                        -74.072114,
-                        40.813053
+                        -74.07210626870811,
+                        40.81294730814014
                     ]
                 }
             },

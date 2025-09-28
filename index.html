@@ -35,20 +35,38 @@
             <h3 id="NoCurrentDepartures" style="display: none;">No current departures. Contact me on GitHub if you think
                 this is a mistake.</h3>
             <div class="station_route" id="default" style="display: none;">
-                <img src="assets/icons/lines/northeastcorridor.svg">
-                <div class="station_route_inner" id="station_route_inner">
-                    <div id="station_route_inner1" class="station_route_inner1">
-                        <h1>New York -SEC</h1>
-                        <h3>NEC Train 6767</h3>
+                <div class="station_route_header">
+                    <img src="assets/icons/lines/northeastcorridor.svg">
+                    <div class="station_route_inner" id="station_route_inner">
+                        <div id="station_route_inner1" class="station_route_inner1">
+                            <h1>New York -SEC</h1>
+                            <h3>NEC Train 6767</h3>
+                        </div>
+                        <div id="station_route_inner2" class="station_route_inner2">
+                            <h1>2:39 PM @ Track 1</h1>
+                            <h3>Status: Delayed 2m</h3>
+                        </div>
                     </div>
-                    <div id="station_route_inner2" class="station_route_inner2">
-                        <h1>2:39 PM @ Track 1</h1>
-                        <h3>Status: Delayed 2m</h3>
+                </div>
+                <div class="station_info">
+                    <div class="station_col" id="stationCol">
+                        <h3>Station</h3>
+                        <br>
+                        <h4>Trenton</h4>
+                    </div>
+                    <div class="scheduled_col" id="scheduledCol">
+                        <h3>Scheduled</h3>
+                        <br>
+                        <h4>4:30 PM</h4>
+                    </div>
+                    <div class="status_col" id="statusCol">
+                        <h3>Status</h3>
+                        <br>
+                        <h4>Delayed 1m</h4>
                     </div>
                 </div>
             </div>
         </div>
-
         <br>
 
         <button class="station_close" onclick="station_close()" id="stationClose">

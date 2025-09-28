@@ -156,16 +156,17 @@
 
 .station_route {
     display: flex;
+    flex-direction: column;
     align-items: stretch;
     gap: 0.5rem;
     cursor: pointer;
     width: 80%;
-    height: 6vh;
     padding: 0.5rem 1rem;
     border-radius: 10px;
     transition: background 0.2s, transform 0.2s;
     background: white;
     border: 2px solid black;
+    height: auto;
 }
 
 .station_route:hover {
@@ -177,6 +178,107 @@
     width: 10%;
     height: auto;
     flex-shrink: 0;
+}
+
+.station_route_header {
+    display: flex;
+    gap: 0.5rem;
+    align-items: stretch;
+}
+
+.station_route_inner {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.station_route_inner>div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.station_route_inner h1,
+.station_route_inner h3 {
+    margin: 0;
+    font-family: "Ubuntu", sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: calc(0.4 * 1em + 1vh);
+}
+
+.station_info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+    width: auto;
+    padding: 0;
+    overflow: hidden;
+    height: 0;
+    transition: height 0.3s ease, padding 0.3s ease;
+    background: #f5f0e2;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.station_info.open {
+    height: auto;
+    padding: 1rem;
+}
+
+.station_col {
+    flex: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* station left, scheduled left, status left/right as needed */
+    height: auto;
+}
+
+.scheduled_col {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* station left, scheduled left, status left/right as needed */
+    height: auto;
+}
+
+.status_col {
+    flex: 1;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* station left, scheduled left, status left/right as needed */
+    height: auto;
+}
+
+.station_info .station_col h3,
+.station_info .scheduled_col h3,
+.station_info .status_col h3 {
+    margin: 0;
+    font-family: "Ubuntu", sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: calc(0.4 * 1em + 1vh);
+}
+
+.station_info .station_col h4,
+.station_info .scheduled_col h4,
+.station_info .status_col h4 {
+    margin: 0;
+    font-family: "Ubuntu", sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: calc(0.3 * 1em + 1vh);
 }
 
 .station_close {
@@ -213,30 +315,6 @@
 
 .station_close:hover {
     transform: translateX(-50%) scale(1.1);
-}
-
-.station_route_inner {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.station_route_inner>div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-.station_route_inner h1,
-.station_route_inner h3 {
-    margin: 0;
-    font-family: "Ubuntu", sans-serif;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: calc(0.4 * 1em + 1vh);
 }
 
 .draggable_station_status {

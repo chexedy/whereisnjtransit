@@ -24,13 +24,21 @@
             "color": "rgb(0, 156, 219)",
             "abbreviation": "NJCL"
         },
-        "Main/Bergen Line": {
-            "name": "Main/Bergen",
+        "Main Line": {
+            "name": "Main Line",
             "image": "assets/icons/lines/mainbergen.svg",
             "id": "mainbergentrack",
             "url": "json/mainbergentrack.json",
             "color": "rgb(242, 184, 38)",
-            "abbreviation": "MAIN/BERG"
+            "abbreviation": "MAIN"
+        },
+        "Bergen County Line": {
+            "name": "Bergen County Line",
+            "image": "assets/icons/lines/mainbergen.svg",
+            "id": "mainbergentrack",
+            "url": "json/mainbergentrack.json",
+            "color": "rgb(242, 184, 38)",
+            "abbreviation": "BERG"
         },
         "Montclair-Boonton Line": {
             "name": "Montclair-Boonton",
@@ -63,6 +71,22 @@
             "url": "json/atlanticcitytrack.json",
             "color": "rgb(46, 85, 165)",
             "abbreviation": "ACRL"
+        },
+        "BetMGM Meadowlands": {
+            "name": "Meadowlands Rail Line",
+            "image": "assets/icons/lines/meadowlands.svg",
+            "id": "meadowlands",
+            "url": "json/meadowlands.json",
+            "color": "rgb(192, 169, 113)",
+            "abbreviation": "BMGM"
+        },
+        "Princeton Branch": {
+            "name": "Princeton Shuttle",
+            "image": "assets/icons/lines/northeastcorridor.svg",
+            "id": "princetonshuttle",
+            "url": "json/princetonshuttle.json",
+            "color": "rgb(239, 62, 66)",
+            "abbreviation": "PRIN"
         }
     }
 }
