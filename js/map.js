@@ -70,101 +70,104 @@ async function addStations() {
     const data = await res.json();
     console.log("res loaded");
 
-    image = await map.loadImage("assets/icons/service/station.png");
-    console.log("Image loaded");
-    console.log(image);
-    if (!map.hasImage('station-icon')) {
-        map.addImage('station-icon', image.data);
-    }
+    // const img = await map.loadImage("assets/icons/service/station.png");
+    // console.log("Loaded image");
 
-    map.addSource('stations', {
-        type: 'geojson',
-        data: data.stations
-    });
+    // if (!map.hasImage("station-icon")) {
+    //     map.addImage("station-icon", img);
+    // }
 
-    console.log("Added source");
-
-    map.addLayer({
-        id: 'stations-layer',
-        type: 'symbol',
-        source: 'stations',
-        layout: {
-            'icon-image': 'station-icon',
-            'icon-size': 0.175,
-            'icon-allow-overlap': false,
-            'text-field': ['get', 'description'],
-            'text-offset': [0, 1.5],
-            'text-anchor': 'top',
-            'text-size': 15,
-            'text-allow-overlap': false,
-            'symbol-sort-key': ['get', 'sortKey']
-        },
-    });
-
-    console.log("Added layer");
-
-    map.on('click', 'stations-layer', (e) => {
-        const feature = e.features[0];
-        const { description } = feature.properties;
-        updateStationStatus(map, description);
-    });
-
-    map.on('mouseenter', 'stations-layer', () => {
-        map.getCanvas().style.cursor = 'pointer';
-    });
-
-    map.on('mouseleave', 'stations-layer', () => {
-        map.getCanvas().style.cursor = '';
-    });
-
-    // map.loadImage("assets/icons/service/station.png", (error, image) => {
-    //     if (error) {
-    //         console.log(error);
-    //     }
-    //     console.log("Image loaded");
-
-    //     if (!map.hasImage('station-icon')) {
-    //         map.addImage('station-icon', image);
-    //     }
-
-    //     map.addSource('stations', {
-    //         type: 'geojson',
-    //         data: data.stations
+    // if (!map.getSource("stations")) {
+    //     map.addSource("stations", {
+    //         type: "geojson",
+    //         data: data.stations // or data object
     //     });
+    // }
 
-    //     console.log("Added source");
+    // console.log("Added source");
 
+    // if (!map.getLayer("stations-layer")) {
     //     map.addLayer({
-    //         id: 'stations-layer',
-    //         type: 'symbol',
-    //         source: 'stations',
+    //         id: "stations-layer",
+    //         type: "symbol",
+    //         source: "stations",
     //         layout: {
-    //             'icon-image': 'station-icon',
-    //             'icon-size': 0.175,
-    //             'icon-allow-overlap': false,
-    //             'text-field': ['get', 'description'],
-    //             'text-offset': [0, 1.5],
-    //             'text-anchor': 'top',
-    //             'text-size': 15,
-    //             'text-allow-overlap': false,
-    //             'symbol-sort-key': ['get', 'sortKey']
-    //         },
+    //             "icon-image": "station-icon",
+    //             "icon-size": 0.25,
+    //             "icon-allow-overlap": true,
+    //             "text-field": ["get", "description"],
+    //             "text-offset": [0, 1.5],
+    //             "text-anchor": "top"
+    //         }
     //     });
+    // }
 
-    //     map.on('click', 'stations-layer', (e) => {
-    //         const feature = e.features[0];
-    //         const { description } = feature.properties;
-    //         updateStationStatus(map, description);
-    //     });
+    // console.log("Added layer");
 
-    //     map.on('mouseenter', 'stations-layer', () => {
-    //         map.getCanvas().style.cursor = 'pointer';
-    //     });
-
-    //     map.on('mouseleave', 'stations-layer', () => {
-    //         map.getCanvas().style.cursor = '';
-    //     });
+    // map.on('click', 'stations-layer', (e) => {
+    //     const feature = e.features[0];
+    //     const { description } = feature.properties;
+    //     updateStationStatus(map, description);
     // });
+
+    // map.on('mouseenter', 'stations-layer', () => {
+    //     map.getCanvas().style.cursor = 'pointer';
+    // });
+
+    // map.on('mouseleave', 'stations-layer', () => {
+    //     map.getCanvas().style.cursor = '';
+    // });
+
+    // console.log(map.hasImage("station-icon"));
+
+    map.loadImage("assets/icons/service/station.png", (error, image) => {
+        if (error) {
+            console.log(error);
+        }
+        console.log("Image loaded");
+
+        if (!map.hasImage('station-icon')) {
+            map.addImage('station-icon', image);
+        }
+
+        map.addSource('stations', {
+            type: 'geojson',
+            data: data.stations
+        });
+
+        console.log("Added source");
+
+        map.addLayer({
+            id: 'stations-layer',
+            type: 'symbol',
+            source: 'stations',
+            layout: {
+                'icon-image': 'station-icon',
+                'icon-size': 0.175,
+                'icon-allow-overlap': false,
+                'text-field': ['get', 'description'],
+                'text-offset': [0, 1.5],
+                'text-anchor': 'top',
+                'text-size': 15,
+                'text-allow-overlap': false,
+                'symbol-sort-key': ['get', 'sortKey']
+            },
+        });
+
+        map.on('click', 'stations-layer', (e) => {
+            const feature = e.features[0];
+            const { description } = feature.properties;
+            updateStationStatus(map, description);
+        });
+
+        map.on('mouseenter', 'stations-layer', () => {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+        map.on('mouseleave', 'stations-layer', () => {
+            map.getCanvas().style.cursor = '';
+        });
+    });
 }
 
 
@@ -187,7 +190,9 @@ function toggleLayerVisibility(layer) {
 
 async function loadMapLayers() {
     await addTrackLines();
+    console.log("Added track lines");
     await addStations();
+    console.log("Loaded map layers done");
 }
 
 function initMap() {
@@ -196,14 +201,14 @@ function initMap() {
         [-72.79608, 41.75203]
     ]
 
-    map = new maplibregl.Map({
+    map = new mapboxgl.Map({
         container: 'map',
         center: [-74.1, 40.75],
-        style: 'https://tiles.openfreemap.org/styles/liberty', // "mapbox://styles/ayaan7m/cmfhdj6gw006i01qu2774d2nz",
+        style: "mapbox://styles/ayaan7m/cmfhdj6gw006i01qu2774d2nz", // 'https://tiles.openfreemap.org/styles/bright',
         maxBounds: bounds
     });
 
-    map.on('style.load', () => {
+    map.on('style.load', async () => {
         map.fitBounds(bounds, { padding: 40, animate: false });
 
         const currentZoom = map.getZoom();
