@@ -33,7 +33,7 @@ async function addTrackLines() {
     for (const key in data["line-database"]) {
         const line = data["line-database"][key];
 
-        if (line.name == "Bergen County Line") {
+        if (line.name == "Bergen County Line" || line.name == "Gladstone Branch") {
             continue;
         }
 

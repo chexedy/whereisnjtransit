@@ -1,8 +1,12 @@
 let twochar = {};
 let line_database = {};
+let stations = {};
 
 const departureCache = {};
 const departureHistoryCache = {};
+
+import fs, { stat } from "fs";
+import * as turf from "@turf/turf";
 
 fetch("json/2char.json")
     .then(res => res.json())
@@ -16,12 +20,24 @@ fetch("json/line-database.json")
         line_database = data["line-database"];
     });
 
-function togglePanel(panel) {
+fetch("json/stations.json")
+    .then(res => res.json())
+    .then(data => {
+        stations = data.stations;
+    });
+
+const stationMap = {};
+for (const feature of stations.features) {
+    stationMap[feature.properties.description] = feature;
+}
+
+function togglePanel(panel, newDiv) {
     if (panel.classList.contains("open")) {
         panel.style.height = panel.scrollHeight + "px";
         requestAnimationFrame(() => {
             panel.style.height = "0px";
         });
+
         panel.classList.remove("open");
     } else {
         panel.style.height = "auto";
@@ -114,7 +130,7 @@ function updateStation(departures) {
                     await updateTrainHistory(infoPanel, obj.train_id);
                 }
 
-                togglePanel(infoPanel);
+                togglePanel(infoPanel, newDiv);
             });
 
             document.getElementById("stationRoutes").appendChild(newDiv);
@@ -149,7 +165,9 @@ async function updateTrainHistory(infoPanel, id) {
     let trainReachedNext = false;
 
     for (const stop of data) {
+        const secLate = departureHistoryCache[id]?.sec_late ?? 0;
         const stopTime = new Date(stop.dep_time.replace(" ", "T"));
+        stopTime.setTime(stopTime.getTime() + secLate * 1000);
         const stationName = stop.station_name;
 
         let statusText = "";
@@ -172,7 +190,6 @@ async function updateTrainHistory(infoPanel, id) {
         } else if (!trainReachedNext) {
             trainReachedNext = true;
 
-            const secLate = departureHistoryCache[id]?.sec_late ?? 0;
             if (secLate > 0) {
                 statusText = `Delayed ${Math.floor(secLate / 60)}m`;
                 statusColor = "red";
@@ -238,29 +255,78 @@ async function updateStationStatus(map, name) {
     station_open();
 }
 
-function msUntilNext10Min() {
+function getClosestPoint(longitude, latitude, geojson) {
+    const point = turf.point([longitude, latitude]);
+    let closestPoint = null;
+    let minDistance = Infinity;
+
+    for (const feature of geojson.features) {
+        const snapped = turf.nearestPointOnLine(feature, point);
+        const dist = turf.distance(point, snapped);
+        if (dist < minDistance) {
+            minDistance = dist;
+            closestPoint = snapped;
+        }
+    }
+
+    console.log("Closest point:", closestPoint.geometry.coordinates);
+    console.log("Distance (km):", minDistance);
+    return closestPoint;
+}
+
+async function addLiveTrains() {
+    const url = "https://whereisnjtransit-schedule.ayaan7m.workers.dev/realtime";
+    const res = await fetch(url);
+    const data = await res.json();
+
+    console.log(data.length + " trains are currently running");
+    for (const train in data) {
+        if (train.line = "Northeast Corridor Line") {
+            let geojson;
+            fetch(line_database[train.line].url)
+                .then(res => res.json())
+                .then(data => {
+                    geojson = data[line_database[train.line].id];
+                });
+
+            const point = getClosestPoint(train.longitude, train.latitude, geojson);
+            const station_point = stationMap[train.next_stop].geometry.coordinates;
+
+            //get history and then add it to the history cache before combining with realtime
+        }
+    }
+}
+
+function msUntilNext5Min() {
     const now = new Date();
     const estNow = new Date(
         now.toLocaleString("en-US", { timeZone: "America/New_York" })
     );
 
     const minutes = estNow.getMinutes();
-    const next = Math.ceil(minutes / 10) * 10;
+    const next = Math.ceil(minutes / 5) * 5;
 
-    estNow.setMinutes(next, 0, 0);
+    // Handle rollover at the top of the hour
+    if (next === 60) {
+        estNow.setHours(estNow.getHours() + 1);
+        estNow.setMinutes(0, 0, 0);
+    } else {
+        estNow.setMinutes(next, 0, 0);
+    }
+
     return estNow.getTime() - Date.now();
 }
 
 function scheduleTask() {
-    const delay = msUntilNext10Min();
+    const delay = msUntilNext5Min();
 
     setTimeout(() => {
-        reset10Mins();
-        setInterval(reset10Mins(), 10 * 60 * 1000);
+        reset5Mins();
+        setInterval(reset5Mins(), 5 * 60 * 1000);
     }, delay);
 }
 
-function reset10Mins() {
+function reset5Mins() {
     departureCache.length = 0;
     departureHistoryCache.length = 0;
 }

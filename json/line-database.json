@@ -16,6 +16,14 @@
             "color": "rgb(0, 149, 59)",
             "abbreviation": "M&E"
         },
+        "Gladstone Branch": {
+            "name": "Gladstone Branch",
+            "image": "assets/icons/lines/morrisessex.svg",
+            "id": "morrisessextrack",
+            "url": "json/morrisessextrack.json",
+            "color": "rgb(0, 149, 59)",
+            "abbreviation": "M&E"
+        },
         "North Jersey Coast Line": {
             "name": "North Jersey Coast",
             "image": "assets/icons/lines/northjerseycoast.svg",

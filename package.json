@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@turf/turf": "^7.2.0",
     "mapbox-gl": "^3.15.0",
     "maplibre": "^0.0.1-security",
     "maplibre-gl": "^5.7.3"

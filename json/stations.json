@@ -1480,7 +1480,7 @@
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Newark Penn Station",
+                    "description": "Newark Penn",
                     "lines": "",
                     "sortKey": -99
                 },

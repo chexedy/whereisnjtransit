@@ -170,8 +170,7 @@
 }
 
 .station_route:hover {
-    background: rgba(0, 0, 0, 0.2);
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
 .station_route img {
@@ -459,6 +458,10 @@
     width: 40px;
     height: 40px;
     object-fit: contain;
+}
+
+.links img:hover {
+    transform: scale(1.10);
 }
 
 .location {
