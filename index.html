@@ -9,6 +9,9 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
     <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css' />
 
+    <script src="https://unpkg.com/maplibre-gl/dist/maplibre-gl.js"></script>
+    <link href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css" rel="stylesheet" />
+
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/ui.css">
 </head>
@@ -76,7 +79,7 @@
 
     <div class="sidebar" style="display: none;" id="mainSidebar">
         <h1>Rail Routes</h1>
-        <h4>Click on a route to disable it</h4>
+        <h4>Click on a route to hide it</h4>
 
         <div class="sidebar_routes">
             <button class="sidebar_route_button" id="northeastcorridortrack" onclick="toggleLayerVisibility(this.id)">
@@ -110,6 +113,10 @@
             <button class="sidebar_route_button" id="atlanticcitytrack" onclick="toggleLayerVisibility(this.id)">
                 <img src="assets/icons/lines/atlanticcity.svg" alt="Route Icon">
                 <span>Atlantic City Line</span>
+            </button>
+            <button class="sidebar_route_button" id="meadowlands" onclick="toggleLayerVisibility(this.id)">
+                <img src="assets/icons/lines/meadowlands.svg" alt="Route Icon">
+                <span>Meadowlands Rail Line</span>
             </button>
         </div>
         <br>

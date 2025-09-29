@@ -6,7 +6,7 @@
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "30th St. Philadelphia.",
+                    "description": "Philadelphia",
                     "lines": "",
                     "sortKey": -100
                 },
@@ -548,7 +548,7 @@
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Egg Harbor",
+                    "description": "Egg Harbor City",
                     "lines": ""
                 },
                 "geometry": {
@@ -1781,7 +1781,7 @@
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Ramsey",
+                    "description": "Ramsey Main St",
                     "lines": ""
                 },
                 "geometry": {
@@ -2400,22 +2400,7 @@
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Walter Rand Transportation Center",
-                    "lines": ""
-                },
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        -75.12021,
-                        39.943258
-                    ]
-                }
-            },
-            {
-                "type": "Feature",
-                "properties": {
-                    "title": "Train Station",
-                    "description": "Ramsey Route 17 Station",
+                    "description": "Ramsey Route 17",
                     "lines": ""
                 },
                 "geometry": {

@@ -65,52 +65,106 @@ async function addTrackLines() {
 }
 
 async function addStations() {
+    console.log("Starting");
     const res = await fetch('json/stations.json');
     const data = await res.json();
+    console.log("res loaded");
 
-    map.loadImage("assets/icons/service/station.png", (error, image) => {
-        if (error) throw error;
+    image = await map.loadImage("assets/icons/service/station.png");
+    console.log("Image loaded");
+    console.log(image);
+    if (!map.hasImage('station-icon')) {
+        map.addImage('station-icon', image.data);
+    }
 
-        if (!map.hasImage('station-icon')) {
-            map.addImage('station-icon', image);
-        }
-
-        map.addSource('stations', {
-            type: 'geojson',
-            data: data.stations
-        });
-
-        map.addLayer({
-            id: 'stations-layer',
-            type: 'symbol',
-            source: 'stations',
-            layout: {
-                'icon-image': 'station-icon',
-                'icon-size': 0.175,
-                'icon-allow-overlap': false,
-                'text-field': ['get', 'description'],
-                'text-offset': [0, 1.5],
-                'text-anchor': 'top',
-                'text-size': 15,
-                'text-allow-overlap': false,
-                'symbol-sort-key': ['get', 'sortKey']
-            },
-        });
-
-        map.on('click', 'stations-layer', (e) => {
-            const feature = e.features[0];
-            const { description } = feature.properties;
-            updateStationStatus(map, description);
-        });
-
-        map.on('mouseenter', 'stations-layer', () => {
-            map.getCanvas().style.cursor = 'pointer';
-        });
-
-        map.on('mouseleave', 'stations-layer', () => {
-            map.getCanvas().style.cursor = '';
-        });
+    map.addSource('stations', {
+        type: 'geojson',
+        data: data.stations
     });
+
+    console.log("Added source");
+
+    map.addLayer({
+        id: 'stations-layer',
+        type: 'symbol',
+        source: 'stations',
+        layout: {
+            'icon-image': 'station-icon',
+            'icon-size': 0.175,
+            'icon-allow-overlap': false,
+            'text-field': ['get', 'description'],
+            'text-offset': [0, 1.5],
+            'text-anchor': 'top',
+            'text-size': 15,
+            'text-allow-overlap': false,
+            'symbol-sort-key': ['get', 'sortKey']
+        },
+    });
+
+    console.log("Added layer");
+
+    map.on('click', 'stations-layer', (e) => {
+        const feature = e.features[0];
+        const { description } = feature.properties;
+        updateStationStatus(map, description);
+    });
+
+    map.on('mouseenter', 'stations-layer', () => {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    map.on('mouseleave', 'stations-layer', () => {
+        map.getCanvas().style.cursor = '';
+    });
+
+    // map.loadImage("assets/icons/service/station.png", (error, image) => {
+    //     if (error) {
+    //         console.log(error);
+    //     }
+    //     console.log("Image loaded");
+
+    //     if (!map.hasImage('station-icon')) {
+    //         map.addImage('station-icon', image);
+    //     }
+
+    //     map.addSource('stations', {
+    //         type: 'geojson',
+    //         data: data.stations
+    //     });
+
+    //     console.log("Added source");
+
+    //     map.addLayer({
+    //         id: 'stations-layer',
+    //         type: 'symbol',
+    //         source: 'stations',
+    //         layout: {
+    //             'icon-image': 'station-icon',
+    //             'icon-size': 0.175,
+    //             'icon-allow-overlap': false,
+    //             'text-field': ['get', 'description'],
+    //             'text-offset': [0, 1.5],
+    //             'text-anchor': 'top',
+    //             'text-size': 15,
+    //             'text-allow-overlap': false,
+    //             'symbol-sort-key': ['get', 'sortKey']
+    //         },
+    //     });
+
+    //     map.on('click', 'stations-layer', (e) => {
+    //         const feature = e.features[0];
+    //         const { description } = feature.properties;
+    //         updateStationStatus(map, description);
+    //     });
+
+    //     map.on('mouseenter', 'stations-layer', () => {
+    //         map.getCanvas().style.cursor = 'pointer';
+    //     });
+
+    //     map.on('mouseleave', 'stations-layer', () => {
+    //         map.getCanvas().style.cursor = '';
+    //     });
+    // });
 }
 
 
@@ -142,10 +196,10 @@ function initMap() {
         [-72.79608, 41.75203]
     ]
 
-    map = new mapboxgl.Map({
+    map = new maplibregl.Map({
         container: 'map',
         center: [-74.1, 40.75],
-        style: "mapbox://styles/ayaan7m/cmfhdj6gw006i01qu2774d2nz",
+        style: 'https://tiles.openfreemap.org/styles/liberty', // "mapbox://styles/ayaan7m/cmfhdj6gw006i01qu2774d2nz",
         maxBounds: bounds
     });
 
@@ -156,6 +210,10 @@ function initMap() {
         map.setMinZoom(currentZoom);
 
         loadMapLayers(map);
+    });
+
+    map.on('error', function (e) {
+        console.log('Map Error:', e.error);
     });
 
     document.getElementById("locationButton").addEventListener("click", () => {
