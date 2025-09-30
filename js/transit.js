@@ -5,9 +5,6 @@ let stations = {};
 const departureCache = {};
 const departureHistoryCache = {};
 
-import fs, { stat } from "fs";
-import * as turf from "@turf/turf";
-
 fetch("json/2char.json")
     .then(res => res.json())
     .then(data => {
@@ -20,16 +17,17 @@ fetch("json/line-database.json")
         line_database = data["line-database"];
     });
 
+const stationMap = {};
+
 fetch("json/stations.json")
     .then(res => res.json())
     .then(data => {
         stations = data.stations;
+        for (const feature of stations.features) {
+            stationMap[feature.properties.description] = feature;
+        }
+        console.log(stationMap);
     });
-
-const stationMap = {};
-for (const feature of stations.features) {
-    stationMap[feature.properties.description] = feature;
-}
 
 function togglePanel(panel, newDiv) {
     if (panel.classList.contains("open")) {
@@ -274,25 +272,109 @@ function getClosestPoint(longitude, latitude, geojson) {
     return closestPoint;
 }
 
-async function addLiveTrains() {
+function buildTrip(history, secLate) {
+    console.log(history);
+    return history.map(stop => ({
+        station: stop.station_name,
+        coords: stationMap[stop.station_name].geometry.coordinates,
+        dep_time: new Date(new Date(stop.dep_time).getTime() + secLate * 1000)
+    }));
+}
+
+function animateSegment(marker, line, start, end, dwell = 45000) {
+    const startTime = start.dep_time.getTime();
+    const endTime = end.dep_time.getTime();
+    const duration = endTime - startTime;
+
+    function frame() {
+        const now = Date.now();
+
+        if (now >= endTime) {
+            marker.setLngLat(end.coords);
+
+            // Dwell 45
+            setTimeout(() => {
+                animateNextSegment(marker, tripGlobal, end);
+            }, dwell);
+            return;
+        }
+
+        const progress = (now - startTime) / duration;
+        const traveled = turf.length(line) * progress;
+        const point = turf.along(line, traveled, { units: "miles" });
+        marker.setLngLat(point.geometry.coordinates);
+
+        requestAnimationFrame(frame);
+    }
+
+    frame();
+}
+
+function animateNextSegment(marker, fullTrip, currentStop) {
+    const idx = fullTrip.findIndex(s => s.station === currentStop.station);
+    if (idx >= 0 && idx < fullTrip.length - 1) {
+        const start = fullTrip[idx];
+        const end = fullTrip[idx + 1];
+
+        const lineSegment = turf.lineSlice(
+            turf.point(start.coords),
+            turf.point(end.coords),
+            fullRouteGeoJSON[start.line]
+        );
+
+        animateSegment(marker, lineSegment, start, end);
+    }
+}
+
+async function addLiveTrains() { // REMOVE SECAUCUS IN STATIONS
     const url = "https://whereisnjtransit-schedule.ayaan7m.workers.dev/realtime";
     const res = await fetch(url);
     const data = await res.json();
 
     console.log(data.length + " trains are currently running");
-    for (const train in data) {
-        if (train.line = "Northeast Corridor Line") {
-            let geojson;
-            fetch(line_database[train.line].url)
-                .then(res => res.json())
-                .then(data => {
-                    geojson = data[line_database[train.line].id];
-                });
+    for (const train of data) {
+        if (train.line === "Northeast Corridor Line") {
+            console.log(train);
+            const resLine = await fetch(line_database[train.line].url);
+            const lineData = await resLine.json();
+            const geojson = lineData[line_database[train.line].id];
 
             const point = getClosestPoint(train.longitude, train.latitude, geojson);
             const station_point = stationMap[train.next_stop].geometry.coordinates;
 
-            //get history and then add it to the history cache before combining with realtime
+            const url2 = `https://whereisnjtransit-schedule.ayaan7m.workers.dev/history?id=${encodeURIComponent(train.train_id)}`
+            const res2 = await fetch(url2);
+            const history = await res2.json();
+
+            const trip = buildTrip(history, train.sec_late);
+            departureHistoryCache[train.train_id] = { history: history };
+
+            const markerEl = document.createElement("div");
+            markerEl.innerHTML = `<img src="${line_database[train.line].icon}" style="width:28px;height:28px;">`;
+            const marker = new mapboxgl.Marker({ element: markerEl })
+                .setLngLat(point.geometry.coordinates)
+                .addTo(map);
+
+            const idx = trip.findIndex(s => s.station === train.next_stop);
+            if (idx > 0) {
+                const prev = trip[idx - 1];
+                const next = trip[idx];
+
+                const lineSegment = turf.lineSlice(
+                    turf.point(point.geometry.coordinates),
+                    turf.point(next.coords),
+                    geojson
+                );
+
+                animateSegment(
+                    marker,
+                    lineSegment,
+                    { ...prev, coords: point.geometry.coordinates, dep_time: new Date() },
+                    next,
+                    trip,
+                    train.line
+                );
+            }
         }
     }
 }
@@ -306,7 +388,6 @@ function msUntilNext5Min() {
     const minutes = estNow.getMinutes();
     const next = Math.ceil(minutes / 5) * 5;
 
-    // Handle rollover at the top of the hour
     if (next === 60) {
         estNow.setHours(estNow.getHours() + 1);
         estNow.setMinutes(0, 0, 0);
@@ -322,13 +403,20 @@ function scheduleTask() {
 
     setTimeout(() => {
         reset5Mins();
-        setInterval(reset5Mins(), 5 * 60 * 1000);
+        addLiveTrains();
+
+        setInterval(() => {
+            reset5Mins();
+            addLiveTrains();
+        }, 5 * 60 * 1000);
     }, delay);
 }
 
 function reset5Mins() {
     departureCache.length = 0;
     departureHistoryCache.length = 0;
+    console.log("Caches cleared at", new Date().toLocaleTimeString());
 }
 
+addLiveTrains()
 scheduleTask();
