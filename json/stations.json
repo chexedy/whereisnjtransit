@@ -1736,7 +1736,7 @@
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Princeton Jct.",
+                    "description": "Princeton Junction",
                     "lines": ""
                 },
                 "geometry": {

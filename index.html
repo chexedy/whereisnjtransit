@@ -83,9 +83,15 @@
         <h1>Rail Routes</h1>
         <h4>Click on a route to hide it</h4>
 
-        <div id="sidebarSearch">
-            <input type="text" id="stationSearch" placeholder="Enter Station Name" />
+        <div class="sidebar_search" id="sidebarSearch">
+            <input type="text" id="stationSearch" placeholder="Enter Station Name" autocomplete="off" />
+            <div class="search_results" id="searchResults">
+                <h3 id="ResultOne">Station Name</h3>
+                <h3 id="ResultTwo">Station Name</h3>
+                <h3 id="ResultThree">Station Name</h3>
+            </div>
         </div>
+        <br>
 
         <div class="sidebar_routes">
             <button class="sidebar_route_button" id="northeastcorridortrack" onclick="toggleLayerVisibility(this.id)">

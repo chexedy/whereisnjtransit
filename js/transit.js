@@ -24,7 +24,7 @@ fetch("json/stations.json")
     .then(data => {
         stations = data.stations;
         for (const feature of stations.features) {
-            stationMap[feature.properties.description] = feature;
+            stationMap[feature.properties.description] = feature.geometry.coordinates;
         }
         console.log(stationMap);
     });
@@ -361,3 +361,51 @@ function reset10Mins() {
 
 addLiveTrains()
 scheduleTask()
+
+const searchInput = document.getElementById("stationSearch");
+const searchResults = document.getElementById("searchResults");
+const resultEls = [
+    document.getElementById("ResultOne"),
+    document.getElementById("ResultTwo"),
+    document.getElementById("ResultThree")
+];
+
+searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase().trim();
+
+    if (!query) {
+        searchResults.classList.remove("open");
+        return;
+    }
+
+    const matches = Object.keys(stationMap)
+        .filter(name => name.toLowerCase().includes(query))
+        .slice(0, 3);
+
+    resultEls.forEach((el, i) => {
+        if (matches[i]) {
+            el.textContent = matches[i];
+            el.style.display = "block";
+            el.onclick = () => {
+                const coords = stationMap[matches[i]];
+                console.log("Zoom to:", matches[i], coords);
+
+                map.flyTo({ center: coords, zoom: 18, essential: true });
+
+                if (window.innerWidth <= 1135) {
+                    sidebar_open();
+                }
+            };
+        } else {
+            el.textContent = "";
+            el.style.display = "none";
+            el.onclick = null;
+        }
+    });
+
+    if (matches.length > 0) {
+        searchResults.classList.add("open");
+    } else {
+        searchResults.classList.remove("open");
+    }
+});

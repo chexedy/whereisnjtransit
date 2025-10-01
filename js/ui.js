@@ -60,6 +60,8 @@ function adjust_sidebar() {
 
 window.addEventListener("resize", adjust_sidebar)
 
+
+
 const stationStatus = document.getElementById("stationStatus");
 const dragHandle = document.querySelector(".draggable_station_status");
 
