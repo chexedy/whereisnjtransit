@@ -2,7 +2,6 @@ let twochar = {};
 let line_database = {};
 let stations = {};
 
-const departureCache = {};
 const departureHistoryCache = {};
 
 fetch("json/2char.json")
@@ -151,19 +150,14 @@ function updateStation(departures) {
 }
 
 async function updateTrainHistory(infoPanel, id) {
-    if (!departureHistoryCache[id]?.history) {
-        const url = `https://whereisnjtransit-schedule.ayaan7m.workers.dev/history?id=${encodeURIComponent(id)}`
-        const res = await fetch(url);
-        const history = await res.json();
+    const url = `https://whereisnjtransit-schedule.ayaan7m.workers.dev/history?id=${encodeURIComponent(id)}`
+    const res = await fetch(url);
+    const history = await res.json();
 
-        const today = new Date().toLocaleDateString("en-CA", { timeZone: "America/New_York" });
-        const filtered = history.filter(stop => stop.dep_time.startsWith(today));
+    const today = new Date().toLocaleDateString("en-CA", { timeZone: "America/New_York" });
+    const filtered = history.filter(stop => stop.dep_time.startsWith(today));
 
-        departureHistoryCache[id] = { history: filtered };
-        console.log("Got data from fetch");
-    } else {
-        console.log("Used cache");
-    }
+    departureHistoryCache[id] = { history: filtered };
 
     const data = departureHistoryCache[id].history;
     console.log(data);
@@ -254,24 +248,15 @@ async function updateStationStatus(name) {
         }
     });
 
-    if (departureCache[twochar[name]]) {
-        updateStation(departureCache[twochar[name]])
-        console.log("Used cache");
-    } else {
-        try {
-            const res = await fetch(url);
-            const departures = await res.json();
+    try {
+        const res = await fetch(url);
+        const departures = await res.json();
 
-            updateStation(departures);
-
-            departureCache[twochar[name]] = departures;
-            console.log(departures);
-            console.log("Used fetch")
-        } catch (error) {
-            console.error("Failed to fetch departures:", error);
-            document.getElementById("NoCurrentDepartures").style.display = "flex";
-            document.getElementById("NoCurrentDepartures").innerHTML = "Error loading departures";
-        }
+        updateStation(departures);
+    } catch (error) {
+        console.error("Failed to fetch departures:", error);
+        document.getElementById("NoCurrentDepartures").style.display = "flex";
+        document.getElementById("NoCurrentDepartures").innerHTML = "Error loading departures";
     }
 
     station_open();
@@ -311,7 +296,9 @@ async function addLiveTrains() {
         }
         console.log(train);
 
-        if (train.line == "Northeast Corridor Line") {
+        if (train.line == "Northeast Corridor Line" && train.longitude && train.latitude) {
+            let totalTime = 0;
+
             const start = getClosestPoint(train.longitude, train.latitude, line_database[train.line]);
             const end = getClosestPoint(stationMap[train.next_stop].geometry.coordinates[0], stationMap[train.next_stop].geometry.coordinates[1], line_database[train.line]);
 
@@ -354,9 +341,7 @@ function scheduleTask() {
 }
 
 function reset10Mins() {
-    departureCache.length = 0;
-    departureHistoryCache.length = 0;
-    console.log("Caches cleared at", new Date().toLocaleTimeString());
+
 }
 
 addLiveTrains()

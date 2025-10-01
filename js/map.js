@@ -225,7 +225,7 @@ function initMap() {
         navigator.geolocation.getCurrentPosition(
             (pos) => {
                 const { longitude, latitude } = pos.coords;
-                map.flyTo({ center: [longitude, latitude], zoom: 14, essential: true });
+                map.flyTo({ center: [longitude, latitude], zoom: 18, essential: true });
             },
             (err) => console.error(err),
             { enableHighAccuracy: false, timeout: 6000 }

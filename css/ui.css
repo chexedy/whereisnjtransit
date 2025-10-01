@@ -230,15 +230,15 @@
 }
 
 .station_col {
-    text-align: left;
+    align-items: flex-start;
 }
 
 .scheduled_col {
-    text-align: center;
+    align-items: center;
 }
 
 .status_col {
-    text-align: right;
+    align-items: flex-end;
 }
 
 .station_col,
@@ -248,8 +248,6 @@
     min-width: 0;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
     height: auto;
 }
 
@@ -432,7 +430,6 @@
     overflow: hidden;
     transition: max-height 0.3s ease, padding 0.3s ease;
     background: white;
-    padding: 0;
     border-radius: 10px;
     border-color: black;
 }
@@ -447,6 +444,8 @@
 }
 
 .search_results h3 {
+    border-radius: 10px;
+    border-color: black;
     text-align: center;
     margin: 0;
     padding: 0.5rem;
