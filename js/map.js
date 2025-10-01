@@ -157,7 +157,7 @@ async function addStations() {
         map.on('click', 'stations-layer', (e) => {
             const feature = e.features[0];
             const { description } = feature.properties;
-            updateStationStatus(map, description);
+            updateStationStatus(description);
         });
 
         map.on('mouseenter', 'stations-layer', () => {

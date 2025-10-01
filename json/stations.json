@@ -743,7 +743,7 @@
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Glen Rock Main Line",
+                    "description": "Glen Rock Main",
                     "lines": ""
                 },
                 "geometry": {
@@ -2385,22 +2385,6 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Secaucus Upper Level",
-                    "lines": "",
-                    "sortKey": 0
-                },
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        -74.07451388627567,
-                        40.76188464993638
-                    ]
-                }
-            },
-            {
-                "type": "Feature",
-                "properties": {
-                    "title": "Train Station",
-                    "description": "Secaucus",
                     "lines": "",
                     "sortKey": 0
                 },

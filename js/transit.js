@@ -60,7 +60,10 @@ function updateStation(departures) {
         document.getElementById("NoCurrentDepartures").style.display = "flex";
     } else {
         departures.forEach(obj => {
-            if (new Date(new Date(obj.dep_time).getTime() + (obj.sec_late ? obj.sec_late * 1000 : 0)) <= new Date()) {
+            const estimatedDep = new Date(new Date(obj.dep_time).getTime() + (obj.sec_late ? obj.sec_late * 1000 : 0));
+            const dwellMs = (obj.dwell || 0) * 1000;
+
+            if (estimatedDep.getTime() + dwellMs <= Date.now()) {
                 console.log("Train already departed..");
                 return;
             }
@@ -93,7 +96,11 @@ function updateStation(departures) {
 
                 inner2.querySelector("h1").innerHTML = estimatedStr;
 
-                if (obj.sec_late < 0) {
+                const diffMs = estimated - new Date();
+                if (diffMs <= 60 * 1000 && diffMs > 0) {
+                    inner2.querySelector("h3").style.color = "orange";
+                    inner2.querySelector("h3").innerHTML = "All Aboard";
+                } else if (obj.sec_late < 0) {
                     inner2.querySelector("h3").style.color = "green";
                     inner2.querySelector("h3").innerHTML = "Early " + minutes.substring(1);
                 } else {
@@ -107,9 +114,16 @@ function updateStation(departures) {
                 const mm = String(estimated.getMinutes()).padStart(2, "0");
                 const estimatedStr = `${hh}:${mm}`;
 
+                const diffMs = estimated - new Date();
                 inner2.querySelector("h1").innerHTML = estimatedStr;
-                inner2.querySelector("h3").style.color = "green";
-                inner2.querySelector("h3").innerHTML = "On Time";
+
+                if (diffMs <= 60 * 1000 && diffMs > 0) {
+                    inner2.querySelector("h3").style.color = "orange";
+                    inner2.querySelector("h3").innerHTML = "All Aboard";
+                } else {
+                    inner2.querySelector("h3").style.color = "green";
+                    inner2.querySelector("h3").innerHTML = "On Time";
+                }
             }
 
             const infoPanel = newDiv.querySelector(".station_info");
@@ -142,7 +156,10 @@ async function updateTrainHistory(infoPanel, id) {
         const res = await fetch(url);
         const history = await res.json();
 
-        departureHistoryCache[id].history = history;
+        const today = new Date().toLocaleDateString("en-CA", { timeZone: "America/New_York" });
+        const filtered = history.filter(stop => stop.dep_time.startsWith(today));
+
+        departureHistoryCache[id] = { history: filtered };
         console.log("Got data from fetch");
     } else {
         console.log("Used cache");
@@ -189,7 +206,14 @@ async function updateTrainHistory(infoPanel, id) {
             trainReachedNext = true;
 
             if (secLate > 0) {
-                statusText = `Delayed ${Math.floor(secLate / 60)}m`;
+                let delayStr;
+                if (Math.abs(secLate) < 60) {
+                    delayStr = `${secLate}s`;
+                } else {
+                    delayStr = `${Math.floor(secLate / 60)}m`;
+                }
+
+                statusText = `Delayed ${delayStr}`;
                 statusColor = "red";
             } else {
                 statusText = "On Time";
@@ -216,7 +240,7 @@ async function updateTrainHistory(infoPanel, id) {
     }
 }
 
-async function updateStationStatus(map, name) {
+async function updateStationStatus(name) {
     document.getElementById("NoCurrentDepartures").style.display = "none";
     document.getElementById("NoCurrentDepartures").innerHTML = "No current departures. Contact me on GitHub if you think this is a mistake."
     document.getElementById("stationStatusName").textContent = name;
@@ -272,121 +296,38 @@ function getClosestPoint(longitude, latitude, geojson) {
     return closestPoint;
 }
 
-function buildTrip(history, secLate) {
-    console.log(history);
-    return history.map(stop => ({
-        station: stop.station_name,
-        coords: stationMap[stop.station_name].geometry.coordinates,
-        dep_time: new Date(new Date(stop.dep_time).getTime() + secLate * 1000)
-    }));
-}
-
-function animateSegment(marker, line, start, end, dwell = 45000) {
-    const startTime = start.dep_time.getTime();
-    const endTime = end.dep_time.getTime();
-    const duration = endTime - startTime;
-
-    function frame() {
-        const now = Date.now();
-
-        if (now >= endTime) {
-            marker.setLngLat(end.coords);
-
-            // Dwell 45
-            setTimeout(() => {
-                animateNextSegment(marker, tripGlobal, end);
-            }, dwell);
-            return;
-        }
-
-        const progress = (now - startTime) / duration;
-        const traveled = turf.length(line) * progress;
-        const point = turf.along(line, traveled, { units: "miles" });
-        marker.setLngLat(point.geometry.coordinates);
-
-        requestAnimationFrame(frame);
-    }
-
-    frame();
-}
-
-function animateNextSegment(marker, fullTrip, currentStop) {
-    const idx = fullTrip.findIndex(s => s.station === currentStop.station);
-    if (idx >= 0 && idx < fullTrip.length - 1) {
-        const start = fullTrip[idx];
-        const end = fullTrip[idx + 1];
-
-        const lineSegment = turf.lineSlice(
-            turf.point(start.coords),
-            turf.point(end.coords),
-            fullRouteGeoJSON[start.line]
-        );
-
-        animateSegment(marker, lineSegment, start, end);
-    }
-}
-
-async function addLiveTrains() { // REMOVE SECAUCUS IN STATIONS
+async function addLiveTrains() {
     const url = "https://whereisnjtransit-schedule.ayaan7m.workers.dev/realtime";
     const res = await fetch(url);
     const data = await res.json();
 
-    console.log(data.length + " trains are currently running");
     for (const train of data) {
-        if (train.line === "Northeast Corridor Line") {
-            console.log(train);
-            const resLine = await fetch(line_database[train.line].url);
-            const lineData = await resLine.json();
-            const geojson = lineData[line_database[train.line].id];
-
-            const point = getClosestPoint(train.longitude, train.latitude, geojson);
-            const station_point = stationMap[train.next_stop].geometry.coordinates;
-
-            const url2 = `https://whereisnjtransit-schedule.ayaan7m.workers.dev/history?id=${encodeURIComponent(train.train_id)}`
-            const res2 = await fetch(url2);
-            const history = await res2.json();
-
-            const trip = buildTrip(history, train.sec_late);
-            departureHistoryCache[train.train_id] = { history: history };
-
-            const markerEl = document.createElement("div");
-            markerEl.innerHTML = `<img src="${line_database[train.line].icon}" style="width:28px;height:28px;">`;
-            const marker = new mapboxgl.Marker({ element: markerEl })
-                .setLngLat(point.geometry.coordinates)
-                .addTo(map);
-
-            const idx = trip.findIndex(s => s.station === train.next_stop);
-            if (idx > 0) {
-                const prev = trip[idx - 1];
-                const next = trip[idx];
-
-                const lineSegment = turf.lineSlice(
-                    turf.point(point.geometry.coordinates),
-                    turf.point(next.coords),
-                    geojson
-                );
-
-                animateSegment(
-                    marker,
-                    lineSegment,
-                    { ...prev, coords: point.geometry.coordinates, dep_time: new Date() },
-                    next,
-                    trip,
-                    train.line
-                );
+        if (train.next_stop == "Secaucus") {
+            if (train.line == "Main Line" || train.line == "Bergen County Line" || train.line == "Pascack Valley Line" || train.line == "Meadowlands") {
+                train.next_stop = "Secaucus Lower Level";
+            } else {
+                train.next_stop = "Secaucus Upper Level";
             }
+        }
+        console.log(train);
+
+        if (train.line == "Northeast Corridor Line") {
+            const start = getClosestPoint(train.longitude, train.latitude, line_database[train.line]);
+            const end = getClosestPoint(stationMap[train.next_stop].geometry.coordinates[0], stationMap[train.next_stop].geometry.coordinates[1], line_database[train.line]);
+
+
         }
     }
 }
 
-function msUntilNext5Min() {
+function msUntilNext10Min() {
     const now = new Date();
     const estNow = new Date(
         now.toLocaleString("en-US", { timeZone: "America/New_York" })
     );
 
     const minutes = estNow.getMinutes();
-    const next = Math.ceil(minutes / 5) * 5;
+    const next = Math.ceil(minutes / 10) * 10;
 
     if (next === 60) {
         estNow.setHours(estNow.getHours() + 1);
@@ -399,24 +340,24 @@ function msUntilNext5Min() {
 }
 
 function scheduleTask() {
-    const delay = msUntilNext5Min();
+    const delay = msUntilNext10Min();
 
     setTimeout(() => {
-        reset5Mins();
+        reset10Mins();
         addLiveTrains();
 
         setInterval(() => {
-            reset5Mins();
+            reset10Mins();
             addLiveTrains();
-        }, 5 * 60 * 1000);
+        }, 10 * 60 * 1000);
     }, delay);
 }
 
-function reset5Mins() {
+function reset10Mins() {
     departureCache.length = 0;
     departureHistoryCache.length = 0;
     console.log("Caches cleared at", new Date().toLocaleTimeString());
 }
 
 addLiveTrains()
-scheduleTask();
+scheduleTask()
