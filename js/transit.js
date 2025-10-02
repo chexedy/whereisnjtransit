@@ -59,7 +59,7 @@ function updateStation(departures) {
         document.getElementById("NoCurrentDepartures").style.display = "flex";
     } else {
         departures.forEach(obj => {
-            const estimatedDep = new Date(new Date(obj.dep_time).getTime() + (obj.sec_late ? obj.sec_late * 1000 : 0));
+            const estimatedDep = new Date(new Date(obj.dep_time).getTime() + obj.sec_late);
             const dwellMs = (obj.dwell || 0) * 1000;
 
             if (estimatedDep.getTime() + dwellMs <= Date.now()) {
@@ -67,7 +67,10 @@ function updateStation(departures) {
                 return;
             }
 
-            departureHistoryCache[obj.train_id] = { sec_late: obj.sec_late };
+            if (!departureHistoryCache[obj.train_id]) {
+                departureHistoryCache[obj.train_id] = {};
+            }
+            departureHistoryCache[obj.train_id].sec_late = obj.sec_late;
 
             var newDiv = document.getElementById("default").cloneNode(true);
             newDiv.id = obj.train_id;
@@ -85,7 +88,12 @@ function updateStation(departures) {
             inner2.id = obj.train_id + "." + inner.id;
 
             if (obj.sec_late) {
-                const minutes = Math.floor(obj.sec_late / 60) + "m";
+                let minutes;
+                if (Math.abs(obj.sec_late) < 60) {
+                    minutes = `${obj.sec_late}s`;
+                } else {
+                    minutes = `${Math.floor(obj.sec_late / 60)}m`;
+                }
                 const scheduled = new Date(obj.dep_time.replace(" ", "T"));
                 const estimated = new Date(scheduled.getTime() + obj.sec_late * 1000);
 
@@ -157,8 +165,7 @@ async function updateTrainHistory(infoPanel, id) {
     const today = new Date().toLocaleDateString("en-CA", { timeZone: "America/New_York" });
     const filtered = history.filter(stop => stop.dep_time.startsWith(today));
 
-    departureHistoryCache[id] = { history: filtered };
-
+    departureHistoryCache[id].history = filtered;
     const data = departureHistoryCache[id].history;
     console.log(data);
 
@@ -172,11 +179,14 @@ async function updateTrainHistory(infoPanel, id) {
 
     const now = new Date();
     let trainReachedNext = false;
+    console.log(departureHistoryCache);
 
     for (const stop of data) {
-        const secLate = departureHistoryCache[id]?.sec_late ?? 0;
+        const secLate = departureHistoryCache[id].sec_late || 0;
         const stopTime = new Date(stop.dep_time.replace(" ", "T"));
+        const scheduledTime = new Date(stop.dep_time.replace(" ", "T"));;
         stopTime.setTime(stopTime.getTime() + secLate * 1000);
+        console.log(stopTime);
         const stationName = stop.station_name;
 
         let statusText = "";
@@ -224,7 +234,7 @@ async function updateTrainHistory(infoPanel, id) {
 
         station.innerHTML = stationName;
         station.style.color = stationColor; // gold for current station
-        schedule.innerHTML = `${String(stopTime.getHours()).padStart(2, '0')}:${String(stopTime.getMinutes()).padStart(2, '0')}`;
+        schedule.innerHTML = `${String(scheduledTime.getHours()).padStart(2, '0')}:${String(scheduledTime.getMinutes()).padStart(2, '0')}`;
         status.innerHTML = statusText;
         status.style.color = statusColor;
 
@@ -294,7 +304,6 @@ async function addLiveTrains() {
                 train.next_stop = "Secaucus Upper Level";
             }
         }
-        console.log(train);
 
         if (train.line == "Northeast Corridor Line" && train.longitude && train.latitude) {
             let totalTime = 0;
@@ -330,21 +339,15 @@ function scheduleTask() {
     const delay = msUntilNext10Min();
 
     setTimeout(() => {
-        reset10Mins();
-        addLiveTrains();
+        // addLiveTrains();
 
         setInterval(() => {
-            reset10Mins();
             addLiveTrains();
         }, 10 * 60 * 1000);
     }, delay);
 }
 
-function reset10Mins() {
-
-}
-
-addLiveTrains()
+// addLiveTrains()
 scheduleTask()
 
 const searchInput = document.getElementById("stationSearch");
