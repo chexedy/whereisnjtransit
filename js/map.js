@@ -1,6 +1,9 @@
 mapboxgl.accessToken = "pk.eyJ1IjoiYXlhYW43bSIsImEiOiJjbWZoZDZrd3YwYXNyMnFxNjFoYzBrNWozIn0.59Ytrv3w2xPkUr3FYRxMbg";
 let map;
 
+let protocol = new pmtiles.Protocol();
+maplibregl.addProtocol("pmtiles", protocol.tile);
+
 async function mapCheck() {
     try {
         const res = await fetch("https://whereisnjtransit-other.ayaan7m.workers.dev/track-map-load")
@@ -66,77 +69,36 @@ async function addTrackLines() {
 
 async function addStations() {
     console.log("Starting");
+
+    // 1️⃣ Fetch stations JSON
     const res = await fetch('json/stations.json');
     const data = await res.json();
     console.log("res loaded");
 
-    // const img = await map.loadImage("assets/icons/service/station.png");
-    // console.log("Loaded image");
+    try {
+        // 2️⃣ Load image as a promise so we can await it
+        const image = await new Promise((resolve, reject) => {
+            const img = new Image();
+            img.src = "/assets/icons/service/station.png"; // absolute path
+            img.onload = () => resolve(img);
+            img.onerror = (e) => reject(e);
+        });
 
-    // if (!map.hasImage("station-icon")) {
-    //     map.addImage("station-icon", img);
-    // }
-
-    // if (!map.getSource("stations")) {
-    //     map.addSource("stations", {
-    //         type: "geojson",
-    //         data: data.stations // or data object
-    //     });
-    // }
-
-    // console.log("Added source");
-
-    // if (!map.getLayer("stations-layer")) {
-    //     map.addLayer({
-    //         id: "stations-layer",
-    //         type: "symbol",
-    //         source: "stations",
-    //         layout: {
-    //             "icon-image": "station-icon",
-    //             "icon-size": 0.25,
-    //             "icon-allow-overlap": true,
-    //             "text-field": ["get", "description"],
-    //             "text-offset": [0, 1.5],
-    //             "text-anchor": "top"
-    //         }
-    //     });
-    // }
-
-    // console.log("Added layer");
-
-    // map.on('click', 'stations-layer', (e) => {
-    //     const feature = e.features[0];
-    //     const { description } = feature.properties;
-    //     updateStationStatus(map, description);
-    // });
-
-    // map.on('mouseenter', 'stations-layer', () => {
-    //     map.getCanvas().style.cursor = 'pointer';
-    // });
-
-    // map.on('mouseleave', 'stations-layer', () => {
-    //     map.getCanvas().style.cursor = '';
-    // });
-
-    // console.log(map.hasImage("station-icon"));
-
-    map.loadImage("assets/icons/service/station.png", (error, image) => {
-        if (error) {
-            console.log(error);
-        }
         console.log("Image loaded");
 
+        // 3️⃣ Add image to map
         if (!map.hasImage('station-icon')) {
             map.addImage('station-icon', image);
         }
 
+        // 4️⃣ Add GeoJSON source
         map.addSource('stations', {
             type: 'geojson',
             data: data.stations
         });
-
         console.log("Added source");
 
+        // 5️⃣ Add layer
         map.addLayer({
             id: 'stations-layer',
             type: 'symbol',
@@ -154,10 +116,10 @@ async function addStations() {
             },
         });
 
+        // 6️⃣ Add click & hover events
         map.on('click', 'stations-layer', (e) => {
             const feature = e.features[0];
-            const { description } = feature.properties;
-            updateStationStatus(description);
+            updateStationStatus(feature.properties.description);
         });
 
         map.on('mouseenter', 'stations-layer', () => {
@@ -167,8 +129,12 @@ async function addStations() {
         map.on('mouseleave', 'stations-layer', () => {
             map.getCanvas().style.cursor = '';
         });
-    });
+
+    } catch (err) {
+        console.error("Failed to load station icon:", err);
+    }
 }
+
 
 
 const disabledLayers = new Set();
@@ -201,10 +167,21 @@ function initMap() {
         [-72.79608, 41.75203]
     ]
 
-    map = new mapboxgl.Map({
+    map = new maplibregl.Map({
         container: 'map',
         center: [-74.1, 40.75],
-        style: "mapbox://styles/ayaan7m/cmfhdj6gw006i01qu2774d2nz", // 'https://tiles.openfreemap.org/styles/bright',
+        style: {
+            "version": 8,
+            "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+            "sprite": "https://protomaps.github.io/basemaps-assets/sprites/v4/light",
+            "sources": {
+                "protomaps": {
+                    "type": "vector",
+                    "url": "pmtiles://https://pub-6390dca654504cda814dfa4276e5fcac.r2.dev/whereisnjtransit.pmtiles",
+                }
+            },
+            layers: basemaps.layers("protomaps", basemaps.namedFlavor("light"), { lang: "en" })
+        }, //"mapbox://styles/ayaan7m/cmfhdj6gw006i01qu2774d2nz", 'https://tiles.openfreemap.org/styles/bright',
         maxBounds: bounds
     });
 

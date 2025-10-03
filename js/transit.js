@@ -158,7 +158,7 @@ function updateStation(departures) {
 }
 
 async function updateTrainHistory(infoPanel, id) {
-    const url = `https://whereisnjtransit-schedule.ayaan7m.workers.dev/history?id=${encodeURIComponent(id)}`
+    const url = `https://whereisnjtransit-api.ayaan7m.workers.dev/history?id=${encodeURIComponent(id)}`
     const res = await fetch(url);
     const history = await res.json();
 
@@ -201,7 +201,7 @@ async function updateTrainHistory(infoPanel, id) {
 
         if (timeDiff <= 119 && timeDiff >= 0) {
             statusText = "All Aboard";
-            statusColor = "green";
+            statusColor = "orange";
             trainReachedNext = true;
         } else if (stopTime.getTime() < now.getTime()) {
             statusText = "Departed";
@@ -249,7 +249,7 @@ async function updateStationStatus(name) {
     document.getElementById("NoCurrentDepartures").innerHTML = "No current departures. Contact me on GitHub if you think this is a mistake."
     document.getElementById("stationStatusName").textContent = name;
 
-    const url = `https://whereisnjtransit-schedule.ayaan7m.workers.dev/departures?station=${encodeURIComponent(twochar[name])}&limit=15`;
+    const url = `https://whereisnjtransit-api.ayaan7m.workers.dev/departures?station=${encodeURIComponent(twochar[name])}&limit=15`;
 
     const routes = document.getElementById("stationRoutes");
     Array.from(routes.children).forEach(child => {
@@ -292,7 +292,7 @@ function getClosestPoint(longitude, latitude, geojson) {
 }
 
 async function addLiveTrains() {
-    const url = "https://whereisnjtransit-schedule.ayaan7m.workers.dev/realtime";
+    const url = "https://whereisnjtransit-api.ayaan7m.workers.dev/realtime";
     const res = await fetch(url);
     const data = await res.json();
 
