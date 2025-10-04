@@ -126,12 +126,13 @@ async function loadMapLayers() {
     console.log("Loaded map layers done");
 }
 
-function initMap() {
+
+
+async function initMap() {
     const bounds = [
         [-76.58039, 38.80348],
         [-72.79608, 41.75203]
     ]
-
 
     map = new maplibregl.Map({
         container: 'map',
@@ -149,14 +150,13 @@ function initMap() {
             },
             "layers": basemaps.layers("protomaps", basemaps.namedFlavor("light"), { lang: "en" })
 
-        }, //"mapbox://styles/ayaan7m/cmfhdj6gw006i01qu2774d2nz", 'https://tiles.openfreemap.org/styles/bright',
+        },
         maxBounds: bounds
     });
 
     map.on('style.load', async () => {
         map.fitBounds(bounds, { padding: 40, animate: false });
-
-        loadMapLayers(map);
+        await loadMapLayers(map);
     });
 
     map.on('error', function (e) {

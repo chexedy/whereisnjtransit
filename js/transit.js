@@ -25,7 +25,6 @@ fetch("json/stations.json")
         for (const feature of stations.features) {
             stationMap[feature.properties.description] = feature.geometry.coordinates;
         }
-        console.log(stationMap);
     });
 
 function togglePanel(panel, newDiv) {
@@ -277,6 +276,7 @@ function getClosestPoint(longitude, latitude, geojson) {
     let closestPoint = null;
     let minDistance = Infinity;
 
+    console.log(geojson.features);
     for (const feature of geojson.features) {
         const snapped = turf.nearestPointOnLine(feature, point);
         const dist = turf.distance(point, snapped);
@@ -291,39 +291,18 @@ function getClosestPoint(longitude, latitude, geojson) {
     return closestPoint;
 }
 
-async function addLiveTrains() {
-    const url = "https://whereisnjtransit-api.ayaan7m.workers.dev/realtime";
-    const res = await fetch(url);
-    const data = await res.json();
+function getTrainPath() {
 
-    for (const train of data) {
-        if (train.next_stop == "Secaucus") {
-            if (train.line == "Main Line" || train.line == "Bergen County Line" || train.line == "Pascack Valley Line" || train.line == "Meadowlands") {
-                train.next_stop = "Secaucus Lower Level";
-            } else {
-                train.next_stop = "Secaucus Upper Level";
-            }
-        }
-
-        if (train.line == "Northeast Corridor Line" && train.longitude && train.latitude) {
-            let totalTime = 0;
-
-            const start = getClosestPoint(train.longitude, train.latitude, line_database[train.line]);
-            const end = getClosestPoint(stationMap[train.next_stop].geometry.coordinates[0], stationMap[train.next_stop].geometry.coordinates[1], line_database[train.line]);
-
-
-        }
-    }
 }
 
-function msUntilNext10Min() {
+function minutesUntilNext5Min() {
     const now = new Date();
     const estNow = new Date(
         now.toLocaleString("en-US", { timeZone: "America/New_York" })
     );
 
     const minutes = estNow.getMinutes();
-    const next = Math.ceil(minutes / 10) * 10;
+    const next = Math.ceil(minutes / 5) * 5;
 
     if (next === 60) {
         estNow.setHours(estNow.getHours() + 1);
@@ -336,14 +315,15 @@ function msUntilNext10Min() {
 }
 
 function scheduleTask() {
-    const delay = msUntilNext10Min();
+    const delay = minutesUntilNext5Min();
 
     setTimeout(() => {
         // addLiveTrains();
 
         setInterval(() => {
-            addLiveTrains();
-        }, 10 * 60 * 1000);
+            animateLiveTrains(map)
+            // addLiveTrains();
+        }, 5 * 60 * 1000);
     }, delay);
 }
 
