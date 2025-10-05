@@ -114,7 +114,9 @@
             },
             {
                 "type": "Feature",
-                "properties": {},
+                "properties": {
+                    "offset": 8
+                },
                 "geometry": {
                     "coordinates": [
                         [

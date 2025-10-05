@@ -36,7 +36,7 @@ async function addTrackLines() {
                 'line-width': 8,
                 'line-offset': ['get', 'offset']
             },
-            "minzoom": 10
+            "minzoom": 9
         });
     }
 }
@@ -56,7 +56,6 @@ async function addStations() {
             img.onerror = (e) => reject(e);
         });
 
-        console.log("Image loaded");
         if (!map.hasImage('station-icon')) {
             map.addImage('station-icon', image);
         }
@@ -65,7 +64,6 @@ async function addStations() {
             type: 'geojson',
             data: data.stations
         });
-        console.log("Added source");
 
         map.addLayer({
             id: 'stations-layer',

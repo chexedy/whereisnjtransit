@@ -18,6 +18,11 @@
     font-family: "Ubuntu";
 }
 
+.welcome h2 {
+    font-family: "Ubuntu";
+    text-align: center;
+}
+
 .welcome h4 {
     padding: 5%;
     font-family: "Ubuntu";
@@ -28,8 +33,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 60%;
-    height: 10%;
+    width: 40%;
+    height: 7.5%;
     font-size: 1.2em;
     font-family: "Ubuntu";
     border-radius: 8px;
@@ -152,6 +157,10 @@
     font-size: 1.2em;
     overflow-y: auto;
     padding: 0.5rem;
+}
+
+.station_routes h3 {
+    text-align: center;
 }
 
 .station_route {

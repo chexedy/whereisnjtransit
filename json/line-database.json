@@ -1,5 +1,13 @@
 {
     "line-database": {
+        "BetMGM Meadowlands": {
+            "name": "Meadowlands Rail Line",
+            "image": "assets/icons/lines/meadowlands.svg",
+            "id": "meadowlands",
+            "url": "json/meadowlands.json",
+            "color": "rgb(192, 169, 113)",
+            "abbreviation": "BMGM"
+        },
         "Northeast Corridor Line": {
             "name": "Northeast Corridor",
             "image": "assets/icons/lines/northeastcorridor.svg",
@@ -79,14 +87,6 @@
             "url": "json/atlanticcitytrack.json",
             "color": "rgb(46, 85, 165)",
             "abbreviation": "ACRL"
-        },
-        "BetMGM Meadowlands": {
-            "name": "Meadowlands Rail Line",
-            "image": "assets/icons/lines/meadowlands.svg",
-            "id": "meadowlands",
-            "url": "json/meadowlands.json",
-            "color": "rgb(192, 169, 113)",
-            "abbreviation": "BMGM"
         },
         "Princeton Branch": {
             "name": "Princeton Shuttle",
