@@ -98,12 +98,7 @@ function updateStation(departures) {
                 const hours = estimated.getHours();
                 const mins = estimated.getMinutes();
 
-                const hh = String(((hours + 11) % 12) + 1).padStart(2, "0");
-                const mm = String(mins).padStart(2, "0");
-                const ampm = hours >= 12 ? "PM" : "AM";
-                const estimatedStr = `${hh}:${mm} ${ampm} @ Track 1`;
-
-                inner2.querySelector("h1").innerHTML = estimatedStr;
+                inner2.querySelector("h1").innerHTML = formatTime(hours, mins);
 
                 const diffMs = estimated - new Date();
                 if (diffMs <= 60 * 1000 && diffMs > 0) {
@@ -124,14 +119,8 @@ function updateStation(departures) {
 
                 const hours = estimated.getHours();
                 const minutes = estimated.getMinutes();
-
-                const hh = String(((hours + 11) % 12) + 1).padStart(2, "0");
-                const mm = String(minutes).padStart(2, "0");
-                const ampm = hours >= 12 ? "PM" : "AM";
-                const estimatedStr = `${hh}:${mm} ${ampm}`;
-
                 const diffMs = estimated - new Date();
-                inner2.querySelector("h1").innerHTML = estimatedStr;
+                inner2.querySelector("h1").innerHTML = formatTime(hours, minutes);
 
                 if (diffMs <= 60 * 1000 && diffMs > 0) {
                     inner2.querySelector("h3").style.color = "orange";
@@ -258,13 +247,8 @@ async function updateTrainHistory(infoPanel, id) {
 
         const hours = scheduledTime.getHours();
         const minutes = scheduledTime.getMinutes();
-        const hh = String(((hours + 11) % 12) + 1).padStart(2, '0');
-        const mm = String(minutes).padStart(2, '0');
-        const ampm = hours >= 12 ? 'PM' : 'AM';
-        const scheduledStr = `${hh}:${mm} ${ampm}`;
 
-
-        schedule.innerHTML = scheduledStr;
+        schedule.innerHTML = formatTime(hours, minutes);
         status.innerHTML = statusText;
         status.style.color = statusColor;
 

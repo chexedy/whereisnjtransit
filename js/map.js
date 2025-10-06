@@ -81,6 +81,9 @@ async function addStations() {
                 'text-font': ['Ubuntu Medium'],
                 'symbol-sort-key': ['get', 'sortKey']
             },
+            paint: {
+                'text-color': 'rgb(0, 0, 0)',
+            }
         });
 
         map.on('click', 'stations-layer', (e) => {
@@ -125,12 +128,11 @@ async function loadMapLayers() {
 }
 
 
-
 async function initMap() {
     const bounds = [
         [-76.58039, 38.80348],
         [-72.79608, 41.75203]
-    ]
+    ];
 
     map = new maplibregl.Map({
         container: 'map',
@@ -147,19 +149,59 @@ async function initMap() {
                 }
             },
             "layers": basemaps.layers("protomaps", basemaps.namedFlavor("light"), { lang: "en" })
-
         },
         maxBounds: bounds
     });
 
-    map.on('style.load', async () => {
+    map.on('load', async () => {
+        const cookies = document.cookie.split('; ').reduce((acc, cookie) => {
+            const [name, value] = cookie.split('=');
+            acc[name] = value;
+            return acc;
+        }, {});
+
+        if (cookies.darkTheme === 'true') {
+            document.getElementById('darkToggle').checked = true;
+            const style = map.getStyle();
+            style.sprite = `https://protomaps.github.io/basemaps-assets/sprites/v4/dark`;
+            style.layers = basemaps.layers("protomaps", basemaps.namedFlavor("dark"), { lang: "en" });
+            map.setStyle(style);
+        }
+
         map.fitBounds(bounds, { padding: 40, animate: false });
         await loadMapLayers(map);
+
+        if (cookies.darkTheme === 'true') {
+            map.setPaintProperty('stations-layer', 'text-color', 'rgb(255, 255, 255)');
+        }
+
+        if (cookies.hideStations === 'true' && map.getLayer('stations-layer')) {
+            map.setLayoutProperty('stations-layer', 'visibility', 'none');
+            document.getElementById('stationsToggle').checked = true;
+        }
+
+        if (cookies.hideTracks === 'true') {
+            const lineLayers = ["meadowlands", "northeastcorridortrack", "northjerseycoasttrack", "pascackvalleytrack", "morrisessextrack", "mainbergentrack", "montclairboontontrack", "raritanvalleytrack", "atlanticcitytrack"];
+
+            lineLayers.forEach(id => {
+                if (map.getLayer(id)) {
+                    map.setLayoutProperty(id, 'visibility', 'none');
+                }
+            });
+
+            document.getElementById('tracksToggle').checked = true;
+        }
+
+        if (cookies.militaryTime === 'true') {
+            militaryTime = true;
+            document.getElementById('timeToggle').checked = true;
+        }
     });
 
     map.on('error', function (e) {
         console.log('Map Error:', e.error);
     });
+
 
     document.getElementById("locationButton").addEventListener("click", () => {
         navigator.geolocation.getCurrentPosition(

@@ -21,17 +21,22 @@
 </head>
 
 <body>
-    <div class="welcome" id="welcomeScreen">
-        <h1>where is NJ Transit?</h1>
-        <br>
-        <h2>Welcome! This is an interactive live map of the NJ Transit rail network. Search for a station in the sidebar
-            to get started.</h2>
-        <h4 style="color: red;">NOTE: While data updates every minute, it may not always be accurate. For official
-            timings, consult the NJ Transit website or app.</h4>
-        <br>
-        <button class="welcome_button" onclick="welcome_button()" id="welcomeButton">
-            <span>Enter</span>
-        </button>
+    <div class="overlay" id="welcomeOverlay">
+        <div class="welcome" id="welcomeScreen">
+            <h1>where is NJ Transit?</h1>
+            <h3>This is a live interactive map that allows you to see the various stations and active trains on NJ
+                Transit.
+                Click on a station for departures or use the sidebar to find one by search. You can also toggle lines
+                based
+                on your preference.</h3>
+
+            <h3 style="color: red;">NOTE: While the data updates every minute, there is a chance it is inaccurate or
+                outdated. For official timings, always use the official NJ Transit app or website..</h3>
+
+            <button class="welcome_button" onclick="welcome_button()" id="welcomeButton">
+                <span>Enter</span>
+            </button>
+        </div>
     </div>
 
     <div class="station_status" id="stationStatus">
@@ -83,6 +88,56 @@
         </button>
     </div>
 
+    <div class="about" id="aboutScreen">
+        <h1></h1>
+
+        <button class="about_button" onclick="about_button()" id="aboutButton">
+            <span>Close</span>
+        </button>
+    </div>
+
+    <div class="settings" id="settingsScreen">
+        <h1>Settings</h1>
+
+        <div class="settings-list" id="settingsList">
+            <div class="setting-item">
+                <span class="setting-name">Dark Theme (Requires Refresh)</span>
+                <label class="switch">
+                    <input type="checkbox" id="darkToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="setting-item">
+                <span class="setting-name">Use 24-Hour Clock</span>
+                <span id="timeDisplay" class="time_display"></span>
+                <label class="switch">
+                    <input type="checkbox" id="timeToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="setting-item">
+                <span class="setting-name">Hide All Stations</span>
+                <label class="switch">
+                    <input type="checkbox" id="stationsToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="setting-item">
+                <span class="setting-name">Hide All Tracks</span>
+                <label class="switch">
+                    <input type="checkbox" id="tracksToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <br>
+
+        <button class="settings_button" onclick="settings_button()" id="settingsButton">
+            <span>Close</span>
+        </button>
+    </div>
+
     <div class="sidebar" style="display: none;" id="mainSidebar">
         <h1>Rail Routes</h1>
         <h4>Click on a route to hide it</h4>
@@ -99,52 +154,53 @@
 
         <div class="sidebar_routes">
             <button class="sidebar_route_button" id="northeastcorridortrack" onclick="toggleLayerVisibility(this.id)">
-                <img src="assets/icons/lines/northeastcorridor.svg" alt="Route Icon">
+                <img src="assets/icons/lines/northeastcorridor.svg" alt="Northeast Corridor Icon">
                 <span>Northeast Corridor</span>
             </button>
             <button class="sidebar_route_button" id="morrisessextrack" onclick="toggleLayerVisibility(this.id)">
-                <img src="assets/icons/lines/morrisessex.svg" alt="Route Icon">
+                <img src="assets/icons/lines/morrisessex.svg" alt="Morris & Essex Icon">
                 <span>Morris & Essex</span>
             </button>
             <button class="sidebar_route_button" id="northjerseycoasttrack" onclick="toggleLayerVisibility(this.id)">
-                <img src="assets/icons/lines/northjerseycoast.svg" alt="Route Icon">
+                <img src="assets/icons/lines/northjerseycoast.svg" alt="North Jersey Coast Icon">
                 <span>North Jersey Coast</span>
             </button>
             <button class="sidebar_route_button" id="mainbergentrack" onclick="toggleLayerVisibility(this.id)">
-                <img src="assets/icons/lines/mainbergen.svg" alt="Route Icon">
+                <img src="assets/icons/lines/mainbergen.svg" alt="Main/Bergen Icon">
                 <span>Main/Bergen</span>
             </button>
             <button class="sidebar_route_button" id="montclairboontontrack" onclick="toggleLayerVisibility(this.id)">
-                <img src="assets/icons/lines/montclairboonton.svg" alt="Route Icon">
+                <img src="assets/icons/lines/montclairboonton.svg" alt="Montclair-Boonton Icon">
                 <span>Montclair-Boonton</span>
             </button>
             <button class="sidebar_route_button" id="raritanvalleytrack" onclick="toggleLayerVisibility(this.id)">
-                <img src="assets/icons/lines/raritanvalley.svg" alt="Route Icon">
+                <img src="assets/icons/lines/raritanvalley.svg" alt="Raritan Valley Icon">
                 <span>Raritan Valley</span>
             </button>
             <button class="sidebar_route_button" id="pascackvalleytrack" onclick="toggleLayerVisibility(this.id)">
-                <img src="assets/icons/lines/pascackvalley.svg" alt="Route Icon">
+                <img src="assets/icons/lines/pascackvalley.svg" alt="Pascack Valley Icon">
                 <span>Pascack Valley</span>
             </button>
             <button class="sidebar_route_button" id="atlanticcitytrack" onclick="toggleLayerVisibility(this.id)">
-                <img src="assets/icons/lines/atlanticcity.svg" alt="Route Icon">
+                <img src="assets/icons/lines/atlanticcity.svg" alt="Atlantic City Line Icon">
                 <span>Atlantic City Line</span>
             </button>
             <button class="sidebar_route_button" id="meadowlands" onclick="toggleLayerVisibility(this.id)">
-                <img src="assets/icons/lines/meadowlands.svg" alt="Route Icon">
+                <img src="assets/icons/lines/meadowlands.svg" alt="Meadowlands Rail Line Icon">
                 <span>Meadowlands Rail Line</span>
             </button>
         </div>
         <br>
-        <div class="about">
-
+        <div class="sidebar_about">
+            <button onclick="about_button()">FAQ</button>
+            <button onclick="settings_button()">Settings</button>
         </div>
         <br>
         <div class="links">
             <a href="https://github.com/chexedy/whereisnjtransit" target="_blank"><img
-                    src="./assets/icons/links/github-mark.png" alt="GitHub"></a>
+                    src="./assets/icons/links/github-mark.png" alt="GitHub Logo"></a>
             <a href="https://www.linkedin.com/in/ayaan7m/" target="_blank"><img src="assets/icons/links/linkedin.jpg"
-                    alt="GitHub"></a>
+                    alt="LinkedIn Logo"></a>
         </div>
     </div>
 
@@ -154,7 +210,7 @@
 
     <div class="location" id="userLocation">
         <button class="location_button" id="locationButton">
-            <img src="assets/icons/service/location.png" alt="Location">
+            <img src="assets/icons/service/location.png" alt="Location Icon">
         </button>
     </div>
 

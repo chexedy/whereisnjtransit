@@ -1,36 +1,53 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0);
+    z-index: 1059;
+}
+
 .welcome {
     display: flex;
     width: 40%;
     height: auto;
     background: rgb(245, 240, 226);
-    z-index: 1010;
+    z-index: 1100;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     border-radius: 25px;
+    padding: 1rem 0 3rem 0;
+    box-sizing: border-box;
+    overflow-y: auto;
 }
 
 .welcome h1 {
     font-family: "Ubuntu";
-}
-
-.welcome h2 {
-    font-family: "Ubuntu";
     text-align: center;
 }
 
-.welcome h4 {
-    padding: 5%;
-    font-family: "Ubuntu";
+.welcome h3 {
     text-align: center;
+    font-family: "Ubuntu";
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 .welcome_button {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     align-items: center;
     justify-content: center;
     width: 40%;
-    height: 7.5%;
     font-size: 1.2em;
     font-family: "Ubuntu";
     border-radius: 8px;
@@ -38,7 +55,9 @@
     transition: background 0.2s, transform 0.2s;
     gap: 0.5rem;
     flex-wrap: nowrap;
+    color: black;
     background: white;
+    padding: 0.3rem 0.6rem;
 }
 
 .welcome_button span {
@@ -53,7 +72,134 @@
 }
 
 .welcome_button:hover {
-    transform: scale(1.1);
+    transform: translateX(-50%) scale(1.1);
+}
+
+.about,
+.settings {
+    display: none;
+    width: 40%;
+    height: auto;
+    background: rgb(245, 240, 226);
+    z-index: 1090;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 25px;
+    padding: 1rem 0 3rem 0;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.about h1,
+.settings h1 {
+    font-family: "Ubuntu";
+    text-align: center;
+}
+
+.about button,
+.settings button {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    font-size: 1.2em;
+    font-family: "Ubuntu";
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+    color: black;
+    background: white;
+    padding: 0.3rem 0.6rem;
+}
+
+.about button:hover,
+.settings button:hover {
+    transform: translateX(-50%) scale(1.1);
+}
+
+.time_display {
+    font-size: 0.8rem;
+    color: #555;
+    margin-top: 0.25rem;
+    display: block;
+    text-align: right;
+}
+
+.settings-list {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    gap: 0.75rem;
+    margin: 0 auto;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    font-family: "Ubuntu";
+}
+
+.setting-name {
+    font-size: 1rem;
+    color: black;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 26px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.3s;
+    border-radius: 26px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+.switch input:checked+.slider {
+    background-color: #000000;
+}
+
+.switch input:checked+.slider:before {
+    transform: translateX(22px);
 }
 
 .station_departures {
@@ -505,6 +651,35 @@
     transform: scale(1.1);
 }
 
+.sidebar_about {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.sidebar_about button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    font-size: 1.2rem;
+    font-family: "Ubuntu";
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+    color: black;
+    background: white;
+    text-decoration: none;
+}
+
+.sidebar_about button:hover {
+    transform: scale(1.1);
+}
+
 .links {
     display: flex;
     justify-content: center;
@@ -562,6 +737,11 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+
+    .about,
+    .settings {
+        width: 80%;
     }
 
     .station_status {
