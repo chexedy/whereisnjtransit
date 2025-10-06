@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>where is NJ Transit?</title>
-    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
     <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css' />
@@ -26,7 +26,7 @@
         <br>
         <h2>Welcome! This is an interactive live map of the NJ Transit rail network. Search for a station in the sidebar
             to get started.</h2>
-        <h4 style="color: red;">NOTE: Data updates every 5 minutes and thus may not always be accurate. For official
+        <h4 style="color: red;">NOTE: While data updates every minute, it may not always be accurate. For official
             timings, consult the NJ Transit website or app.</h4>
         <br>
         <button class="welcome_button" onclick="welcome_button()" id="welcomeButton">
@@ -50,6 +50,7 @@
                             <h1>New York -SEC</h1>
                             <h3>NEC Train 6767</h3>
                         </div>
+
                         <div id="station_route_inner2" class="station_route_inner2">
                             <h1>2:39 PM @ Track 1</h1>
                             <h3>Status: Delayed 2m</h3>

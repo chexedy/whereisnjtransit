@@ -338,7 +338,7 @@
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Broadway",
+                    "description": "Broadway Fair Lawn",
                     "lines": ""
                 },
                 "geometry": {
@@ -1751,7 +1751,7 @@
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Radburn",
+                    "description": "Radburn Fair Lawn",
                     "lines": ""
                 },
                 "geometry": {
@@ -2248,7 +2248,7 @@
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Wood-Ridge",
+                    "description": "Wood Ridge",
                     "lines": ""
                 },
                 "geometry": {
@@ -2293,7 +2293,7 @@
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Jersey Ave.",
+                    "description": "Jersey Avenue",
                     "lines": ""
                 },
                 "geometry": {

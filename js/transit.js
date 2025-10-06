@@ -101,7 +101,7 @@ function updateStation(departures) {
                 const hh = String(((hours + 11) % 12) + 1).padStart(2, "0");
                 const mm = String(mins).padStart(2, "0");
                 const ampm = hours >= 12 ? "PM" : "AM";
-                const estimatedStr = `${hh}:${mm} ${ampm}`;
+                const estimatedStr = `${hh}:${mm} ${ampm} @ Track 1`;
 
                 inner2.querySelector("h1").innerHTML = estimatedStr;
 

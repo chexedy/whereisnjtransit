@@ -1,16 +1,12 @@
 .welcome {
     display: flex;
     width: 40%;
-    height: 60vh;
+    height: auto;
     background: rgb(245, 240, 226);
     z-index: 1010;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     border-radius: 25px;
 }
 
