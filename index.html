@@ -6,9 +6,6 @@
     <title>where is NJ Transit?</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
-    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css' />
-
     <script src="https://unpkg.com/maplibre-gl/dist/maplibre-gl.js"></script>
     <link href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css" rel="stylesheet" />
     <script src="https://unpkg.com/pmtiles@latest/dist/pmtiles.js"></script>
@@ -31,7 +28,7 @@
                 on your preference.</h3>
 
             <h3 style="color: red;">NOTE: While the data updates every minute, there is a chance it is inaccurate or
-                outdated. For official timings, always use the official NJ Transit app or website..</h3>
+                outdated. For official timings, always use the official NJ Transit app or website.</h3>
 
             <button class="welcome_button" onclick="welcome_button()" id="welcomeButton">
                 <span>Enter</span>
@@ -40,7 +37,8 @@
     </div>
 
     <div class="station_status" id="stationStatus">
-        <img src="assets/icons/service/draggable.svg" alt="Drag" class="draggable_station_status">
+        <img src="assets/icons/service/draggable.svg" alt="Use to Drag the Departure List"
+            class="draggable_station_status">
 
         <h1 id="stationStatusName">Current Station</h1>
 
@@ -49,7 +47,7 @@
                 this is a mistake.</h3>
             <div class="station_route" id="default" style="display: none;">
                 <div class="station_route_header">
-                    <img src="assets/icons/lines/northeastcorridor.svg">
+                    <img src="assets/icons/lines/northeastcorridor.svg" alt="Train Route Icon">
                     <div class="station_route_inner" id="station_route_inner">
                         <div id="station_route_inner1" class="station_route_inner1">
                             <h1>New York -SEC</h1>
@@ -89,7 +87,62 @@
     </div>
 
     <div class="about" id="aboutScreen">
-        <h1></h1>
+        <h1>About</h1>
+
+        <div class="about_elements">
+            <div class="about_element">
+                <div class="about_title">
+                    <h3>Is this official?</h3>
+                </div>
+                <div class="about_panel">
+                    <p>No, this is not an official NJ Transit application, just a side project I did for fun. For
+                        official information, please use the NJ
+                        Transit <a href="https://www.njtransit.com/app" target="_blank">app</a> or <a
+                            href="https://www.njtransit.com/" target="_blank">website</a>.</p>
+                </div>
+            </div>
+            <div class="about_element">
+                <div class="about_title">
+                    <h3>How accurate is the data?</h3>
+                </div>
+                <div class="about_panel">
+                    <p>The status of the current trains operating is updated every minute, while track information and
+                        announcements are updated per hour. Data is sourced from public feeds and may occasionally
+                        differ from official NJ Transit information due to timing or
+                        reporting differences.</p>
+                </div>
+            </div>
+            <div class="about_element">
+                <div class="about_title">
+                    <h3>How is the train data collected and updated?</h3>
+                </div>
+                <div class="about_panel">
+                    <p>At around 2:00 AM, I retrieve the daily schedule from NJ Transit's API and store it in my
+                        database. This gives me the schedule for the entire day and up to 3:00 AM the next day. I also
+                        update a seperate database every minute, with each train currently moving along with its
+                        coordinates and any possible delay. I combine this data to display both live trains and station
+                        schedules as accurately as possible.</p>
+                </div>
+            </div>
+            <div class="about_element">
+                <div class="about_title">
+                    <h3>Something is inaccurate...</h3>
+                </div>
+                <div class="about_panel">
+                    <p>Please make an issue on GitHub (link in the sidebar) so I can look and find the issue. Include as
+                        much information as you can as unfortunately recreating the problem is not easy as the data is
+                        constantly changing.</p>
+                </div>
+            </div>
+            <div class="about_element">
+                <div class="about_title">
+                    <h3>WHY IS NJ TRANSIT ALWAYS LATE?</h3>
+                </div>
+                <div class="about_panel">
+                    <p>I DONT KNOW</p>
+                </div>
+            </div>
+        </div>
 
         <button class="about_button" onclick="about_button()" id="aboutButton">
             <span>Close</span>
@@ -101,7 +154,7 @@
 
         <div class="settings-list" id="settingsList">
             <div class="setting-item">
-                <span class="setting-name">Dark Theme (Requires Refresh)</span>
+                <span class="setting-name">Dark Map</span>
                 <label class="switch">
                     <input type="checkbox" id="darkToggle">
                     <span class="slider"></span>
@@ -192,7 +245,7 @@
         </div>
         <br>
         <div class="sidebar_about">
-            <button onclick="about_button()">FAQ</button>
+            <button onclick="about_button()">About</button>
             <button onclick="settings_button()">Settings</button>
         </div>
         <br>
