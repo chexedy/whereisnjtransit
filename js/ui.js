@@ -71,9 +71,9 @@ const settingsConfig = {
             document.cookie = `useLocalTimezone=${useLocalTimezone}; max-age=31536000`;
 
             if (value) {
-                document.getElementById("timezoneDisplay").textContent = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                document.getElementById("timezoneDisplay").textContent = "Current Timezone: " + Intl.DateTimeFormat().resolvedOptions().timeZone;
             } else {
-                document.getElementById("timezoneDisplay").textContent = "America/New_York";
+                document.getElementById("timezoneDisplay").textContent = "Current Timezone: America/New_York";
             }
         }
     },
@@ -126,6 +126,13 @@ function station_open() {
     screen.style.left = "50%";
     screen.style.top = "50%";
     screen.style.transform = "translate(-50%, -50%)";
+    document.getElementById("settingsScreen").style.display = "none";
+    document.getElementById("aboutScreen").style.display = "none";
+
+    if (screen.width <= 1135) {
+        document.getElementById("mainSidebar").style.display = "none";
+        document.querySelector(".sidebar_opener").style.left = "1vw";
+    }
 }
 
 function station_close() {
@@ -148,6 +155,9 @@ function sidebar_open() {
         if (screen.width <= 1135) {
             station_close();
         }
+
+        document.getElementById("settingsScreen").style.display = "none";
+        document.getElementById("aboutScreen").style.display = "none";
     } else {
         sidebar.style.display = "none";
         opener.style.left = "1vw";
@@ -239,5 +249,5 @@ setInterval(() => {
     const hours = now.getUTCHours();
     const minutes = now.getUTCMinutes();
 
-    timeDisplay.textContent = formatTime(hours, minutes);
+    timeDisplay.textContent = "Current Time: " + formatTime(hours, minutes);
 }, 1000);

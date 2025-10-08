@@ -193,9 +193,10 @@ async function updateTrainHistory(infoPanel, id) {
 
     for (const stop of data) {
         const secLate = departureHistoryCache[id].sec_late || 0;
-        const stopTime = new Date(stop.dep_time.replace(" ", "T"));
-        const scheduledTime = new Date(stop.dep_time.replace(" ", "T"));;
+        const stopTime = new Date(stop.dep_time.replace(" ", "T") + "Z");
+        const scheduledTime = new Date(stop.dep_time.replace(" ", "T") + "Z");;
         stopTime.setTime(stopTime.getTime() + (secLate * 1000));
+        console.log(stopTime, scheduledTime);
 
         const stationName = stop.station_name;
 
@@ -207,7 +208,7 @@ async function updateTrainHistory(infoPanel, id) {
             stationColor = "green";
         }
 
-        const timeDiff = (stopTime.getTime() - now.getTime()) / 1000
+        const timeDiff = (stopTime - now) / 1000
 
         if (timeDiff <= 119 && timeDiff >= 0) {
             statusText = "All Aboard";
@@ -245,9 +246,10 @@ async function updateTrainHistory(infoPanel, id) {
         station.innerHTML = stationName;
         station.style.color = stationColor;
 
-        const hours = scheduledTime.getHours();
-        const minutes = scheduledTime.getMinutes();
+        const hours = scheduledTime.getUTCHours();
+        const minutes = scheduledTime.getUTCMinutes();
 
+        console.log(hours, minutes);
         schedule.innerHTML = formatTime(hours, minutes);
         status.innerHTML = statusText;
         status.style.color = statusColor;
