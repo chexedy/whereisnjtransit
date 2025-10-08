@@ -488,13 +488,13 @@ function scheduleTask() {
         // addLiveTrains();
 
         setInterval(() => {
-            addLiveTrains();
+            // addLiveTrains();
         }, 5 * 60 * 1000);
     }, delay);
 }
 
 map.on('style.load', async () => {
-    scheduleTask()
+    // scheduleTask()
     console.log(line_database);
 
     for (const [key, value] of Object.entries(line_database)) {
@@ -510,7 +510,7 @@ map.on('style.load', async () => {
         }
     }
 
-    addLiveTrains()
+    // addLiveTrains()
 });
 
 const searchInput = document.getElementById("stationSearch");

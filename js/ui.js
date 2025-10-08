@@ -44,6 +44,7 @@ function settings_button() {
 }
 
 let militaryTime = false;
+let useLocalTimezone = false;
 
 const settingsConfig = {
     darkToggle: {
@@ -52,6 +53,28 @@ const settingsConfig = {
         onChange: (value) => {
             document.cookie = `darkTheme=${value}; max-age=31536000`;
             document.location.reload();
+        }
+    },
+    timeToggle: {
+        type: "toggle",
+        default: false,
+        onChange: (value) => {
+            militaryTime = value;
+            document.cookie = `militaryTime=${militaryTime}; max-age=31536000`;
+        }
+    },
+    timezoneToggle: {
+        type: "toggle",
+        default: false,
+        onChange: (value) => {
+            useLocalTimezone = value;
+            document.cookie = `useLocalTimezone=${useLocalTimezone}; max-age=31536000`;
+
+            if (value) {
+                document.getElementById("timezoneDisplay").textContent = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            } else {
+                document.getElementById("timezoneDisplay").textContent = "America/New_York";
+            }
         }
     },
     stationsToggle: {
@@ -75,14 +98,6 @@ const settingsConfig = {
             });
 
             document.cookie = `hideTracks=${value}; max-age=31536000`;
-        }
-    },
-    timeToggle: {
-        type: "toggle",
-        default: false,
-        onChange: (value) => {
-            militaryTime = value;
-            document.cookie = `militaryTime=${militaryTime}; max-age=31536000`;
         }
     }
 };
@@ -202,35 +217,27 @@ function stopDrag() {
     document.removeEventListener("touchend", stopDrag);
 }
 
-function formatTime(hours, minutes) {
-    let hh, mm, estimatedStr;
+function formatTime(hours, minutes, targetTZ = "America/New_York") {
+    const now = new Date();
+    const date = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), hours, minutes, 0));
 
-    mm = String(minutes).padStart(2, "0");
+    const options = {
+        hour12: !militaryTime,
+        hour: "2-digit",
+        minute: "2-digit",
+        timeZone: useLocalTimezone ? undefined : targetTZ
+    };
 
-    if (militaryTime) {
-        hh = String(hours).padStart(2, "0");
-        estimatedStr = `${hh}:${mm}`;
-    } else {
-        const ampm = hours >= 12 ? "PM" : "AM";
-        hh = String(((hours + 11) % 12) + 1).padStart(2, "0");
-        estimatedStr = `${hh}:${mm} ${ampm}`;
-    }
-
-    return estimatedStr;
+    return date.toLocaleTimeString("en-US", options);
 }
 
 const timeToggle = document.getElementById('timeToggle');
 const timeDisplay = document.getElementById('timeDisplay');
 
-timeToggle.checked = militaryTime;
-timeToggle.addEventListener('change', (e) => {
-    militaryTime = e.target.checked;
-    settingsConfig.timeToggle.onChange(militaryTime);
-});
-
 setInterval(() => {
     const now = new Date();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
+    const hours = now.getUTCHours();
+    const minutes = now.getUTCMinutes();
+
     timeDisplay.textContent = formatTime(hours, minutes);
 }, 1000);

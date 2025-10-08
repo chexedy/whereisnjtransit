@@ -196,6 +196,11 @@ async function initMap() {
             militaryTime = true;
             document.getElementById('timeToggle').checked = true;
         }
+
+        if (cookies.useLocalTimezone === 'true') {
+            useLocalTimezone = true;
+            document.getElementById('timezoneToggle').checked = true;
+        }
     });
 
     map.on('error', function (e) {
