@@ -676,6 +676,7 @@
     width: 15%;
     height: auto;
     min-width: 16px;
+    background: auto;
 }
 
 .sidebar_route_button span {

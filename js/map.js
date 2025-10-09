@@ -10,10 +10,6 @@ async function addTrackLines() {
     for (const key in data["line-database"]) {
         const line = data["line-database"][key];
 
-        if (line.name == "Bergen County Line" || line.name == "Gladstone Branch") {
-            continue;
-        }
-
         const res2 = await fetch(line.url);
         const lineData = await res2.json();
 

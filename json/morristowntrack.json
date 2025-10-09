@@ -1,17 +1,17 @@
 {
-    "morrisessextrack": {
+    "morristowntrack": {
         "type": "FeatureCollection",
         "features": [
             {
                 "type": "Feature",
                 "properties": {
-                    "offset": 8
+                    "offset": 12
                 },
                 "geometry": {
                     "coordinates": [
                         [
-                            -73.99264373803736,
-                            40.75018997360027
+                            -73.992358,
+                            40.750046
                         ],
                         [
                             -74.04188786683065,
@@ -46,8 +46,8 @@
                             40.77101123440954
                         ],
                         [
-                            -74.07575224060915,
-                            40.761342713874086
+                            -74.075821,
+                            40.761188
                         ]
                     ],
                     "type": "LineString"
@@ -56,13 +56,13 @@
             {
                 "type": "Feature",
                 "properties": {
-                    "offset": 8
+                    "offset": 12
                 },
                 "geometry": {
                     "coordinates": [
                         [
-                            -74.07575219320854,
-                            40.7613427797323
+                            -74.075821,
+                            40.761188
                         ],
                         [
                             -74.08714800356628,
@@ -99,7 +99,7 @@
             {
                 "type": "Feature",
                 "properties": {
-                    "offset": 8
+                    "offset": 12
                 },
                 "geometry": {
                     "coordinates": [
@@ -184,8 +184,8 @@
                             40.747451058472876
                         ],
                         [
-                            -74.17192501963154,
-                            40.747558737578856
+                            -74.171943,
+                            40.747621
                         ]
                     ],
                     "type": "LineString"

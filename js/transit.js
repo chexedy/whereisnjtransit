@@ -68,6 +68,7 @@ function updateStation(departures) {
 
             var newDiv = document.getElementById("default").cloneNode(true);
             newDiv.id = obj.train_id;
+            console.log(obj);
             newDiv.querySelector("img").src = line_database[obj.line].image;
 
             var inner = newDiv.querySelector("#station_route_inner");
@@ -189,14 +190,12 @@ async function updateTrainHistory(infoPanel, id) {
 
     const now = new Date();
     let trainReachedNext = false;
-    console.log(departureHistoryCache);
 
     for (const stop of data) {
         const secLate = departureHistoryCache[id].sec_late || 0;
         const stopTime = new Date(stop.dep_time.replace(" ", "T") + "Z");
         const scheduledTime = new Date(stop.dep_time.replace(" ", "T") + "Z");;
         stopTime.setTime(stopTime.getTime() + (secLate * 1000));
-        console.log(stopTime, scheduledTime);
 
         const stationName = stop.station_name;
 

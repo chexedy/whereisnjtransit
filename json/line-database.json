@@ -17,19 +17,19 @@
             "abbreviation": "NEC"
         },
         "Morris & Essex Line": {
-            "name": "Morris & Essex",
-            "image": "assets/icons/lines/morrisessex.svg",
-            "id": "morrisessextrack",
-            "url": "json/morrisessextrack.json",
+            "name": "Morristown Line",
+            "image": "assets/icons/lines/morristown.png",
+            "id": "morristowntrack",
+            "url": "json/morristowntrack.json",
             "color": "rgb(0, 149, 59)",
             "abbreviation": "M&E"
         },
         "Gladstone Branch": {
             "name": "Gladstone Branch",
-            "image": "assets/icons/lines/morrisessex.svg",
-            "id": "morrisessextrack",
-            "url": "json/morrisessextrack.json",
-            "color": "rgb(0, 149, 59)",
+            "image": "assets/icons/lines/gladstone.png",
+            "id": "gladstonetrack",
+            "url": "json/gladstonetrack.json",
+            "color": "rgb(163, 213, 174)",
             "abbreviation": "M&E"
         },
         "North Jersey Coast Line": {
@@ -42,18 +42,18 @@
         },
         "Main Line": {
             "name": "Main Line",
-            "image": "assets/icons/lines/mainbergen.svg",
-            "id": "mainbergentrack",
-            "url": "json/mainbergentrack.json",
-            "color": "rgb(242, 184, 38)",
+            "image": "assets/icons/lines/main.png",
+            "id": "maintrack",
+            "url": "json/maintrack.json",
+            "color": "rgb(205, 206, 1)",
             "abbreviation": "MAIN"
         },
         "Bergen County Line": {
             "name": "Bergen County Line",
-            "image": "assets/icons/lines/mainbergen.svg",
-            "id": "mainbergentrack",
-            "url": "json/mainbergentrack.json",
-            "color": "rgb(242, 184, 38)",
+            "image": "assets/icons/lines/bergen.png",
+            "id": "bergentrack",
+            "url": "json/bergentrack.json",
+            "color": "rgb(177, 189, 182)",
             "abbreviation": "BERG"
         },
         "Montclair-Boonton Line": {

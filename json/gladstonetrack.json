@@ -1,11 +1,11 @@
 {
-    "montclairboontontrack": {
+    "gladstonetrack": {
         "type": "FeatureCollection",
         "features": [
             {
                 "type": "Feature",
                 "properties": {
-                    "offset": 20
+                    "offset": 4
                 },
                 "geometry": {
                     "coordinates": [
@@ -56,7 +56,7 @@
             {
                 "type": "Feature",
                 "properties": {
-                    "offset": 20
+                    "offset": 4
                 },
                 "geometry": {
                     "coordinates": [
@@ -99,7 +99,7 @@
             {
                 "type": "Feature",
                 "properties": {
-                    "offset": 20
+                    "offset": 4
                 },
                 "geometry": {
                     "coordinates": [
