@@ -89,7 +89,7 @@ const settingsConfig = {
         type: "toggle",
         default: false,
         onChange: (value) => {
-            const lineLayers = ["meadowlands", "northeastcorridortrack", "northjerseycoasttrack", "pascackvalleytrack", "morrisessextrack", "mainbergentrack", "montclairboontontrack", "raritanvalleytrack", "atlanticcitytrack"];
+            const lineLayers = ["meadowlands", "northeastcorridortrack", "northjerseycoasttrack", "pascackvalleytrack", "morristowntrack", "maintrack", "bergentrack", "gladstonetrack", "montclairboontontrack", "raritanvalleytrack", "atlanticcitytrack"];
 
             lineLayers.forEach(id => {
                 if (map.getLayer(id)) {

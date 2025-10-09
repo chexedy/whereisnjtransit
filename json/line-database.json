@@ -2,7 +2,7 @@
     "line-database": {
         "BetMGM Meadowlands": {
             "name": "Meadowlands Rail Line",
-            "image": "assets/icons/lines/meadowlands.svg",
+            "image": "assets/lines/meadowlands.svg",
             "id": "meadowlands",
             "url": "json/meadowlands.json",
             "color": "rgb(192, 169, 113)",
@@ -10,7 +10,7 @@
         },
         "Northeast Corridor Line": {
             "name": "Northeast Corridor",
-            "image": "assets/icons/lines/northeastcorridor.svg",
+            "image": "assets/lines/northeastcorridor.svg",
             "id": "northeastcorridortrack",
             "url": "json/northeastcorridortrack.json",
             "color": "rgb(239, 62, 66)",
@@ -18,7 +18,7 @@
         },
         "Morris & Essex Line": {
             "name": "Morristown Line",
-            "image": "assets/icons/lines/morristown.png",
+            "image": "assets/lines/morristown.svg",
             "id": "morristowntrack",
             "url": "json/morristowntrack.json",
             "color": "rgb(0, 149, 59)",
@@ -26,7 +26,7 @@
         },
         "Gladstone Branch": {
             "name": "Gladstone Branch",
-            "image": "assets/icons/lines/gladstone.png",
+            "image": "assets/lines/gladstone.svg",
             "id": "gladstonetrack",
             "url": "json/gladstonetrack.json",
             "color": "rgb(163, 213, 174)",
@@ -34,7 +34,7 @@
         },
         "North Jersey Coast Line": {
             "name": "North Jersey Coast",
-            "image": "assets/icons/lines/northjerseycoast.svg",
+            "image": "assets/lines/northjerseycoast.svg",
             "id": "northjerseycoasttrack",
             "url": "json/northjerseycoasttrack.json",
             "color": "rgb(0, 156, 219)",
@@ -42,7 +42,7 @@
         },
         "Main Line": {
             "name": "Main Line",
-            "image": "assets/icons/lines/main.png",
+            "image": "assets/lines/main.svg",
             "id": "maintrack",
             "url": "json/maintrack.json",
             "color": "rgb(205, 206, 1)",
@@ -50,7 +50,7 @@
         },
         "Bergen County Line": {
             "name": "Bergen County Line",
-            "image": "assets/icons/lines/bergen.png",
+            "image": "assets/lines/bergen.svg",
             "id": "bergentrack",
             "url": "json/bergentrack.json",
             "color": "rgb(177, 189, 182)",
@@ -58,7 +58,7 @@
         },
         "Montclair-Boonton Line": {
             "name": "Montclair-Boonton",
-            "image": "assets/icons/lines/montclairboonton.svg",
+            "image": "assets/lines/montclairboonton.svg",
             "id": "montclairboontontrack",
             "url": "json/montclairboontontrack.json",
             "color": "rgb(195, 99, 102)",
@@ -66,7 +66,7 @@
         },
         "Raritan Valley Line": {
             "name": "Raritan Valley",
-            "image": "assets/icons/lines/raritanvalley.svg",
+            "image": "assets/lines/raritanvalley.svg",
             "id": "raritanvalleytrack",
             "url": "json/raritanvalleytrack.json",
             "color": "rgb(255, 153, 62)",
@@ -74,7 +74,7 @@
         },
         "Pascack Valley Line": {
             "name": "Pascack Valley",
-            "image": "assets/icons/lines/pascackvalley.svg",
+            "image": "assets/lines/pascackvalley.svg",
             "id": "pascackvalleytrack",
             "url": "json/pascackvalleytrack.json",
             "color": "rgb(163, 79, 139)",
@@ -82,7 +82,7 @@
         },
         "Atlantic City Line": {
             "name": "Atlantic City Line",
-            "image": "assets/icons/lines/atlanticcity.svg",
+            "image": "assets/lines/atlanticcity.svg",
             "id": "atlanticcitytrack",
             "url": "json/atlanticcitytrack.json",
             "color": "rgb(46, 85, 165)",
@@ -90,7 +90,7 @@
         },
         "Princeton Branch": {
             "name": "Princeton Shuttle",
-            "image": "assets/icons/lines/northeastcorridor.svg",
+            "image": "assets/lines/northeastcorridor.svg",
             "id": "princetonshuttle",
             "url": "json/princetonshuttle.json",
             "color": "rgb(239, 62, 66)",

@@ -174,8 +174,8 @@ async function updateTrainHistory(infoPanel, id) {
     const res = await fetch(url);
     const history = await res.json();
 
-    const today = new Date().toLocaleDateString("en-CA", { timeZone: "America/New_York" });
-    const filtered = history.filter(stop => stop.dep_time.startsWith(today));
+    const today = new Date().toISOString().split("T")[0];
+    const filtered = history.filter(stop => stop.dep_time.startsWith(today)); /// FIX THIS LOGIC
 
     departureHistoryCache[id].history = filtered;
     const data = departureHistoryCache[id].history;
@@ -190,6 +190,7 @@ async function updateTrainHistory(infoPanel, id) {
 
     const now = new Date();
     let trainReachedNext = false;
+    console.log(data);
 
     for (const stop of data) {
         const secLate = departureHistoryCache[id].sec_late || 0;

@@ -540,6 +540,9 @@
 .sidebar_opener {
     top: 1vw;
     left: 1vw;
+    width: 3.5%;
+    height: auto;
+    aspect-ratio: 1 / 1;
     color: black;
 }
 
@@ -666,7 +669,6 @@
     transition: background 0.2s, transform 0.2s;
     gap: 0.5rem;
     flex-wrap: nowrap;
-    color: black;
     background: white;
     text-decoration: none;
 }
@@ -676,7 +678,7 @@
     width: 15%;
     height: auto;
     min-width: 16px;
-    background: auto;
+    background-color: transparent;
 }
 
 .sidebar_route_button span {
@@ -740,8 +742,11 @@
 }
 
 .location {
+    width: 3.5%;
+    height: auto;
     bottom: 2vw;
     right: 1vw;
+    aspect-ratio: 1 / 1;
 }
 
 .location img {

@@ -32,7 +32,7 @@ async function addTrackLines() {
                 'line-width': 8,
                 'line-offset': ['get', 'offset']
             },
-            "minzoom": 9
+            "minzoom": 10
         });
     }
 }
@@ -47,7 +47,7 @@ async function addStations() {
     try {
         const image = await new Promise((resolve, reject) => {
             const img = new Image();
-            img.src = "/assets/icons/service/station.png";
+            img.src = "/assets/service/station.svg";
             img.onload = () => resolve(img);
             img.onerror = (e) => reject(e);
         });
