@@ -807,13 +807,6 @@
         text-overflow: ellipsis;
     }
 
-    .sidebar_opener {
-        width: 7%;
-        aspect-ratio: 1 / 1;
-        top: 2vw;
-        left: 2vw;
-    }
-
     .sidebar {
         width: 80%;
     }

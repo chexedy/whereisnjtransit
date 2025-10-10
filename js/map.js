@@ -187,21 +187,6 @@ async function initMap() {
             map.setPaintProperty('stations-layer', 'text-color', 'rgb(255, 255, 255)');
         }
 
-        if (cookies.hideStations === 'true' && map.getLayer('stations-layer')) {
-            map.setLayoutProperty('stations-layer', 'visibility', 'none');
-            document.getElementById('stationsToggle').checked = true;
-        }
-
-        if (cookies.hideTracks === 'true') {
-            const lineLayers = ["meadowlands", "northeastcorridortrack", "northjerseycoasttrack", "pascackvalleytrack", "morristowntrack", "maintrack", "gladstonetrack", "montclairboontontrack", "raritanvalleytrack", "atlanticcitytrack"];
-
-            lineLayers.forEach(id => {
-                toggleLayerVisibility(id, false);
-            });
-
-            document.getElementById('tracksToggle').checked = true;
-        }
-
         if (cookies.militaryTime === 'true') {
             militaryTime = true;
             document.getElementById('timeToggle').checked = true;

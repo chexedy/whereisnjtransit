@@ -82,7 +82,6 @@ const settingsConfig = {
         default: false,
         onChange: (value) => {
             map.setLayoutProperty('stations-layer', 'visibility', value ? 'none' : 'visible');
-            document.cookie = `hideStations=${value}; max-age=31536000`;
         }
     },
     tracksToggle: {
@@ -94,8 +93,6 @@ const settingsConfig = {
             lineLayers.forEach(id => {
                 toggleLayerVisibility(id, !value);
             });
-
-            document.cookie = `hideTracks=${value}; max-age=31536000`;
         }
     }
 };
@@ -143,16 +140,12 @@ function sidebar_open() {
     const opener = document.querySelector(".sidebar_opener");
     const gap = 1;
 
-    if (opener.style.left === "1vw" || opener.style.left === "") {
+    if (opener.style.left === "1vw" || opener.style.left === "1vw") {
         sidebar.style.display = "block";
         const sidebarWidthPx = sidebar.getBoundingClientRect().width;
         const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0) / 100;
         const sidebarWidthVw = sidebarWidthPx / vw;
         opener.style.left = `${sidebarWidthVw + gap}vw`;
-
-        if (screen.width <= 1135) {
-            station_close();
-        }
 
         document.getElementById("settingsScreen").style.display = "none";
         document.getElementById("aboutScreen").style.display = "none";
@@ -167,16 +160,10 @@ function adjust_sidebar() {
     const opener = document.querySelector(".sidebar_opener");
     const gap = 1;
 
-    if (screen.width <= 1135) {
-        sidebar.style.display = "block";
-        const sidebarWidthPx = sidebar.getBoundingClientRect().width;
-        const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0) / 100;
-        const sidebarWidthVw = sidebarWidthPx / vw;
-        opener.style.left = `${sidebarWidthVw + gap}vw`;
-    } else {
-        sidebar.style.display = "none";
-        opener.style.left = "1vw";
-    }
+    const sidebarWidthPx = sidebar.getBoundingClientRect().width;
+    const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0) / 100;
+    const sidebarWidthVw = sidebarWidthPx / vw;
+    opener.style.left = `${sidebarWidthVw + gap}vw`;
 }
 
 window.addEventListener("resize", adjust_sidebar)

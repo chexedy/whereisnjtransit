@@ -61,7 +61,7 @@
             "image": "assets/lines/main.svg",
             "id": "maintrack",
             "url": "json/mainbergentrack.json",
-            "color": "rgb(205, 206, 1)",
+            "color": "rgb(242, 184, 38)",
             "abbreviation": "MAIN"
         },
         "North Jersey Coast Line": {
