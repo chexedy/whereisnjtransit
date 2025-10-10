@@ -10,6 +10,10 @@ async function addTrackLines() {
     for (const key in data["line-database"]) {
         const line = data["line-database"][key];
 
+        if (line.name == "Bergen County Line") {
+            continue;
+        }
+
         const res2 = await fetch(line.url);
         const lineData = await res2.json();
 
@@ -30,9 +34,8 @@ async function addTrackLines() {
             'paint': {
                 'line-color': line.color,
                 'line-width': 8,
-                'line-offset': ['get', 'offset']
             },
-            "minzoom": 10
+            "minzoom": 8
         });
     }
 }
@@ -190,10 +193,10 @@ async function initMap() {
         }
 
         if (cookies.hideTracks === 'true') {
-            const lineLayers = ["meadowlands", "northeastcorridortrack", "northjerseycoasttrack", "pascackvalleytrack", "morristowntrack", "maintrack", "bergentrack", "gladstonetrack", "montclairboontontrack", "raritanvalleytrack", "atlanticcitytrack"];
+            const lineLayers = ["meadowlands", "northeastcorridortrack", "northjerseycoasttrack", "pascackvalleytrack", "morristowntrack", "maintrack", "gladstonetrack", "montclairboontontrack", "raritanvalleytrack", "atlanticcitytrack"];
 
             lineLayers.forEach(id => {
-                toggleLayerVisibility(id, true);
+                toggleLayerVisibility(id, false);
             });
 
             document.getElementById('tracksToggle').checked = true;

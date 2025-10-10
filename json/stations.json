@@ -699,7 +699,8 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Gladstone",
-                    "lines": ""
+                    "lines": "",
+                    "sortKey": -99
                 },
                 "geometry": {
                     "type": "Point",
@@ -834,7 +835,8 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "High Bridge",
-                    "lines": ""
+                    "lines": "",
+                    "sortKey": -99
                 },
                 "geometry": {
                     "type": "Point",
@@ -1977,7 +1979,8 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Spring Valley",
-                    "lines": ""
+                    "lines": "",
+                    "sortKey": -99
                 },
                 "geometry": {
                     "type": "Point",

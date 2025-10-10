@@ -8,77 +8,13 @@
             "color": "rgb(192, 169, 113)",
             "abbreviation": "BMGM"
         },
-        "Northeast Corridor Line": {
-            "name": "Northeast Corridor",
+        "Princeton Branch": {
+            "name": "Princeton Shuttle",
             "image": "assets/lines/northeastcorridor.svg",
-            "id": "northeastcorridortrack",
-            "url": "json/northeastcorridortrack.json",
+            "id": "princetonshuttle",
+            "url": "json/princetonshuttle.json",
             "color": "rgb(239, 62, 66)",
-            "abbreviation": "NEC"
-        },
-        "Morris & Essex Line": {
-            "name": "Morristown Line",
-            "image": "assets/lines/morristown.svg",
-            "id": "morristowntrack",
-            "url": "json/morristowntrack.json",
-            "color": "rgb(0, 149, 59)",
-            "abbreviation": "M&E"
-        },
-        "Gladstone Branch": {
-            "name": "Gladstone Branch",
-            "image": "assets/lines/gladstone.svg",
-            "id": "gladstonetrack",
-            "url": "json/gladstonetrack.json",
-            "color": "rgb(163, 213, 174)",
-            "abbreviation": "M&E"
-        },
-        "North Jersey Coast Line": {
-            "name": "North Jersey Coast",
-            "image": "assets/lines/northjerseycoast.svg",
-            "id": "northjerseycoasttrack",
-            "url": "json/northjerseycoasttrack.json",
-            "color": "rgb(0, 156, 219)",
-            "abbreviation": "NJCL"
-        },
-        "Main Line": {
-            "name": "Main Line",
-            "image": "assets/lines/main.svg",
-            "id": "maintrack",
-            "url": "json/maintrack.json",
-            "color": "rgb(205, 206, 1)",
-            "abbreviation": "MAIN"
-        },
-        "Bergen County Line": {
-            "name": "Bergen County Line",
-            "image": "assets/lines/bergen.svg",
-            "id": "bergentrack",
-            "url": "json/bergentrack.json",
-            "color": "rgb(177, 189, 182)",
-            "abbreviation": "BERG"
-        },
-        "Montclair-Boonton Line": {
-            "name": "Montclair-Boonton",
-            "image": "assets/lines/montclairboonton.svg",
-            "id": "montclairboontontrack",
-            "url": "json/montclairboontontrack.json",
-            "color": "rgb(195, 99, 102)",
-            "abbreviation": "MOBO"
-        },
-        "Raritan Valley Line": {
-            "name": "Raritan Valley",
-            "image": "assets/lines/raritanvalley.svg",
-            "id": "raritanvalleytrack",
-            "url": "json/raritanvalleytrack.json",
-            "color": "rgb(255, 153, 62)",
-            "abbreviation": "RARV"
-        },
-        "Pascack Valley Line": {
-            "name": "Pascack Valley",
-            "image": "assets/lines/pascackvalley.svg",
-            "id": "pascackvalleytrack",
-            "url": "json/pascackvalleytrack.json",
-            "color": "rgb(163, 79, 139)",
-            "abbreviation": "PASC"
+            "abbreviation": "PRIN"
         },
         "Atlantic City Line": {
             "name": "Atlantic City Line",
@@ -88,13 +24,77 @@
             "color": "rgb(46, 85, 165)",
             "abbreviation": "ACRL"
         },
-        "Princeton Branch": {
-            "name": "Princeton Shuttle",
+        "Bergen County Line": {
+            "name": "Bergen County Line",
+            "image": "assets/lines/bergen.svg",
+            "id": "bergentrack",
+            "url": "",
+            "color": "rgb(177, 189, 182)",
+            "abbreviation": "BERG"
+        },
+        "Pascack Valley Line": {
+            "name": "Pascack Valley",
+            "image": "assets/lines/pascackvalley.svg",
+            "id": "pascackvalleytrack",
+            "url": "json/pascackvalleytrack.json",
+            "color": "rgb(163, 79, 139)",
+            "abbreviation": "PASC"
+        },
+        "Raritan Valley Line": {
+            "name": "Raritan Valley",
+            "image": "assets/lines/raritanvalley.svg",
+            "id": "raritanvalleytrack",
+            "url": "json/raritanvalleytrack.json",
+            "color": "rgb(255, 153, 62)",
+            "abbreviation": "RARV"
+        },
+        "Montclair-Boonton Line": {
+            "name": "Montclair-Boonton",
+            "image": "assets/lines/montclairboonton.svg",
+            "id": "montclairboontontrack",
+            "url": "json/montclairboontontrack.json",
+            "color": "rgb(195, 99, 102)",
+            "abbreviation": "MOBO"
+        },
+        "Main Line": {
+            "name": "Main Line",
+            "image": "assets/lines/main.svg",
+            "id": "maintrack",
+            "url": "json/mainbergentrack.json",
+            "color": "rgb(205, 206, 1)",
+            "abbreviation": "MAIN"
+        },
+        "North Jersey Coast Line": {
+            "name": "North Jersey Coast",
+            "image": "assets/lines/northjerseycoast.svg",
+            "id": "northjerseycoasttrack",
+            "url": "json/northjerseycoasttrack.json",
+            "color": "rgb(0, 156, 219)",
+            "abbreviation": "NJCL"
+        },
+        "Gladstone Branch": {
+            "name": "Gladstone Branch",
+            "image": "assets/lines/gladstone.svg",
+            "id": "gladstonetrack",
+            "url": "json/gladstonetrack.json",
+            "color": "rgb(121, 158, 129)",
+            "abbreviation": "M&E"
+        },
+        "Morris & Essex Line": {
+            "name": "Morristown Line",
+            "image": "assets/lines/morristown.svg",
+            "id": "morristowntrack",
+            "url": "json/morristowntrack.json",
+            "color": "rgb(0, 149, 59)",
+            "abbreviation": "M&E"
+        },
+        "Northeast Corridor Line": {
+            "name": "Northeast Corridor",
             "image": "assets/lines/northeastcorridor.svg",
-            "id": "princetonshuttle",
-            "url": "json/princetonshuttle.json",
+            "id": "northeastcorridortrack",
+            "url": "json/northeastcorridortrack.json",
             "color": "rgb(239, 62, 66)",
-            "abbreviation": "PRIN"
+            "abbreviation": "NEC"
         }
     }
 }
