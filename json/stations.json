@@ -881,7 +881,8 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Hoboken",
-                    "lines": ""
+                    "lines": "",
+                    "sortKey": -99
                 },
                 "geometry": {
                     "type": "Point",
@@ -2450,7 +2451,8 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Meadowlands",
-                    "lines": ""
+                    "lines": "",
+                    "sortKey": -99
                 },
                 "geometry": {
                     "type": "Point",
