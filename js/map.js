@@ -101,18 +101,31 @@ async function addStations() {
 }
 
 const disabledLayers = new Set();
-function toggleLayerVisibility(layer) {
+function toggleLayerVisibility(layer, boolean) {
     const route = document.getElementById(layer);
 
-    if (disabledLayers.has(layer)) {
-        disabledLayers.delete(layer);
-        map.setLayoutProperty(layer, "visibility", "visible")
-        route.style.background = "white";
-    } else {
-        disabledLayers.add(layer);
+    if (boolean != null) {
+        if (disabledLayers.has(layer) && boolean) {
+            disabledLayers.delete(layer);
+            map.setLayoutProperty(layer, "visibility", "visible")
+            route.style.background = "white";
+        } else if (!boolean) {
+            disabledLayers.add(layer);
 
-        map.setLayoutProperty(layer, "visibility", "none")
-        route.style.background = "lightgrey";
+            map.setLayoutProperty(layer, "visibility", "none")
+            route.style.background = "lightgrey";
+        }
+    } else {
+        if (disabledLayers.has(layer)) {
+            disabledLayers.delete(layer);
+            map.setLayoutProperty(layer, "visibility", "visible")
+            route.style.background = "white";
+        } else {
+            disabledLayers.add(layer);
+
+            map.setLayoutProperty(layer, "visibility", "none")
+            route.style.background = "lightgrey";
+        }
     }
 }
 
@@ -177,12 +190,10 @@ async function initMap() {
         }
 
         if (cookies.hideTracks === 'true') {
-            const lineLayers = ["meadowlands", "northeastcorridortrack", "northjerseycoasttrack", "pascackvalleytrack", "morrisessextrack", "mainbergentrack", "montclairboontontrack", "raritanvalleytrack", "atlanticcitytrack"];
+            const lineLayers = ["meadowlands", "northeastcorridortrack", "northjerseycoasttrack", "pascackvalleytrack", "morristowntrack", "maintrack", "bergentrack", "gladstonetrack", "montclairboontontrack", "raritanvalleytrack", "atlanticcitytrack"];
 
             lineLayers.forEach(id => {
-                if (map.getLayer(id)) {
-                    map.setLayoutProperty(id, 'visibility', 'none');
-                }
+                toggleLayerVisibility(id, true);
             });
 
             document.getElementById('tracksToggle').checked = true;

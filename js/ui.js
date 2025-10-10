@@ -92,9 +92,7 @@ const settingsConfig = {
             const lineLayers = ["meadowlands", "northeastcorridortrack", "northjerseycoasttrack", "pascackvalleytrack", "morristowntrack", "maintrack", "bergentrack", "gladstonetrack", "montclairboontontrack", "raritanvalleytrack", "atlanticcitytrack"];
 
             lineLayers.forEach(id => {
-                if (map.getLayer(id)) {
-                    map.setLayoutProperty(id, 'visibility', value ? 'none' : 'visible');
-                }
+                toggleLayerVisibility(id, !value);
             });
 
             document.cookie = `hideTracks=${value}; max-age=31536000`;
