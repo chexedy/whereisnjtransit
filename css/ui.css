@@ -1,3 +1,9 @@
+:root {
+    --primary-color: rgb(245, 240, 226);
+    --text-color: black;
+    --input-color: white;
+}
+
 .overlay {
     position: fixed;
     top: 0;
@@ -12,7 +18,7 @@
     display: flex;
     width: 40%;
     height: auto;
-    background: rgb(245, 240, 226);
+    background: var(--primary-color);
     z-index: 1100;
     flex-direction: column;
     justify-content: flex-start;
@@ -30,6 +36,7 @@
 .welcome h1 {
     font-family: "Ubuntu";
     text-align: center;
+    color: var(--text-color);
 }
 
 .welcome h3 {
@@ -37,6 +44,7 @@
     font-family: "Ubuntu";
     padding-left: 5%;
     padding-right: 5%;
+    color: var(--text-color);
 }
 
 .welcome_button {
@@ -56,7 +64,7 @@
     gap: 0.5rem;
     flex-wrap: nowrap;
     color: black;
-    background: white;
+    background: var(--input-color);
     padding: 0.3rem 0.6rem;
 }
 
@@ -68,7 +76,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: black;
+    color: var(--text-color);
 }
 
 .welcome_button:hover {
@@ -79,7 +87,7 @@
 .settings {
     display: none;
     width: 40%;
-    background: rgb(245, 240, 226);
+    background: var(--primary-color);
     z-index: 1090;
     flex-direction: column;
     justify-content: flex-start;
@@ -102,6 +110,7 @@
 .settings h1 {
     font-family: "Ubuntu";
     text-align: center;
+    color: var(--text-color);
 }
 
 .about_button,
@@ -122,7 +131,7 @@
     gap: 0.5rem;
     flex-wrap: nowrap;
     color: black;
-    background: white;
+    background: var(--input-color);
     padding: 0.3rem 0.6rem;
 }
 
@@ -147,6 +156,7 @@
 
 .about_elements h1 {
     text-align: center;
+    color: var(--text-color);
 }
 
 .about_element {
@@ -266,12 +276,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: var(--text-color);
 }
 
 .station_departures h4 {
     padding: 5%;
     font-family: "Ubuntu";
     text-align: center;
+    color: var(--text-color);
 }
 
 .station_departure_close {
@@ -286,7 +298,7 @@
     gap: 0.5rem;
     flex-wrap: nowrap;
     color: black;
-    background: rgb(245, 240, 226);
+    background: var(--primary-color);
 }
 
 .station_departure_close span {
@@ -297,7 +309,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: black;
+    color: var(--text-color);
 }
 
 .station_departure_close:hover {
@@ -308,7 +320,7 @@
     display: none;
     width: 40%;
     height: 80%;
-    background: rgb(245, 240, 226);
+    background: var(--primary-color);
     z-index: 1060;
     flex-direction: column;
     justify-content: flex-start;
@@ -327,6 +339,7 @@
     font-family: "Ubuntu";
     text-align: center;
     margin: 0.5rem 0 1rem 0;
+    color: var(--text-color);
 }
 
 .station_routes {
@@ -345,6 +358,7 @@
 
 .station_routes h3 {
     text-align: center;
+    color: var(--text-color);
 }
 
 .station_route {
@@ -400,6 +414,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: calc(0.4 * 1em + 1vh);
+    color: var(--text-color);
 }
 
 .station_info {
@@ -453,6 +468,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: clamp(0.6rem, 2vw, 1rem);
+    color: var(--text-color);
 }
 
 .station_info .station_col h4,
@@ -464,6 +480,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: clamp(0.6rem, 2vw, 1rem);
+    color: var(--text-color);
 }
 
 .station_close {
@@ -495,7 +512,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: black;
+    color: var(--text-color);
 }
 
 .station_close:hover {
@@ -527,7 +544,7 @@
     position: fixed;
     width: 7.5vh;
     height: 7.5vh;
-    background: rgb(245, 240, 226);
+    background: var(--primary-color);
     border: none;
     font-size: 2rem;
     cursor: pointer;
@@ -543,7 +560,6 @@
     width: 3.5%;
     height: auto;
     aspect-ratio: 1 / 1;
-    color: black;
 }
 
 .sidebar_opener:hover {
@@ -562,7 +578,7 @@
     text-align: center;
     cursor: pointer;
     transition: background 0.2s, transform 0.2s;
-    color: black;
+    color: var(--text-color);
 }
 
 .sidebar_button:hover {
@@ -575,7 +591,7 @@
     left: 0;
     width: 20%;
     height: 100vh;
-    background-color: rgb(245, 240, 226);
+    background-color: var(--primary-color);
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
     z-index: 998;
     overflow-y: auto;
@@ -586,11 +602,13 @@
 .sidebar h1 {
     text-align: center;
     font-family: "Ubuntu";
+    color: var(--text-color);
 }
 
 .sidebar h4 {
     text-align: center;
     font-family: "Ubuntu";
+    color: var(--text-color);
 }
 
 .sidebar_search {
@@ -647,6 +665,7 @@
     font-size: clamp(1rem, 1.2vw, 1rem);
     cursor: pointer;
     transition: background 0.2s;
+    color: var(--text-color);
 }
 
 .sidebar_routes {
@@ -669,7 +688,7 @@
     transition: background 0.2s, transform 0.2s;
     gap: 0.5rem;
     flex-wrap: nowrap;
-    background: white;
+    background: var(--input-color);
     text-decoration: none;
 }
 
@@ -688,6 +707,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: var(--text-color);
 }
 
 .sidebar_route_button:hover {
@@ -715,7 +735,7 @@
     gap: 0.5rem;
     flex-wrap: nowrap;
     color: black;
-    background: white;
+    background: var(--input-color);
     text-decoration: none;
 }
 
@@ -749,7 +769,7 @@
     aspect-ratio: 1 / 1;
 }
 
-.location img {
+.location_button img {
     max-width: 100%;
 }
 

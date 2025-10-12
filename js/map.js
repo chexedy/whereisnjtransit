@@ -41,11 +41,8 @@ async function addTrackLines() {
 }
 
 async function addStations() {
-    console.log("Starting");
-
     const res = await fetch('json/stations.json');
     const data = await res.json();
-    console.log("res loaded");
 
     try {
         const image = await new Promise((resolve, reject) => {
@@ -134,9 +131,7 @@ function toggleLayerVisibility(layer, boolean) {
 
 async function loadMapLayers() {
     await addTrackLines();
-    console.log("Added track lines");
     await addStations();
-    console.log("Loaded map layers done");
 }
 
 
@@ -195,6 +190,19 @@ async function initMap() {
         if (cookies.useLocalTimezone === 'true') {
             useLocalTimezone = true;
             document.getElementById('timezoneToggle').checked = true;
+        }
+
+        for (const [key, value] of Object.entries(line_database)) {
+            const image = await new Promise((resolve, reject) => {
+                const img = new Image();
+                img.src = value.image;
+                img.onload = () => resolve(img);
+                img.onerror = (e) => reject(e);
+            });
+
+            if (!map.hasImage(key)) {
+                map.addImage(key, image);
+            }
         }
     });
 
