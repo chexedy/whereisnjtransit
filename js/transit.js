@@ -308,8 +308,6 @@ function getClosestPoint(longitude, latitude, geojson) {
     return closestPoint;
 }
 
-
-
 function minutesUntilNext5Min() {
     const now = new Date();
     const estNow = new Date(

@@ -77,7 +77,7 @@
             "image": "assets/lines/gladstone.svg",
             "id": "gladstonetrack",
             "url": "json/gladstonetrack.json",
-            "color": "rgb(163, 213, 174)",
+            "color": "rgb(42, 228, 0)",
             "abbreviation": "M&E"
         },
         "Morris & Essex Line": {
