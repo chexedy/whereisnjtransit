@@ -170,12 +170,28 @@ function updateStation(departures) {
 }
 
 async function updateTrainHistory(infoPanel, id) {
-    const url = `https://whereisnjtransit-api.ayaan7m.workers.dev/history?id=${encodeURIComponent(id)}`
+    const url = `https://whereisnjtransit-api.ayaan7m.workers.dev/history?id=${encodeURIComponent(id)}`;
     const res = await fetch(url);
     const history = await res.json();
 
-    const today = new Date().toISOString().split("T")[0];
-    const filtered = history.filter(stop => stop.dep_time.startsWith(today)); /// FIX THIS LOGIC
+    const now = new Date(); // current UTC
+    const sixHoursLater = new Date(now.getTime() + 6 * 60 * 60 * 1000);
+
+    // Filter next 6 hours and remove duplicates
+    const seenStops = new Set();
+    const filtered = [];
+
+    for (const stop of history) {
+        const stopDate = new Date(stop.dep_time.replace(" ", "T") + "Z");
+
+        if (stopDate < now || stopDate > sixHoursLater) continue;
+
+        const key = `${stop.station_name}-${stopDate.getUTCHours()}-${stopDate.getUTCMinutes()}`;
+        if (!seenStops.has(key)) {
+            seenStops.add(key);
+            filtered.push(stop);
+        }
+    }
 
     departureHistoryCache[id].history = filtered;
     const data = departureHistoryCache[id].history;
@@ -188,14 +204,13 @@ async function updateTrainHistory(infoPanel, id) {
     scheduledCol.querySelectorAll("h4").forEach(h4 => h4.remove());
     statusCol.querySelectorAll("h4").forEach(h4 => h4.remove());
 
-    const now = new Date();
     let trainReachedNext = false;
-    console.log(data);
 
     for (const stop of data) {
         const secLate = departureHistoryCache[id].sec_late || 0;
         const stopTime = new Date(stop.dep_time.replace(" ", "T") + "Z");
-        const scheduledTime = new Date(stop.dep_time.replace(" ", "T") + "Z");;
+        const scheduledTime = new Date(stop.dep_time.replace(" ", "T") + "Z");
+
         stopTime.setTime(stopTime.getTime() + (secLate * 1000));
 
         const stationName = stop.station_name;
@@ -208,25 +223,22 @@ async function updateTrainHistory(infoPanel, id) {
             stationColor = "green";
         }
 
-        const timeDiff = (stopTime - now) / 1000
+        const timeDiff = (stopTime - now) / 1000;
 
         if (timeDiff <= 119 && timeDiff >= 0) {
             statusText = "All Aboard";
             statusColor = "orange";
             trainReachedNext = true;
-        } else if (stopTime.getTime() < now.getTime()) {
+        } else if (stopTime < now) {
             statusText = "Departed";
             statusColor = "red";
         } else if (!trainReachedNext) {
             trainReachedNext = true;
 
             if (secLate > 0) {
-                let delayStr;
-                if (Math.abs(secLate) < 60) {
-                    delayStr = `${secLate}s`;
-                } else {
-                    delayStr = `${Math.floor(secLate / 60)}m`;
-                }
+                let delayStr = Math.abs(secLate) < 60
+                    ? `${secLate}s`
+                    : `${Math.floor(secLate / 60)}m`;
 
                 statusText = `Delayed ${delayStr}`;
                 statusColor = "red";
@@ -249,7 +261,6 @@ async function updateTrainHistory(infoPanel, id) {
         const hours = scheduledTime.getUTCHours();
         const minutes = scheduledTime.getUTCMinutes();
 
-        console.log(hours, minutes);
         schedule.innerHTML = formatTime(hours, minutes);
         status.innerHTML = statusText;
         status.style.color = statusColor;
@@ -259,6 +270,7 @@ async function updateTrainHistory(infoPanel, id) {
         statusCol.appendChild(status);
     }
 }
+
 
 async function updateStationStatus(name) {
     document.getElementById("NoCurrentDepartures").style.display = "none";
