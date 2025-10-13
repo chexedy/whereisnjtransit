@@ -174,10 +174,8 @@ async function updateTrainHistory(infoPanel, id) {
     const res = await fetch(url);
     const history = await res.json();
 
-    const now = new Date(); // current UTC
+    const now = new Date();
     const sixHoursLater = new Date(now.getTime() + 6 * 60 * 60 * 1000);
-
-    // Filter next 6 hours and remove duplicates
     const seenStops = new Set();
     const filtered = [];
 
