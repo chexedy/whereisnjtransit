@@ -147,12 +147,12 @@ async function initMap() {
         style: {
             "version": 8,
             "text-font": ["Ubuntu Regular", "Ubuntu Medium", "Ubuntu Bold", "Ubuntu Light"],
-            "glyphs": "https://pub-6390dca654504cda814dfa4276e5fcac.r2.dev/glyphs/{fontstack}/{range}.pbf",
+            "glyphs": "http://map.whereisnjtransit.com/glyphs/{fontstack}/{range}.pbf",
             "sprite": "https://protomaps.github.io/basemaps-assets/sprites/v4/light",
             "sources": {
                 "protomaps": {
                     "type": "vector",
-                    "url": "pmtiles://https://pub-6390dca654504cda814dfa4276e5fcac.r2.dev/whereisnjtransit.pmtiles",
+                    "url": "pmtiles://http://map.whereisnjtransit.com/whereisnjtransit.pmtiles",
                 }
             },
             "layers": basemaps.layers("protomaps", basemaps.namedFlavor("light"), { lang: "en" })
