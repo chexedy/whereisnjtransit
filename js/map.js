@@ -141,40 +141,40 @@ async function initMap() {
         [-72.79608, 41.75203]
     ];
 
+    const cookies = document.cookie.split('; ').reduce((acc, cookie) => {
+        const [name, value] = cookie.split('=');
+        acc[name] = value;
+        return acc;
+    }, {});
+
+    let map_style = {
+        "version": 8,
+        "text-font": ["Ubuntu Regular", "Ubuntu Medium", "Ubuntu Bold", "Ubuntu Light"],
+        "glyphs": "https://map.whereisnjtransit.com/glyphs/{fontstack}/{range}.pbf",
+        "sprite": "https://protomaps.github.io/basemaps-assets/sprites/v4/light",
+        "sources": {
+            "protomaps": {
+                "type": "vector",
+                "url": "pmtiles://https://map.whereisnjtransit.com/whereisnjtransit.pmtiles",
+            }
+        },
+        "layers": basemaps.layers("protomaps", basemaps.namedFlavor("light"), { lang: "en" })
+    }
+
+    if (cookies.darkTheme === 'true') {
+        document.getElementById('darkToggle').checked = true;
+        map_style.sprite = `https://protomaps.github.io/basemaps-assets/sprites/v4/dark`;
+        map_style.layers = basemaps.layers("protomaps", basemaps.namedFlavor("dark"), { lang: "en" });
+    }
+
     map = new maplibregl.Map({
         container: 'map',
         center: [-74.1, 40.75],
-        style: {
-            "version": 8,
-            "text-font": ["Ubuntu Regular", "Ubuntu Medium", "Ubuntu Bold", "Ubuntu Light"],
-            "glyphs": "http://map.whereisnjtransit.com/glyphs/{fontstack}/{range}.pbf",
-            "sprite": "https://protomaps.github.io/basemaps-assets/sprites/v4/light",
-            "sources": {
-                "protomaps": {
-                    "type": "vector",
-                    "url": "pmtiles://http://map.whereisnjtransit.com/whereisnjtransit.pmtiles",
-                }
-            },
-            "layers": basemaps.layers("protomaps", basemaps.namedFlavor("light"), { lang: "en" })
-        },
+        style: map_style,
         maxBounds: bounds
     });
 
     map.on('load', async () => {
-        const cookies = document.cookie.split('; ').reduce((acc, cookie) => {
-            const [name, value] = cookie.split('=');
-            acc[name] = value;
-            return acc;
-        }, {});
-
-        if (cookies.darkTheme === 'true') {
-            document.getElementById('darkToggle').checked = true;
-            const style = map.getStyle();
-            style.sprite = `https://protomaps.github.io/basemaps-assets/sprites/v4/dark`;
-            style.layers = basemaps.layers("protomaps", basemaps.namedFlavor("dark"), { lang: "en" });
-            map.setStyle(style);
-        }
-
         map.fitBounds(bounds, { padding: 40, animate: false });
         await loadMapLayers(map);
 
