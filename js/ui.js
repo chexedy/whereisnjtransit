@@ -104,17 +104,6 @@ for (const [id, config] of Object.entries(settingsConfig)) {
     el.addEventListener('change', e => config.onChange(e.target.checked));
 }
 
-function setTheme(theme) {
-    const spriteURL = `https://protomaps.github.io/basemaps-assets/sprites/v4/${theme}`;
-    const newLayers = basemaps.layers("protomaps", basemaps.namedFlavor(theme), { lang: "en" });
-
-    const style = map.getStyle();
-    style.sprite = spriteURL;
-    style.layers = newLayers;
-    map.setStyle(style);
-}
-
-
 function station_open() {
     const screen = document.getElementById("stationStatus");
     screen.style.display = "flex";

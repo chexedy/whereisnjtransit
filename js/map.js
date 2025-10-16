@@ -162,9 +162,10 @@ async function initMap() {
     }
 
     if (cookies.darkTheme === 'true') {
-        document.getElementById('darkToggle').checked = true;
+        console.log(document.getElementById('darkToggle').checked);
         map_style.sprite = `https://protomaps.github.io/basemaps-assets/sprites/v4/dark`;
         map_style.layers = basemaps.layers("protomaps", basemaps.namedFlavor("dark"), { lang: "en" });
+        document.querySelector(':root').style.setProperty('--primary-color', 'darkgrey');
     }
 
     map = new maplibregl.Map({
@@ -179,6 +180,7 @@ async function initMap() {
         await loadMapLayers(map);
 
         if (cookies.darkTheme === 'true') {
+            document.getElementById('darkToggle').checked = true;[]
             map.setPaintProperty('stations-layer', 'text-color', 'rgb(255, 255, 255)');
         }
 

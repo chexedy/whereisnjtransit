@@ -428,7 +428,7 @@
     overflow: hidden;
     height: 0;
     transition: height 0.3s ease, padding 0.3s ease;
-    background: #f5f0e2;
+    background: white;
     border-radius: 10px 10px 10px 10px;
 }
 
@@ -593,7 +593,7 @@
     height: 100vh;
     background-color: var(--primary-color);
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-    z-index: 998;
+    z-index: 1080;
     overflow-y: auto;
     display: flex;
     flex-direction: column;

@@ -318,37 +318,6 @@ function getClosestPoint(longitude, latitude, geojson) {
     return closestPoint;
 }
 
-function minutesUntilNext5Min() {
-    const now = new Date();
-    const estNow = new Date(
-        now.toLocaleString("en-US", { timeZone: "America/New_York" })
-    );
-
-    const minutes = estNow.getMinutes();
-    const next = Math.ceil(minutes / 5) * 5;
-
-    if (next === 60) {
-        estNow.setHours(estNow.getHours() + 1);
-        estNow.setMinutes(0, 0, 0);
-    } else {
-        estNow.setMinutes(next, 0, 0);
-    }
-
-    return estNow.getTime() - Date.now();
-}
-
-function scheduleTask() {
-    const delay = minutesUntilNext5Min();
-
-    setTimeout(() => {
-        // addLiveTrains();
-
-        setInterval(() => {
-            // addLiveTrains();
-        }, 5 * 60 * 1000);
-    }, delay);
-}
-
 const searchInput = document.getElementById("stationSearch");
 const searchResults = document.getElementById("searchResults");
 const resultEls = [
