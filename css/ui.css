@@ -534,8 +534,6 @@
 
 .sidebar_opener,
 .location {
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
     line-height: normal;
     display: inline-flex;
@@ -543,7 +541,8 @@
     align-items: center;
     position: fixed;
     width: 7.5vh;
-    height: 7.5vh;
+    height: auto;
+    aspect-ratio: 1 / 1;
     background: var(--primary-color);
     border: none;
     font-size: 2rem;
@@ -557,9 +556,6 @@
 .sidebar_opener {
     top: 1vw;
     left: 1vw;
-    width: 3.5%;
-    height: auto;
-    aspect-ratio: 1 / 1;
 }
 
 .sidebar_opener:hover {
@@ -574,7 +570,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: clamp(0.5rem, 3vw, 2rem);
+    font-size: 80%;
     text-align: center;
     cursor: pointer;
     transition: background 0.2s, transform 0.2s;
@@ -829,10 +825,6 @@
 
     .sidebar {
         width: 80%;
-    }
-
-    .sidebar_button {
-        font-size: 2.5rem;
     }
 
     .sidebar_route_button img {
