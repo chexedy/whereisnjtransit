@@ -288,6 +288,7 @@ async function updateStationStatus(name) {
         const res = await fetch(url);
         const departures = await res.json();
 
+        console.log("Fetched departures:", departures);
         updateStation(departures);
     } catch (error) {
         console.error("Failed to fetch departures:", error);

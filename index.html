@@ -14,7 +14,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js"></script>
 
-    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/ui.css">
 </head>
 
@@ -198,7 +197,7 @@
         <h4>Click on a route to hide it</h4>
 
         <div class="sidebar_search" id="sidebarSearch">
-            <input type="text" id="stationSearch" placeholder="Enter Station Name" autocomplete="off" />
+            <input type="text" id="stationSearch" placeholder="Search for Station" autocomplete="off" />
             <div class="search_results" id="searchResults">
                 <h3 id="ResultOne">Station Name</h3>
                 <h3 id="ResultTwo">Station Name</h3>
@@ -243,6 +242,10 @@
             <button class="sidebar_route_button" id="atlanticcitytrack" onclick="toggleLayerVisibility(this.id)">
                 <img src="assets/lines/atlanticcity.svg" alt="Atlantic City Line Icon">
                 <span>Atlantic City Line</span>
+            </button>
+            <button class="sidebar_route_button" id="princetonshuttle" onclick="toggleLayerVisibility(this.id)">
+                <img src="assets/lines/northeastcorridor.svg" alt="Princeton Shuttle Icon">
+                <span>Princeton Shuttle</span>
             </button>
             <button class="sidebar_route_button" id="meadowlands" onclick="toggleLayerVisibility(this.id)">
                 <img src="assets/lines/meadowlands.svg" alt="Meadowlands Rail Line Icon">

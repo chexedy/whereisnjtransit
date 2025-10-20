@@ -1739,8 +1739,24 @@
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Princeton Junction",
+                    "description": "Princeton",
                     "lines": ""
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -74.658870,
+                        40.342088
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": "Train Station",
+                    "description": "Princeton Junction",
+                    "lines": "",
+                    "sortKey": -99
                 },
                 "geometry": {
                     "type": "Point",
