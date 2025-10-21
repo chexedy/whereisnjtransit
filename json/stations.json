@@ -1740,7 +1740,8 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Princeton",
-                    "lines": ""
+                    "lines": "",
+                    "sortKey": -99
                 },
                 "geometry": {
                     "type": "Point",

@@ -206,6 +206,8 @@ async function initMap() {
                 map.addImage(key, image);
             }
         }
+
+        updateRealtimeTrains();
     });
 
     map.on('error', function (e) {

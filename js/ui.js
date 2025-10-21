@@ -88,7 +88,7 @@ const settingsConfig = {
         type: "toggle",
         default: false,
         onChange: (value) => {
-            const lineLayers = ["meadowlands", "northeastcorridortrack", "northjerseycoasttrack", "pascackvalleytrack", "morristowntrack", "maintrack", "gladstonetrack", "montclairboontontrack", "raritanvalleytrack", "atlanticcitytrack"];
+            const lineLayers = ["meadowlands", "northeastcorridortrack", "northjerseycoasttrack", "pascackvalleytrack", "morristowntrack", "maintrack", "gladstonetrack", "montclairboontontrack", "raritanvalleytrack", "atlanticcitytrack", "princetonshuttle"];
 
             lineLayers.forEach(id => {
                 toggleLayerVisibility(id, !value);
