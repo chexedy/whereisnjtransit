@@ -2,8 +2,6 @@ let twochar = {};
 let line_database = {};
 let stations = {};
 
-const departureHistoryCache = {};
-
 fetch("json/2char.json")
     .then(res => res.json())
     .then(data => {
@@ -60,11 +58,6 @@ function updateStation(departures) {
         departures.forEach(obj => {
             const estimatedDep = new Date(new Date(obj.dep_time).getTime() + obj.sec_late);
             const dwellMs = (obj.dwell || 0) * 1000;
-
-            if (!departureHistoryCache[obj.train_id]) {
-                departureHistoryCache[obj.train_id] = {};
-            }
-            departureHistoryCache[obj.train_id].sec_late = obj.sec_late;
 
             var newDiv = document.getElementById("default").cloneNode(true);
             newDiv.id = obj.train_id;
@@ -145,7 +138,7 @@ function updateStation(departures) {
                 });
 
                 if (!infoPanel.classList.contains("open")) {
-                    await updateTrainHistory(infoPanel, obj.train_id);
+                    await updateTrainHistory(infoPanel, obj.train_id, obj.sec_late);
                 }
 
                 togglePanel(infoPanel, newDiv);
@@ -169,36 +162,28 @@ function updateStation(departures) {
     }
 }
 
-async function updateTrainHistory(infoPanel, id) {
+async function updateTrainHistory(infoPanel, id, sec_late) {
     const now = new Date();
+    const url = `https://whereisnjtransit-api.ayaan7m.workers.dev/history?id=${encodeURIComponent(id)}`;
+    const res = await fetch(url);
+    const history = await res.json();
 
-    if (!departureHistoryCache[id]) {
-        const url = `https://whereisnjtransit-api.ayaan7m.workers.dev/history?id=${encodeURIComponent(id)}`;
-        const res = await fetch(url);
-        const history = await res.json();
+    const sixHoursLater = new Date(now.getTime() + 6 * 60 * 60 * 1000);
+    const seenStops = new Set();
+    const data = [];
 
-        const sixHoursLater = new Date(now.getTime() + 6 * 60 * 60 * 1000);
-        const seenStops = new Set();
-        const filtered = [];
+    for (const stop of history) {
+        console.log(stop);
+        const stopDate = new Date(stop.dep_time.replace(" ", "T") + "Z");
 
-        for (const stop of history) {
-            const stopDate = new Date(stop.dep_time.replace(" ", "T") + "Z");
+        if (stopDate > sixHoursLater) continue;
 
-            if (stopDate < now || stopDate > sixHoursLater) continue;
-
-            const key = `${stop.station_name}-${stopDate.getUTCHours()}-${stopDate.getUTCMinutes()}`;
-            if (!seenStops.has(key)) {
-                seenStops.add(key);
-                filtered.push(stop);
-            }
+        const key = `${stop.station_name}-${stopDate.getUTCHours()}-${stopDate.getUTCMinutes()}`;
+        if (!seenStops.has(key)) {
+            seenStops.add(key);
+            data.push(stop);
         }
-
-        departureHistoryCache[id].history = filtered;
-    } else {
-        console.log("Using cached history for", id);
     }
-
-    const data = departureHistoryCache[id].history;
 
     const stationCol = infoPanel.querySelector(".station_col");
     const scheduledCol = infoPanel.querySelector(".scheduled_col");
@@ -211,7 +196,7 @@ async function updateTrainHistory(infoPanel, id) {
     let trainReachedNext = false;
 
     for (const stop of data) {
-        const secLate = departureHistoryCache[id].sec_late || 0;
+        const secLate = sec_late || 0;
         const stopTime = new Date(stop.dep_time.replace(" ", "T") + "Z");
         const scheduledTime = new Date(stop.dep_time.replace(" ", "T") + "Z");
 
@@ -325,25 +310,30 @@ function getClosestPoint(longitude, latitude, geojson) {
     return closestPoint;
 }
 
-async function getTrainPath(train, maxMinutes = 5) {
+async function getTrainPath(train, maxMinutes = 1.5) {
     const now = new Date();
 
-    if (!departureHistoryCache[train.train_id]) {
-        const res = await fetch(`https://whereisnjtransit-api.ayaan7m.workers.dev/history?id=${train.train_id}`);
-        const data = await res.json();
-
-        departureHistoryCache[train.train_id] = {};
-        departureHistoryCache[train.train_id].history = data;
-        departureHistoryCache[train.train_id].sec_late = train.sec_late;
-    }
-
-    const history = departureHistoryCache[train.train_id].history;
+    const res = await fetch(`https://whereisnjtransit-api.ayaan7m.workers.dev/history?id=${train.train_id}`);
+    const history = await res.json();
 
     const steps = [];
     let elapsedTime = 0;
 
     let nextIndex = history.findIndex(h => h.station_name === train.next_stop);
     if (nextIndex <= 0) return [];
+
+    if (train.current_stop === history[nextIndex - 1]?.station_name) {
+        let dwellSec = train.dwell && train.dwell !== 0 ? train.dwell : 45;
+        if (train.sec_late < 0) {
+            dwellSec += Math.abs(train.sec_late);
+        }
+        steps.push({
+            type: "dwell",
+            duration: dwellSec,
+            nextStation: null,
+        });
+        elapsedTime += dwellSec;
+    }
 
     for (let i = nextIndex - 1; i < history.length - 1; i++) {
         const prevStop = history[i];
@@ -361,14 +351,16 @@ async function getTrainPath(train, maxMinutes = 5) {
 
         steps.push({
             type: "travel",
+            departureTime: prevTime.toISOString(),
             expectedArrival: new Date(prevTime.getTime() + travelSec * 1000).toISOString(),
-            nextStation: stationMap[nextStop.station_name]
+            nextStation: stationMap[nextStop.station_name],
+            prevStation: stationMap[prevStop.station_name]
         });
 
         elapsedTime += travelSec;
 
         if (elapsedTime < maxMinutes * 60) {
-            let dwellSec = 45;
+            let dwellSec = train.dwell && train.dwell !== 0 ? train.dwell : 45;
             if (train.sec_late < 0) {
                 dwellSec += Math.abs(train.sec_late);
             }
@@ -384,11 +376,22 @@ async function getTrainPath(train, maxMinutes = 5) {
     return steps;
 }
 
-function animateTrain(train) {
+function animateTrain(train, path) {
 
 }
 
+const currentTrainLayers = [];
+
 async function updateRealtimeTrains() {
+    currentTrainLayers.forEach(trainId => {
+        if (map.getLayer(trainId)) {
+            map.removeLayer(trainId);
+        }
+        if (map.getSource(trainId)) {
+            map.removeSource(trainId);
+        }
+    });
+
     const url = "https://whereisnjtransit-api.ayaan7m.workers.dev/realtime";
     const res = await fetch(url);
     const data = await res.json();
@@ -397,6 +400,8 @@ async function updateRealtimeTrains() {
         console.log("Train:", train);
         const path = await getTrainPath(train, 5);
         console.log("Train Path", path);
+
+        currentTrainLayers.push(train.train_id)
     }
 }
 
