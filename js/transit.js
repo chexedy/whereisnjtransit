@@ -290,26 +290,6 @@ async function updateStationStatus(name) {
     station_open();
 }
 
-function getClosestPoint(longitude, latitude, geojson) {
-    const point = turf.point([longitude, latitude]);
-    let closestPoint = null;
-    let minDistance = Infinity;
-
-    console.log(geojson.features);
-    for (const feature of geojson.features) {
-        const snapped = turf.nearestPointOnLine(feature, point);
-        const dist = turf.distance(point, snapped);
-        if (dist < minDistance) {
-            minDistance = dist;
-            closestPoint = snapped;
-        }
-    }
-
-    console.log("Closest point:", closestPoint.geometry.coordinates);
-    console.log("Distance (km):", minDistance);
-    return closestPoint;
-}
-
 async function getTrainPath(train, maxMinutes = 1.5) {
     const now = new Date();
 
@@ -367,7 +347,8 @@ async function getTrainPath(train, maxMinutes = 1.5) {
             steps.push({
                 type: "dwell",
                 duration: dwellSec,
-                nextStation: null
+                nextStation: null,
+                prevStation: stationMap[nextStop.station_name]
             });
             elapsedTime += dwellSec;
         }
@@ -376,7 +357,7 @@ async function getTrainPath(train, maxMinutes = 1.5) {
     return steps;
 }
 
-function animateTrain(train, path) {
+function animateTrain(train, path, line) {
 
 }
 
@@ -401,7 +382,16 @@ async function updateRealtimeTrains() {
         const path = await getTrainPath(train, 5);
         console.log("Train Path", path);
 
-        currentTrainLayers.push(train.train_id)
+        currentTrainLayers.push(train.train_id);
+        const res2 = await fetch(line_database[train.line].url);
+        const line = await res2.json();
+
+        // map.addSource(train.train_id, {
+        //     "type": "Point",
+        //     "coordinates": path[0].prevStation
+        // });
+
+        // animateTrain(train, path, line[line_database[train.line].id]);
     }
 }
 
