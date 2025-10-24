@@ -25,6 +25,15 @@ fetch("json/stations.json")
         }
     });
 
+stationMap["Secaucus"] = [-74.075821, 40.761188];
+stationMap["Newark Broad"] = [-74.171943, 40.747621];
+stationMap["Convent Stn"] = [-74.443435, 40.779038];
+stationMap["Jersey Ave."] = [-74.467363, 40.476912];
+stationMap["Princeton Jct."] = [-74.623753, 40.316316];
+stationMap["Ramsey Rt 17"] = [-74.145485, 41.07513];
+stationMap["Salisbury Mls"] = [-74.101871, 41.437073];
+stationMap["Anderson St."] = [-74.043781, 40.894458];
+
 function togglePanel(panel, newDiv) {
     if (panel.classList.contains("open")) {
         panel.style.height = panel.scrollHeight + "px";
@@ -337,6 +346,8 @@ async function getTrainPath(train, maxMinutes = 1.5) {
             prevStation: stationMap[prevStop.station_name]
         });
 
+        console.log(prevStop.station_name + " " + train.train_id);
+
         elapsedTime += travelSec;
 
         if (elapsedTime < maxMinutes * 60) {
@@ -382,14 +393,11 @@ async function updateRealtimeTrains() {
         const path = await getTrainPath(train, 5);
         console.log("Train Path", path);
 
+        if (path == []) continue;
+
         currentTrainLayers.push(train.train_id);
         const res2 = await fetch(line_database[train.line].url);
         const line = await res2.json();
-
-        // map.addSource(train.train_id, {
-        //     "type": "Point",
-        //     "coordinates": path[0].prevStation
-        // });
 
         // animateTrain(train, path, line[line_database[train.line].id]);
     }
