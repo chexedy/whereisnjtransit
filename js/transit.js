@@ -33,6 +33,16 @@ stationMap["Princeton Jct."] = [-74.623753, 40.316316];
 stationMap["Ramsey Rt 17"] = [-74.145485, 41.07513];
 stationMap["Salisbury Mls"] = [-74.101871, 41.437073];
 stationMap["Anderson St."] = [-74.043781, 40.894458];
+stationMap["Matawan"] = [-74.223702, 40.420161];
+stationMap["Mountain Ave"] = [-74.205306, 40.848715]
+stationMap["Montclair Hts."] = [-74.2025, 40.857536];
+stationMap["Radburn-Fl"] = [-74.121617, 40.939914];
+stationMap["New Bridge Ldg"] = [-74.035044, 40.910856];
+stationMap["MSU"] = [-74.197439, 40.869782];
+stationMap["Berkeley Hts"] = [-74.442649, 40.682345];
+stationMap["Watsessing Ave"] = [-74.198451, 40.782743];
+stationMap["Highland Ave."] = [-74.243744, 40.766863];
+stationMap["Broadway-Fl"] = [-74.115236, 40.922505];
 
 function togglePanel(panel, newDiv) {
     if (panel.classList.contains("open")) {
@@ -104,7 +114,7 @@ function updateStation(departures) {
                 inner2.querySelector("h1").innerHTML = formatTime(hours, mins);
 
                 const diffMs = estimated - new Date();
-                if (diffMs <= 60 * 1000 && diffMs > 0) {
+                if (diffMs >= -30 * 1000 && diffMs <= 120 * 1000) {
                     inner2.querySelector("h3").style.color = "orange";
                     inner2.querySelector("h3").innerHTML = "All Aboard";
                 } else if (obj.sec_late < 0) {
@@ -125,7 +135,7 @@ function updateStation(departures) {
                 const diffMs = estimated - new Date();
                 inner2.querySelector("h1").innerHTML = formatTime(hours, minutes);
 
-                if (diffMs <= 60 * 1000 && diffMs > 0) {
+                if (diffMs >= -30 * 1000 && diffMs <= 120 * 1000) {
                     inner2.querySelector("h3").style.color = "orange";
                     inner2.querySelector("h3").innerHTML = "All Aboard";
                 } else {
@@ -223,7 +233,7 @@ async function updateTrainHistory(infoPanel, id, sec_late) {
 
         const timeDiff = (stopTime - now) / 1000;
 
-        if (timeDiff <= 119 && timeDiff >= 0) {
+        if (timeDiff <= 119 && timeDiff >= -30) {
             statusText = "All Aboard";
             statusColor = "orange";
             trainReachedNext = true;
@@ -268,7 +278,6 @@ async function updateTrainHistory(infoPanel, id, sec_late) {
         statusCol.appendChild(status);
     }
 }
-
 
 async function updateStationStatus(name) {
     document.getElementById("NoCurrentDepartures").style.display = "none";
@@ -328,8 +337,8 @@ async function getTrainPath(train, maxMinutes = 1.5) {
         const prevStop = history[i];
         const nextStop = history[i + 1];
 
-        const prevTime = new Date(prevStop.dep_time);
-        const nextTime = new Date(nextStop.dep_time);
+        const prevTime = new Date(prevStop.dep_time + "Z");
+        const nextTime = new Date(nextStop.dep_time + "Z");
         let travelSec = (nextTime - prevTime) / 1000;
 
         if (i === nextIndex - 1) {
@@ -368,21 +377,136 @@ async function getTrainPath(train, maxMinutes = 1.5) {
     return steps;
 }
 
-function animateTrain(train, path, line) {
+const currentTrainLayers = [];
 
+function mergeMultiLineStrings(featureCollection) {
+    const lines = featureCollection.features.flatMap(f => turf.flatten(f).features);
+    const mergedCoords = lines.flatMap(line => line.geometry.coordinates);
+
+    return turf.lineString(mergedCoords);
 }
 
-const currentTrainLayers = [];
+function travelBetweenPoints(train, path, featureCollection) {
+    const departureTime = new Date(path[0].departureTime);
+    const expectedArrival = new Date(path[0].expectedArrival);
+    const totalTime = expectedArrival - departureTime;
+
+    const line = mergeMultiLineStrings(featureCollection);
+
+    const start = turf.nearestPointOnLine(line, turf.point(path[0].prevStation), { units: 'kilometers' });
+    const end = turf.nearestPointOnLine(line, turf.point(path[0].nextStation), { units: 'kilometers' });
+
+    let startDist = start.properties.location;
+    let endDist = end.properties.location;
+    if (startDist > endDist) [startDist, endDist] = [endDist, startDist];
+
+    const sourceId = `${train.train_id}-source`;
+    const layerId = `${train.train_id}-layer`;
+
+    if (!map.getSource(sourceId)) {
+        map.addSource(sourceId, { type: 'geojson', data: start });
+        map.addLayer({
+            id: layerId,
+            source: sourceId,
+            type: 'symbol',
+            layout: {
+                'icon-image': train.line,
+                'icon-size': 1,
+                'icon-overlap': 'always',
+            },
+        });
+    }
+
+    function updatePosition() {
+        const now = new Date();
+        let elapsed = now - departureTime;
+        let percent = elapsed / totalTime;
+        percent = Math.max(0, Math.min(1, percent));
+
+        const targetDist = startDist + percent * (endDist - startDist);
+        const currentPoint = turf.along(line, targetDist, { units: 'kilometers' });
+
+        const src = map.getSource(sourceId);
+        if (src) src.setData(currentPoint);
+
+        if (percent < 1) {
+            requestAnimationFrame(updatePosition);
+        } else {
+            console.log(`Train ${train.train_id} reached ${path[0].nextStation}`);
+        }
+    }
+
+    updatePosition();
+}
+
+
+function dwellAtStation(train, path) {
+    const point = {
+        'type': 'FeatureCollection',
+        'features': [
+            {
+                'type': 'Feature',
+                'properties': {},
+                'geometry': {
+                    'type': 'Point',
+                    'coordinates': [path[0].prevStation[0], path[0].prevStation[1]]
+                }
+            }
+        ]
+    };
+
+    map.addSource(train.train_id + "-source", {
+        'type': 'geojson',
+        'data': point
+    });
+
+    map.addLayer({
+        'id': train.train_id + "-layer",
+        'source': train.train_id + "-source",
+        'type': 'symbol',
+        'layout': {
+            'icon-image': train.line,
+            'icon-size': 1,
+            'icon-overlap': 'always'
+        },
+        'minzoom': 10
+    })
+
+    map.moveLayer(train.train_id + "-layer", 'stations-layer');
+    console.log("Train", train.train_id, " is dwelling on line ", train.line);
+}
+
+function animateTrain(train, path, line) {
+    if (path.length === 0) return;
+
+    if (path.length === 1) {
+        if (path[0].type === "dwell") {
+            dwellAtStation(train, path);
+        } else {
+            travelBetweenPoints(train, path, line);
+        }
+    } else {
+        for (const step of path) {
+            if (step.type === "dwell") {
+                dwellAtStation(train, [step]);
+            } else if (step.type === "travel") {
+                travelBetweenPoints(train, [step], line);
+            }
+        }
+    }
+}
 
 async function updateRealtimeTrains() {
     currentTrainLayers.forEach(trainId => {
-        if (map.getLayer(trainId)) {
+        if (map.getLayer(trainId + "-layer")) {
             map.removeLayer(trainId);
         }
-        if (map.getSource(trainId)) {
+        if (map.getSource(trainId + "-source")) {
             map.removeSource(trainId);
         }
     });
+
+    currentTrainLayers.length = 0;
 
     const url = "https://whereisnjtransit-api.ayaan7m.workers.dev/realtime";
     const res = await fetch(url);
@@ -393,13 +517,11 @@ async function updateRealtimeTrains() {
         const path = await getTrainPath(train, 5);
         console.log("Train Path", path);
 
-        if (path == []) continue;
-
         currentTrainLayers.push(train.train_id);
         const res2 = await fetch(line_database[train.line].url);
         const line = await res2.json();
 
-        // animateTrain(train, path, line[line_database[train.line].id]);
+        animateTrain(train, path, line[line_database[train.line].id]);
     }
 }
 

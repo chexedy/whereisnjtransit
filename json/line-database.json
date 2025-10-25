@@ -27,7 +27,7 @@
         "Bergen County Line": {
             "name": "Bergen County Line",
             "image": "assets/lines/bergen.svg",
-            "id": "bergentrack",
+            "id": "maintrack",
             "url": "json/mainbergentrack.json",
             "color": "rgb(177, 189, 182)",
             "abbreviation": "BERG"

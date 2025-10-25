@@ -94,6 +94,15 @@ const settingsConfig = {
                 toggleLayerVisibility(id, !value);
             });
         }
+    },
+    trainsToggle: {
+        type: "toggle",
+        default: false,
+        onChange: (value) => {
+            currentTrainLayers.forEach(trainId => {
+                map.setLayoutProperty(trainId + "-layer", 'visibility', value ? 'none' : 'visible');
+            })
+        }
     }
 };
 

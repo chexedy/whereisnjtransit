@@ -202,6 +202,7 @@ async function initMap() {
                 img.onerror = (e) => reject(e);
             });
 
+            console.log("Adding image for line:", key, image);
             if (!map.hasImage(key)) {
                 map.addImage(key, image);
             }

@@ -870,6 +870,8 @@ body {
 
     .sidebar_opener .location {
         width: 3.25vh;
+        height: auto;
+        aspect-ratio: 1 /1;
     }
 
     .sidebar {
