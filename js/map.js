@@ -209,6 +209,7 @@ async function initMap() {
         }
 
         updateRealtimeTrains();
+        setInterval(updateRealtimeTrains, 60000);
     });
 
     map.on('error', function (e) {

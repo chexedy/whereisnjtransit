@@ -44,6 +44,15 @@ stationMap["Watsessing Ave"] = [-74.198451, 40.782743];
 stationMap["Highland Ave."] = [-74.243744, 40.766863];
 stationMap["Broadway-Fl"] = [-74.115236, 40.922505];
 stationMap["Mountain Stn"] = [-74.253024, 40.755365];
+stationMap["Watchung Ave."] = [-74.206934, 40.829514];
+stationMap["Upp. Montclair"] = [-74.209368, 40.842004];
+
+const cookies = document.cookie.split('; ').reduce((acc, cookie) => {
+    const [name, value] = cookie.split('=');
+    acc[name] = value;
+    return acc;
+}, {});
+console.log(cookies);
 
 function togglePanel(panel, newDiv) {
     if (panel.classList.contains("open")) {
@@ -234,7 +243,7 @@ async function updateTrainHistory(infoPanel, id, sec_late) {
 
         const timeDiff = (stopTime - now) / 1000;
 
-        if (timeDiff <= 119 && timeDiff >= -30) {
+        if (timeDiff <= 119 && timeDiff >= -60) {
             statusText = "All Aboard";
             statusColor = "orange";
             trainReachedNext = true;
@@ -380,11 +389,23 @@ async function getTrainPath(train, maxMinutes = 1.5) {
 
 const currentTrainLayers = [];
 
-function mergeMultiLineStrings(featureCollection) {
-    const lines = featureCollection.features.flatMap(f => turf.flatten(f).features);
-    const mergedCoords = lines.flatMap(line => line.geometry.coordinates);
+function findBestLine(featureCollection, prevStation, nextStation) {
+    let bestLine = null;
+    let minTotalDist = Infinity;
 
-    return turf.lineString(mergedCoords);
+    for (const f of featureCollection.features) {
+        const flattened = turf.flatten(f).features;
+        for (const line of flattened) {
+            const start = turf.nearestPointOnLine(line, turf.point(prevStation));
+            const end = turf.nearestPointOnLine(line, turf.point(nextStation));
+            const totalDist = turf.distance(turf.point(prevStation), start) + turf.distance(turf.point(nextStation), end);
+            if (totalDist < minTotalDist) {
+                minTotalDist = totalDist;
+                bestLine = line;
+            }
+        }
+    }
+    return bestLine;
 }
 
 function travelBetweenPoints(train, path, featureCollection) {
@@ -392,10 +413,16 @@ function travelBetweenPoints(train, path, featureCollection) {
     const expectedArrival = new Date(path[0].expectedArrival);
     const totalTime = expectedArrival - departureTime;
 
-    let line = mergeMultiLineStrings(featureCollection);
+    let line = findBestLine(featureCollection, path[0].prevStation, path[0].nextStation);
+    if (!line) {
+        console.warn(`No suitable line found for ${train.train_id}`);
+        return;
+    }
 
     let start = turf.nearestPointOnLine(line, turf.point(path[0].prevStation), { units: 'kilometers' });
     let end = turf.nearestPointOnLine(line, turf.point(path[0].nextStation), { units: 'kilometers' });
+
+    console.log("Start point:", start, "End point:", end);
 
     let startDist = start.properties.location;
     let endDist = end.properties.location;
@@ -407,6 +434,8 @@ function travelBetweenPoints(train, path, featureCollection) {
         startDist = start.properties.location;
         endDist = end.properties.location;
     }
+
+    console.log(`Start distance: ${startDist} km, End distance: ${endDist} km for train ${train.train_id}`);
 
     const sourceId = `${train.train_id}-source`;
     const layerId = `${train.train_id}-layer`;
@@ -426,15 +455,19 @@ function travelBetweenPoints(train, path, featureCollection) {
                 'text-anchor': 'top',
                 'text-size': 15,
                 'icon-allow-overlap': true,
-                'text-allow-overlap': false,
+                'text-allow-overlap': true,
                 'text-font': ['Ubuntu Medium'],
             }
         });
 
+        if (cookies.darkTheme === 'true') {
+            map.setPaintProperty(layerId, 'text-color', 'rgb(255,255,255)');
+        }
+
         map.on('click', layerId, (e) => {
             new maplibregl.Popup()
                 .setLngLat(e.features[0].geometry.coordinates)
-                .setHTML(`<strong>Train ${train.train_id}</strong><br>Start: ${startDist} End: ${endDist} <br>Destination: ${train.next_stop}`)
+                .setHTML(`<strong>Train ${train.train_id}</strong><br>Destination: ${train.next_stop}`)
                 .addTo(map);
         });
 
@@ -493,16 +526,30 @@ function dwellAtStation(train, path) {
         });
 
         map.addLayer({
-            'id': train.train_id + "-layer",
-            'source': train.train_id + "-source",
-            'type': 'symbol',
-            'layout': {
+            id: layerId,
+            source: sourceId,
+            type: 'symbol',
+            layout: {
                 'icon-image': train.line,
-                'icon-size': 1,
-                'icon-overlap': 'always'
-            },
-            'minzoom': 10
-        })
+                'icon-size': 0.9,
+                'icon-overlap': 'always',
+                'text-field': line_database[train.line].abbreviation + ' ' + train.train_id,
+                'text-offset': [0, 1.5],
+                'text-anchor': 'top',
+                'text-size': 15,
+                'icon-allow-overlap': true,
+                'text-allow-overlap': true,
+                'text-font': ['Ubuntu Medium'],
+            }
+        });
+
+        map.on('mouseenter', layerId, () => {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+        map.on('mouseleave', layerId, () => {
+            map.getCanvas().style.cursor = '';
+        });
     }
 
     map.moveLayer(train.train_id + "-layer", 'stations-layer');
@@ -533,16 +580,24 @@ function animateTrain(train, path, line) {
 }
 
 async function updateRealtimeTrains() {
+    console.log("Updating realtime trains...");
+
     currentTrainLayers.forEach(trainId => {
+        console.log(map.getLayer(trainId + "-layer"));
         if (map.getLayer(trainId + "-layer")) {
-            map.removeLayer(trainId);
+            map.removeLayer(trainId + "-layer");
         }
         if (map.getSource(trainId + "-source")) {
-            map.removeSource(trainId);
+            map.removeSource(trainId + "-source");
         }
     });
 
     currentTrainLayers.length = 0;
+    Array.from(document.getElementById("currentTrainsList").children).forEach(child => {
+        if (child.id !== "default_train" && child.id !== "NoActiveTrains") {
+            child.remove();
+        }
+    });
 
     const url = "https://whereisnjtransit-api.ayaan7m.workers.dev/realtime";
     const res = await fetch(url);
@@ -559,7 +614,32 @@ async function updateRealtimeTrains() {
         const res2 = await fetch(line_database[train.line].url);
         const line = await res2.json();
 
+        var newDiv = document.getElementById("default_train").cloneNode(true);
+        newDiv.id = train.train_id;
+        newDiv.style.display = "flex";
+        newDiv.querySelector("h3").innerHTML = `Train ${train.train_id} on ${train.line} to ${train.next_stop}`;
+        document.getElementById("currentTrainsList").appendChild(newDiv);
+
         animateTrain(train, path, line[line_database[train.line].id]);
+
+        newDiv.addEventListener("click", () => {
+            const src = map.getSource(train.train_id + "-source");
+            if (!src) return;
+            const data = src._data || src._geojson || src._options?.data;
+            if (data && data.geometry && data.geometry.coordinates) {
+                map.flyTo({ center: data.geometry.coordinates, zoom: 18, essential: true });
+
+                current_trains_button();
+            }
+        });
+
+    }
+
+    console.log(currentTrainLayers);
+    if (currentTrainLayers.length > 0) {
+        document.getElementById("NoActiveTrains").style.display = "none";
+    } else {
+        document.getElementById("NoActiveTrains").style.display = "flex";
     }
 }
 

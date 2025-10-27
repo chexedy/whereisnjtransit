@@ -105,10 +105,11 @@
                     <h3>How accurate is the data?</h3>
                 </div>
                 <div class="about_panel">
-                    <p>The status of the current trains operating is updated every minute, while track information and
-                        announcements are updated per hour. Data is sourced from the NJ Transit API, which unfortunately
-                        lags behind around 30-90 seconds when dealing with realtime data. This unfortunately conflicts
-                        if trains are behind schedule as the delay is updated each minute.</p>
+                    <p>The status of the current trains operating is updated every minute. Data is sourced from the NJ
+                        Transit API, which unfortunately
+                        lags behind around 30-90 seconds when dealing with realtime data. This unfortunately causes
+                        conflicts
+                        if trains are behind schedule.</p>
                 </div>
             </div>
             <div class="about_element">
@@ -132,6 +133,22 @@
         </div>
 
         <button class="about_button" onclick="about_button()" id="aboutButton">
+            <span>Close</span>
+        </button>
+    </div>
+
+    <div class="current_trains" id="currentTrainsScreen">
+        <h1>Current Active Trains</h1>
+
+        <div class="current_trains_list" id="currentTrainsList">
+            <h3 id="NoActiveTrains" style="display: none;" id="activeTrainHeader">No active trains at the moment.</h3>
+
+            <div class="current_train" style="display: none;" id="default_train">
+                <h3>Train 1234</h1>
+            </div>
+        </div>
+
+        <button class="current_trains_button" onclick="current_trains_button()">
             <span>Close</span>
         </button>
     </div>
@@ -256,7 +273,7 @@
         <br>
         <div class="sidebar_about">
             <button onclick="about_button()">About</button>
-            <button onclick="">Current Trains</button>
+            <button onclick="current_trains_button()">Current Trains</button>
             <button onclick="settings_button()">Settings</button>
         </div>
         <br>

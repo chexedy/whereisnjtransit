@@ -14,6 +14,7 @@ function welcome_button() {
 function about_button() {
     station_close();
     document.getElementById("settingsScreen").style.display = "none";
+    document.getElementById("currentTrainsScreen").style.display = "flex";
 
     const screen = document.getElementById("aboutScreen");
     if (screen.style.display === "flex") {
@@ -30,6 +31,7 @@ function about_button() {
 function settings_button() {
     station_close();
     document.getElementById("aboutScreen").style.display = "none";
+    document.getElementById("currentTrainsScreen").style.display = "none";
 
     const screen = document.getElementById("settingsScreen");
     if (screen.style.display === "flex") {
@@ -37,6 +39,22 @@ function settings_button() {
     } else {
         screen.style.display = "flex";
 
+        if (window.innerWidth <= 1135) {
+            sidebar_open();
+        }
+    }
+}
+
+function current_trains_button() {
+    station_close();
+    document.getElementById("aboutScreen").style.display = "none";
+    document.getElementById("settingsScreen").style.display = "none";
+
+    const screen = document.getElementById("currentTrainsScreen");
+    if (screen.style.display === "flex") {
+        screen.style.display = "none";
+    } else {
+        screen.style.display = "flex";
         if (window.innerWidth <= 1135) {
             sidebar_open();
         }

@@ -162,7 +162,8 @@ body {
 }
 
 .about_button,
-.settings button {
+.settings button,
+.current_trains_button {
     position: absolute;
     bottom: 12px;
     left: 50%;
@@ -184,7 +185,8 @@ body {
 }
 
 .about_button:hover,
-.settings button:hover {
+.settings button:hover,
+.current_trains_button:hover {
     transform: translateX(-50%) scale(1.1);
 }
 
@@ -832,6 +834,75 @@ body {
     transition: background 0.2s, transform 0.2s;
 }
 
+.current_trains {
+    display: none;
+    width: 40%;
+    height: 80%;
+    background: var(--primary-color);
+    z-index: 1060;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 25px;
+    padding: 1rem 0 3rem 0;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.current_trains h1 {
+    font-family: "Ubuntu";
+    text-align: center;
+    margin: 0.5rem 0 1rem 0;
+    color: var(--text-color);
+}
+
+.current_trains_list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    width: 90%;
+    font-family: "Ubuntu", sans-serif;
+    font-size: 1.2em;
+    overflow-y: auto;
+    padding: 0.5rem;
+}
+
+.current_trains_list h3 {
+    text-align: center;
+    color: var(--text-color);
+}
+
+.current_train {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    cursor: pointer;
+    width: 80%;
+    height: auto;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    transition: background 0.2s, transform 0.2s;
+    background: white;
+    border: 2px solid black;
+}
+
+.current_train h3 {
+    font-size: auto;
+}
+
+.current_train:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+}
+
 @media (max-width: 1135px) {
     .welcome {
         width: 80%;
@@ -856,6 +927,11 @@ body {
     }
 
     .station_status .station_routes {
+        font-size: 0.9em;
+    }
+
+    .current_trains {
+        width: 80%;
         font-size: 0.9em;
     }
 
