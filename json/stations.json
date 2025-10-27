@@ -729,7 +729,7 @@
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Glen Rock Boro Hall",
+                    "description": "Glen Rock Boro",
                     "lines": ""
                 },
                 "geometry": {
@@ -2269,7 +2269,7 @@
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "Wood Ridge",
+                    "description": "Wood-Ridge",
                     "lines": ""
                 },
                 "geometry": {

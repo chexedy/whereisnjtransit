@@ -43,6 +43,7 @@ stationMap["Berkeley Hts"] = [-74.442649, 40.682345];
 stationMap["Watsessing Ave"] = [-74.198451, 40.782743];
 stationMap["Highland Ave."] = [-74.243744, 40.766863];
 stationMap["Broadway-Fl"] = [-74.115236, 40.922505];
+stationMap["Mountain Stn"] = [-74.253024, 40.755365];
 
 function togglePanel(panel, newDiv) {
     if (panel.classList.contains("open")) {
@@ -391,14 +392,21 @@ function travelBetweenPoints(train, path, featureCollection) {
     const expectedArrival = new Date(path[0].expectedArrival);
     const totalTime = expectedArrival - departureTime;
 
-    const line = mergeMultiLineStrings(featureCollection);
+    let line = mergeMultiLineStrings(featureCollection);
 
-    const start = turf.nearestPointOnLine(line, turf.point(path[0].prevStation), { units: 'kilometers' });
-    const end = turf.nearestPointOnLine(line, turf.point(path[0].nextStation), { units: 'kilometers' });
+    let start = turf.nearestPointOnLine(line, turf.point(path[0].prevStation), { units: 'kilometers' });
+    let end = turf.nearestPointOnLine(line, turf.point(path[0].nextStation), { units: 'kilometers' });
 
     let startDist = start.properties.location;
     let endDist = end.properties.location;
-    if (startDist > endDist) [startDist, endDist] = [endDist, startDist];
+
+    if (startDist > endDist) {
+        line = turf.lineString([...line.geometry.coordinates].reverse());
+        start = turf.nearestPointOnLine(line, turf.point(path[0].prevStation), { units: 'kilometers' });
+        end = turf.nearestPointOnLine(line, turf.point(path[0].nextStation), { units: 'kilometers' });
+        startDist = start.properties.location;
+        endDist = end.properties.location;
+    }
 
     const sourceId = `${train.train_id}-source`;
     const layerId = `${train.train_id}-layer`;
@@ -411,10 +419,34 @@ function travelBetweenPoints(train, path, featureCollection) {
             type: 'symbol',
             layout: {
                 'icon-image': train.line,
-                'icon-size': 1,
+                'icon-size': 0.9,
                 'icon-overlap': 'always',
-            },
+                'text-field': line_database[train.line].abbreviation + ' ' + train.train_id,
+                'text-offset': [0, 1.5],
+                'text-anchor': 'top',
+                'text-size': 15,
+                'icon-allow-overlap': true,
+                'text-allow-overlap': false,
+                'text-font': ['Ubuntu Medium'],
+            }
         });
+
+        map.on('click', layerId, (e) => {
+            new maplibregl.Popup()
+                .setLngLat(e.features[0].geometry.coordinates)
+                .setHTML(`<strong>Train ${train.train_id}</strong><br>Start: ${startDist} End: ${endDist} <br>Destination: ${train.next_stop}`)
+                .addTo(map);
+        });
+
+        map.on('mouseenter', layerId, () => {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+        map.on('mouseleave', layerId, () => {
+            map.getCanvas().style.cursor = '';
+        });
+
+        map.moveLayer(train.train_id + "-layer", 'stations-layer');
     }
 
     function updatePosition() {
@@ -439,7 +471,6 @@ function travelBetweenPoints(train, path, featureCollection) {
     updatePosition();
 }
 
-
 function dwellAtStation(train, path) {
     const point = {
         'type': 'FeatureCollection',
@@ -455,25 +486,30 @@ function dwellAtStation(train, path) {
         ]
     };
 
-    map.addSource(train.train_id + "-source", {
-        'type': 'geojson',
-        'data': point
-    });
+    if (!map.getSource(train.train_id + "-source")) {
+        map.addSource(train.train_id + "-source", {
+            'type': 'geojson',
+            'data': point
+        });
 
-    map.addLayer({
-        'id': train.train_id + "-layer",
-        'source': train.train_id + "-source",
-        'type': 'symbol',
-        'layout': {
-            'icon-image': train.line,
-            'icon-size': 1,
-            'icon-overlap': 'always'
-        },
-        'minzoom': 10
-    })
+        map.addLayer({
+            'id': train.train_id + "-layer",
+            'source': train.train_id + "-source",
+            'type': 'symbol',
+            'layout': {
+                'icon-image': train.line,
+                'icon-size': 1,
+                'icon-overlap': 'always'
+            },
+            'minzoom': 10
+        })
+    }
 
     map.moveLayer(train.train_id + "-layer", 'stations-layer');
-    console.log("Train", train.train_id, " is dwelling on line ", train.line);
+    console.log("Train", train.train_id, " is dwelling for " + path[0].duration + " seconds");
+    setTimeout(() => {
+        console.log("Train", train.train_id, " finished dwelling");
+    }, path[0].duration * 1000);
 }
 
 function animateTrain(train, path, line) {
@@ -516,6 +552,8 @@ async function updateRealtimeTrains() {
         console.log("Train:", train);
         const path = await getTrainPath(train, 5);
         console.log("Train Path", path);
+
+        if (!train.line) continue;
 
         currentTrainLayers.push(train.train_id);
         const res2 = await fetch(line_database[train.line].url);

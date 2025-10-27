@@ -100,8 +100,10 @@ const settingsConfig = {
         default: false,
         onChange: (value) => {
             currentTrainLayers.forEach(trainId => {
-                map.setLayoutProperty(trainId + "-layer", 'visibility', value ? 'none' : 'visible');
-            })
+                if (map.getLayer(trainId + "-layer")) {
+                    map.setLayoutProperty(trainId + "-layer", 'visibility', value ? 'none' : 'visible');
+                }
+            });
         }
     }
 };
