@@ -79,7 +79,8 @@ async function addStations() {
             },
             paint: {
                 'text-color': 'rgb(0, 0, 0)',
-            }
+            },
+            filter: ['all']
         });
 
         map.on('click', 'stations-layer', (e) => {
@@ -116,6 +117,17 @@ function toggleLayerVisibility(layer) {
             map.setLayoutProperty(id, "visibility", "visible");
             btn.style.background = "white";
         });
+
+        if (map.getLayer("stations-layer")) {
+            map.setFilter("stations-layer", ["all"]);
+        }
+
+        currentTrainLayers.forEach(obj => {
+            const layerId = obj.train_id;
+            if (map.getLayer(layerId)) {
+                map.setLayoutProperty(layerId, "visibility", "visible");
+            }
+        })
         return;
     }
 
@@ -126,6 +138,7 @@ function toggleLayerVisibility(layer) {
 
             map.setLayoutProperty(id, "visibility", id === layer ? "visible" : "none");
             const button = document.getElementById(id);
+
             if (id === layer) {
                 enabledLayers.add(id);
                 button.style.background = "lightgrey";
@@ -134,20 +147,41 @@ function toggleLayerVisibility(layer) {
                 button.style.background = "white";
             }
         });
-        return;
+    } else {
+        if (isEnabled) {
+            enabledLayers.delete(layer);
+            map.setLayoutProperty(layer, "visibility", "none");
+            route.style.background = "white";
+        } else {
+            enabledLayers.add(layer);
+            map.setLayoutProperty(layer, "visibility", "visible");
+            route.style.background = "lightgrey";
+        }
     }
 
-    if (isEnabled) {
-        enabledLayers.delete(layer);
-        map.setLayoutProperty(layer, "visibility", "none");
-        route.style.background = "white";
-    } else {
-        enabledLayers.add(layer);
-        map.setLayoutProperty(layer, "visibility", "visible");
-        route.style.background = "lightgrey";
+    if (map.getLayer("stations-layer")) {
+        if (enabledLayers.size === 0) {
+            map.setFilter("stations-layer", ["all"]);
+        } else {
+            const filter = ["any", ...Array.from(enabledLayers).map(id => ["in", id, ["get", "lines"]])];
+            map.setFilter("stations-layer", filter);
+        }
+    }
+
+    if (typeof currentTrainLayers !== "undefined") {
+        currentTrainLayers.forEach(obj => {
+            const layerId = `${obj.train_id}-layer`;
+            if (!map.getLayer(layerId)) return;
+            console.log(layerId);
+
+            if (enabledLayers.size === 0 || enabledLayers.has(obj.line)) {
+                map.setLayoutProperty(layerId, "visibility", "visible");
+            } else {
+                map.setLayoutProperty(layerId, "visibility", "none");
+            }
+        })
     }
 }
-
 
 async function loadMapLayers() {
     await addTrackLines();
@@ -228,14 +262,16 @@ async function initMap() {
             }
         }
 
-        updateRealtimeTrains();
+        await updateRealtimeTrains();
+        const button = document.getElementById("welcomeButton");
+        button.disabled = false;
+        button.querySelector("span").textContent = "Close";
         setInterval(updateRealtimeTrains, 60000);
     });
 
     map.on('error', function (e) {
         console.log('Map Error:', e.error);
     });
-
 
     document.getElementById("locationButton").addEventListener("click", () => {
         navigator.geolocation.getCurrentPosition(

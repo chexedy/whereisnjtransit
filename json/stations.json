@@ -7,7 +7,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Philadelphia",
-                    "lines": "",
+                    "lines": [
+                        "atlanticcitytrack"
+                    ],
                     "sortKey": -100
                 },
                 "geometry": {
@@ -23,7 +25,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Absecon",
-                    "lines": ""
+                    "lines": [
+                        "atlanticcitytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -38,7 +42,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Allendale",
-                    "lines": ""
+                    "lines": [
+                        "bergencountytrack",
+                        "maintrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -53,7 +60,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Allenhurst",
-                    "lines": ""
+                    "lines": [
+                        "northjerseycoasttrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -68,7 +77,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Anderson Street",
-                    "lines": ""
+                    "lines": [
+                        "pascackvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -83,7 +94,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Annandale",
-                    "lines": ""
+                    "lines": [
+                        "raritanvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -98,7 +111,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Asbury Park",
-                    "lines": ""
+                    "lines": [
+                        "northjerseycoasttrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -113,7 +128,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Atco",
-                    "lines": ""
+                    "lines": [
+                        "atlanticcitytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -128,7 +145,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Atlantic City",
-                    "lines": "",
+                    "lines": [
+                        "atlanticcitytrack"
+                    ],
                     "sortKey": -100
                 },
                 "geometry": {
@@ -144,13 +163,15 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Avenel",
-                    "lines": ""
+                    "lines": [
+                        "northjerseycoasttrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
                     "coordinates": [
-                        -74.277530,
-                        40.577620
+                        -74.27753,
+                        40.57762
                     ]
                 }
             },
@@ -159,7 +180,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Basking Ridge",
-                    "lines": ""
+                    "lines": [
+                        "gladstonetrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -174,7 +197,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Bay Head",
-                    "lines": ""
+                    "lines": [
+                        "northjerseycoasttrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -189,7 +214,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Bay Street",
-                    "lines": ""
+                    "lines": [
+                        "montclairboontontrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -204,13 +231,15 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Belmar",
-                    "lines": ""
+                    "lines": [
+                        "northjerseycoasttrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
                     "coordinates": [
                         -74.027301,
-                        40.180590
+                        40.18059
                     ]
                 }
             },
@@ -219,7 +248,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Berkeley Heights",
-                    "lines": ""
+                    "lines": [
+                        "gladstonetrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -234,7 +265,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Bernardsville",
-                    "lines": ""
+                    "lines": [
+                        "gladstonetrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -249,7 +282,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Bloomfield",
-                    "lines": ""
+                    "lines": [
+                        "montclairboontontrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -264,7 +299,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Boonton",
-                    "lines": ""
+                    "lines": [
+                        "montclairboontontrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -279,7 +316,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Bound Brook",
-                    "lines": ""
+                    "lines": [
+                        "raritanvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -294,7 +333,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Bradley Beach",
-                    "lines": ""
+                    "lines": [
+                        "northjerseycoasttrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -309,7 +350,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Brick Church",
-                    "lines": ""
+                    "lines": [
+                        "morristowntrack",
+                        "gladstonetrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -324,7 +368,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Bridgewater",
-                    "lines": ""
+                    "lines": [
+                        "raritanvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -339,7 +385,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Broadway Fair Lawn",
-                    "lines": ""
+                    "lines": [
+                        "bergencountytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -354,7 +402,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Campbell Hall",
-                    "lines": ""
+                    "lines": [
+                        "maintrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -369,7 +419,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Chatham",
-                    "lines": ""
+                    "lines": [
+                        "morristowntrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -384,7 +436,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Cherry Hill",
-                    "lines": ""
+                    "lines": [
+                        "atlanticcitytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -399,7 +453,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Clifton",
-                    "lines": ""
+                    "lines": [
+                        "maintrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -414,7 +470,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Convent",
-                    "lines": ""
+                    "lines": [
+                        "morristowntrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -429,7 +487,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Roselle Park",
-                    "lines": ""
+                    "lines": [
+                        "raritanvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -444,7 +504,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Cranford",
-                    "lines": ""
+                    "lines": [
+                        "raritanvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -459,7 +521,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Delawanna",
-                    "lines": ""
+                    "lines": [
+                        "maintrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -474,7 +538,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Denville",
-                    "lines": ""
+                    "lines": [
+                        "morristowntrack",
+                        "montclairboontontrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -489,7 +556,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Dover",
-                    "lines": ""
+                    "lines": [
+                        "montclairboontontrack",
+                        "morristowntrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -504,7 +574,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Dunellen",
-                    "lines": ""
+                    "lines": [
+                        "raritanvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -519,7 +591,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "East Orange",
-                    "lines": ""
+                    "lines": [
+                        "morristowntrack",
+                        "gladstonetrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -534,7 +609,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Edison",
-                    "lines": ""
+                    "lines": [
+                        "northeastcorridortrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -549,7 +626,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Egg Harbor",
-                    "lines": ""
+                    "lines": [
+                        "atlanticcitytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -564,12 +643,14 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Elberon",
-                    "lines": ""
+                    "lines": [
+                        "northjerseycoasttrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
                     "coordinates": [
-                        -73.997620,
+                        -73.99762,
                         40.265292
                     ]
                 }
@@ -579,7 +660,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Elizabeth",
-                    "lines": ""
+                    "lines": [
+                        "northeastcorridortrack",
+                        "northjerseycoasttrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -594,7 +678,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Emerson",
-                    "lines": ""
+                    "lines": [
+                        "pascackvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -609,7 +695,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Essex Street",
-                    "lines": ""
+                    "lines": [
+                        "pascackvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -624,7 +712,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Fanwood",
-                    "lines": ""
+                    "lines": [
+                        "raritanvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -639,7 +729,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Far Hills",
-                    "lines": ""
+                    "lines": [
+                        "gladstonetrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -654,7 +746,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Garfield",
-                    "lines": ""
+                    "lines": [
+                        "bergencountytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -669,7 +763,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Garwood",
-                    "lines": ""
+                    "lines": [
+                        "raritanvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -684,7 +780,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Gillette",
-                    "lines": ""
+                    "lines": [
+                        "gladstonetrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -699,7 +797,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Gladstone",
-                    "lines": "",
+                    "lines": [
+                        "gladstonetrack"
+                    ],
                     "sortKey": -99
                 },
                 "geometry": {
@@ -715,7 +815,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Glen Ridge",
-                    "lines": ""
+                    "lines": [
+                        "montclairboontontrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -730,7 +832,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Glen Rock Boro",
-                    "lines": ""
+                    "lines": [
+                        "bergencountytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -745,7 +849,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Glen Rock Main",
-                    "lines": ""
+                    "lines": [
+                        "maintrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -760,7 +866,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Hackettstown",
-                    "lines": ""
+                    "lines": [
+                        "morristowntrack",
+                        "montclairboontontrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -775,12 +884,14 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Hammonton",
-                    "lines": ""
+                    "lines": [
+                        "atlanticcitytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
                     "coordinates": [
-                        -74.799460,
+                        -74.79946,
                         39.631673
                     ]
                 }
@@ -790,7 +901,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Harriman",
-                    "lines": ""
+                    "lines": [
+                        "maintrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -805,7 +918,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Hawthorne",
-                    "lines": ""
+                    "lines": [
+                        "maintrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -820,7 +935,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Hazlet",
-                    "lines": ""
+                    "lines": [
+                        "northjerseycoasttrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -835,7 +952,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "High Bridge",
-                    "lines": "",
+                    "lines": [
+                        "raritanvalleytrack"
+                    ],
                     "sortKey": -99
                 },
                 "geometry": {
@@ -851,7 +970,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Highland Avenue",
-                    "lines": ""
+                    "lines": [
+                        "morristowntrack",
+                        "gladstonetrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -866,7 +988,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Hillsdale",
-                    "lines": ""
+                    "lines": [
+                        "pascackvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -881,7 +1005,16 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Hoboken",
-                    "lines": "",
+                    "lines": [
+                        "bergencountytrack",
+                        "gladstonetrack",
+                        "maintrack",
+                        "meadowlandstrack",
+                        "montclairboontontrack",
+                        "morristowntrack",
+                        "pascackvalleytrack",
+                        "raritanvalleytrack"
+                    ],
                     "sortKey": -99
                 },
                 "geometry": {
@@ -897,7 +1030,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Hohokus",
-                    "lines": ""
+                    "lines": [
+                        "maintrack",
+                        "bergencountytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -912,7 +1048,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Lake Hopatcong",
-                    "lines": ""
+                    "lines": [
+                        "morristowntrack",
+                        "montclairboontontrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -927,7 +1066,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Lebanon",
-                    "lines": ""
+                    "lines": [
+                        "raritanvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -942,7 +1083,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Lincoln Park",
-                    "lines": ""
+                    "lines": [
+                        "montclairboontontrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -957,7 +1100,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Linden",
-                    "lines": ""
+                    "lines": [
+                        "northeastcorridortrack",
+                        "northjerseycoasttrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -972,7 +1118,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Lindenwold",
-                    "lines": ""
+                    "lines": [
+                        "atlanticcitytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -987,7 +1135,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Little Falls",
-                    "lines": ""
+                    "lines": [
+                        "montclairboontontrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1002,7 +1152,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Little Silver",
-                    "lines": ""
+                    "lines": [
+                        "northjerseycoasttrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1017,7 +1169,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Long Branch",
-                    "lines": ""
+                    "lines": [
+                        "northjerseycoasttrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1032,7 +1186,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Lyndhurst",
-                    "lines": ""
+                    "lines": [
+                        "maintrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1047,7 +1203,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Lyons",
-                    "lines": ""
+                    "lines": [
+                        "gladstonetrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1062,7 +1220,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Madison",
-                    "lines": ""
+                    "lines": [
+                        "morristowntrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1077,7 +1237,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Mahwah",
-                    "lines": ""
+                    "lines": [
+                        "maintrack",
+                        "bergencountytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1092,7 +1255,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Manasquan",
-                    "lines": ""
+                    "lines": [
+                        "northjerseycoasttrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1107,7 +1272,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Maplewood",
-                    "lines": ""
+                    "lines": [
+                        "morristowntrack",
+                        "gladstonetrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1122,13 +1290,15 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Metropark",
-                    "lines": ""
+                    "lines": [
+                        "northeastcorridortrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
                     "coordinates": [
                         -74.329394,
-                        40.568640
+                        40.56864
                     ]
                 }
             },
@@ -1137,7 +1307,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Metuchen",
-                    "lines": ""
+                    "lines": [
+                        "northeastcorridortrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1152,13 +1324,15 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Middletown NJ",
-                    "lines": ""
+                    "lines": [
+                        "northjerseycoasttrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
                     "coordinates": [
                         -74.116131,
-                        40.389780
+                        40.38978
                     ]
                 }
             },
@@ -1167,7 +1341,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Middletown NY",
-                    "lines": ""
+                    "lines": [
+                        "portjervistrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1182,7 +1358,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Millburn",
-                    "lines": ""
+                    "lines": [
+                        "morristowntrack",
+                        "gladstonetrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1197,7 +1376,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Millington",
-                    "lines": ""
+                    "lines": [
+                        "gladstonetrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1212,7 +1393,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Montclair Heights",
-                    "lines": ""
+                    "lines": [
+                        "montclairboontontrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1227,7 +1410,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Montvale",
-                    "lines": ""
+                    "lines": [
+                        "pascackvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1242,7 +1427,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Morris Plains",
-                    "lines": ""
+                    "lines": [
+                        "morristowntrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1257,7 +1444,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Morristown",
-                    "lines": ""
+                    "lines": [
+                        "morristowntrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1272,7 +1461,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Mount Olive",
-                    "lines": ""
+                    "lines": [
+                        "morristowntrack",
+                        "montclairboontontrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1287,7 +1479,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Mount Tabor",
-                    "lines": ""
+                    "lines": [
+                        "morristowntrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1302,7 +1496,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Mountain Avenue",
-                    "lines": ""
+                    "lines": [
+                        "montclairboontontrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1317,7 +1513,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Mountain Lakes",
-                    "lines": ""
+                    "lines": [
+                        "montclairboontontrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1332,7 +1530,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Mountain Station",
-                    "lines": ""
+                    "lines": [
+                        "morristowntrack",
+                        "gladstonetrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1347,7 +1548,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Mountain View",
-                    "lines": ""
+                    "lines": [
+                        "montclairboontontrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1362,7 +1565,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Murray Hill",
-                    "lines": ""
+                    "lines": [
+                        "gladstonetrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1377,7 +1582,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Nanuet",
-                    "lines": ""
+                    "lines": [
+                        "pascackvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1392,7 +1599,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Netcong",
-                    "lines": ""
+                    "lines": [
+                        "morristowntrack",
+                        "montclairboontontrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1407,7 +1617,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Netherwood",
-                    "lines": ""
+                    "lines": [
+                        "raritanvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1422,7 +1634,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "New Brunswick",
-                    "lines": "",
+                    "lines": [
+                        "northeastcorridortrack"
+                    ],
                     "sortKey": -100
                 },
                 "geometry": {
@@ -1438,7 +1652,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "New Providence",
-                    "lines": ""
+                    "lines": [
+                        "gladstonetrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1453,7 +1669,15 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "New York",
-                    "lines": "",
+                    "lines": [
+                        "northeastcorridortrack",
+                        "northjerseycoasttrack",
+                        "montclairboontontrack",
+                        "morristowntrack",
+                        "gladstonetrack",
+                        "raritanvalleytrack",
+                        "portjervistrack"
+                    ],
                     "sortKey": -100
                 },
                 "geometry": {
@@ -1469,7 +1693,11 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Newark Broad Street",
-                    "lines": ""
+                    "lines": [
+                        "montclairboontontrack",
+                        "morristowntrack",
+                        "gladstonetrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1484,7 +1712,11 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Newark Penn",
-                    "lines": "",
+                    "lines": [
+                        "northeastcorridortrack",
+                        "northjerseycoasttrack",
+                        "raritanvalleytrack"
+                    ],
                     "sortKey": -99
                 },
                 "geometry": {
@@ -1500,7 +1732,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "North Branch",
-                    "lines": ""
+                    "lines": [
+                        "raritanvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1514,8 +1748,11 @@
                 "type": "Feature",
                 "properties": {
                     "title": "Train Station",
-                    "description": "North Elizab.",
-                    "lines": ""
+                    "description": "North Elizabeth",
+                    "lines": [
+                        "northeastcorridortrack",
+                        "northjerseycoasttrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1530,7 +1767,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "New Bridge Landing",
-                    "lines": ""
+                    "lines": [
+                        "pascackvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1545,7 +1784,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Oradell",
-                    "lines": ""
+                    "lines": [
+                        "pascackvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1560,7 +1801,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Orange",
-                    "lines": ""
+                    "lines": [
+                        "morristowntrack",
+                        "gladstonetrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1575,7 +1819,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Otisville",
-                    "lines": ""
+                    "lines": [
+                        "portjervistrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1590,7 +1836,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Park Ridge",
-                    "lines": ""
+                    "lines": [
+                        "pascackvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1605,7 +1853,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Passaic",
-                    "lines": ""
+                    "lines": [
+                        "maintrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1620,7 +1870,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Paterson",
-                    "lines": ""
+                    "lines": [
+                        "maintrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1635,7 +1887,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Peapack",
-                    "lines": ""
+                    "lines": [
+                        "gladstonetrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1650,7 +1904,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Pearl River",
-                    "lines": ""
+                    "lines": [
+                        "pascackvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1665,7 +1921,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Perth Amboy",
-                    "lines": ""
+                    "lines": [
+                        "northjerseycoasttrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1680,7 +1938,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Plainfield",
-                    "lines": ""
+                    "lines": [
+                        "raritanvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1695,7 +1955,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Plauderville",
-                    "lines": ""
+                    "lines": [
+                        "bergencountytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1710,7 +1972,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Point Pleasant",
-                    "lines": ""
+                    "lines": [
+                        "northjerseycoasttrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1725,7 +1989,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Port Jervis",
-                    "lines": ""
+                    "lines": [
+                        "portjervistrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1740,13 +2006,15 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Princeton",
-                    "lines": "",
+                    "lines": [
+                        "princetonbranchtrack"
+                    ],
                     "sortKey": -99
                 },
                 "geometry": {
                     "type": "Point",
                     "coordinates": [
-                        -74.658870,
+                        -74.65887,
                         40.342088
                     ]
                 }
@@ -1756,7 +2024,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Princeton Junction",
-                    "lines": "",
+                    "lines": [
+                        "northeastcorridortrack",
+                        "princetonbranchtrack"
+                    ],
                     "sortKey": -99
                 },
                 "geometry": {
@@ -1772,7 +2043,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Radburn Fair Lawn",
-                    "lines": ""
+                    "lines": [
+                        "bergencountytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1787,7 +2060,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Rahway",
-                    "lines": ""
+                    "lines": [
+                        "northeastcorridortrack",
+                        "northjerseycoasttrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1802,7 +2078,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Ramsey",
-                    "lines": ""
+                    "lines": [
+                        "maintrack",
+                        "bergencountytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1817,7 +2096,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Raritan",
-                    "lines": ""
+                    "lines": [
+                        "raritanvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1832,7 +2113,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Red Bank",
-                    "lines": ""
+                    "lines": [
+                        "northjerseycoasttrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1847,7 +2130,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Ridgewood",
-                    "lines": ""
+                    "lines": [
+                        "maintrack",
+                        "bergencountytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1862,7 +2148,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "River Edge",
-                    "lines": ""
+                    "lines": [
+                        "pascackvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1877,7 +2165,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Rutherford",
-                    "lines": ""
+                    "lines": [
+                        "bergencountytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1892,7 +2182,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Salisbury Mills-Cornwall",
-                    "lines": ""
+                    "lines": [
+                        "portjervistrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1907,7 +2199,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Short Hills",
-                    "lines": ""
+                    "lines": [
+                        "morristowntrack",
+                        "gladstonetrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1922,7 +2217,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Sloatsburg",
-                    "lines": ""
+                    "lines": [
+                        "portjervistrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1937,7 +2234,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Somerville",
-                    "lines": ""
+                    "lines": [
+                        "raritanvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1952,7 +2251,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "South Amboy",
-                    "lines": ""
+                    "lines": [
+                        "northjerseycoasttrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1967,7 +2268,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "South Orange",
-                    "lines": ""
+                    "lines": [
+                        "morristowntrack",
+                        "gladstonetrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1982,7 +2286,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Spring Lake",
-                    "lines": ""
+                    "lines": [
+                        "northjerseycoasttrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -1997,8 +2303,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Spring Valley",
-                    "lines": "",
-                    "sortKey": -99
+                    "lines": [
+                        "pascackvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2013,12 +2320,14 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Stirling",
-                    "lines": ""
+                    "lines": [
+                        "gladstonetrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
                     "coordinates": [
-                        -74.493723,
+                        74.493723,
                         40.674579
                     ]
                 }
@@ -2028,7 +2337,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Suffern",
-                    "lines": ""
+                    "lines": [
+                        "maintrack",
+                        "bergencountytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2043,8 +2355,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Summit",
-                    "lines": "",
-                    "sortKey": -100
+                    "lines": [
+                        "morristowntrack",
+                        "gladstonetrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2059,7 +2373,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Teterboro",
-                    "lines": ""
+                    "lines": [
+                        "pascackvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2074,7 +2390,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Towaco",
-                    "lines": ""
+                    "lines": [
+                        "montclairboontontrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2089,7 +2407,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Trenton",
-                    "lines": "",
+                    "lines": [
+                        "northeastcorridortrack"
+                    ],
                     "sortKey": -100
                 },
                 "geometry": {
@@ -2105,7 +2425,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Tuxedo",
-                    "lines": ""
+                    "lines": [
+                        "portjervistrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2120,7 +2442,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Upper Montclair",
-                    "lines": ""
+                    "lines": [
+                        "montclairboontontrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2135,7 +2459,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Waldwick",
-                    "lines": ""
+                    "lines": [
+                        "maintrack",
+                        "bergencountytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2150,7 +2477,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Walnut Street",
-                    "lines": ""
+                    "lines": [
+                        "montclairboontontrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2165,7 +2494,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Watchung Avenue",
-                    "lines": ""
+                    "lines": [
+                        "montclairboontontrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2180,7 +2511,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Watsessing Avenue",
-                    "lines": ""
+                    "lines": [
+                        "montclairboontontrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2195,7 +2528,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Westfield",
-                    "lines": ""
+                    "lines": [
+                        "raritanvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2210,7 +2545,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Westwood",
-                    "lines": ""
+                    "lines": [
+                        "pascackvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2225,7 +2562,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "White House",
-                    "lines": ""
+                    "lines": [
+                        "raritanvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2240,7 +2579,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Woodbridge",
-                    "lines": ""
+                    "lines": [
+                        "northjerseycoasttrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2255,7 +2596,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Woodcliff Lake",
-                    "lines": ""
+                    "lines": [
+                        "pascackvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2270,7 +2613,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Wood-Ridge",
-                    "lines": ""
+                    "lines": [
+                        "pascackvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2285,7 +2630,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Monmouth Park",
-                    "lines": ""
+                    "lines": [
+                        "northjerseycoasttrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2300,7 +2647,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Hamilton",
-                    "lines": ""
+                    "lines": [
+                        "northeastcorridortrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2315,7 +2664,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Jersey Avenue",
-                    "lines": ""
+                    "lines": [
+                        "northeastcorridortrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2330,7 +2681,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Aberdeen-Matawan",
-                    "lines": ""
+                    "lines": [
+                        "northjerseycoasttrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2345,7 +2698,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Newark Airport",
-                    "lines": ""
+                    "lines": [
+                        "northeastcorridortrack",
+                        "northjerseycoasttrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2360,8 +2716,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Montclair State University",
-                    "lines": "",
-                    "sortKey": -100
+                    "lines": [
+                        "montclairboontontrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2376,8 +2733,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Union",
-                    "lines": "",
-                    "sortKey": -99
+                    "lines": [
+                        "raritanvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2392,7 +2750,12 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Secaucus Lower Level",
-                    "lines": ""
+                    "lines": [
+                        "bergencountytrack",
+                        "maintrack",
+                        "meadowlandstrack",
+                        "pascackvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2407,8 +2770,14 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Secaucus Upper Level",
-                    "lines": "",
-                    "sortKey": 0
+                    "lines": [
+                        "northeastcorridortrack",
+                        "northjerseycoasttrack",
+                        "montclairboontontrack",
+                        "morristowntrack",
+                        "gladstonetrack",
+                        "raritanvalleytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2423,7 +2792,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Ramsey Route 17",
-                    "lines": ""
+                    "lines": [
+                        "maintrack",
+                        "bergencountytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2438,7 +2810,10 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Mount Arlington",
-                    "lines": ""
+                    "lines": [
+                        "morristowntrack",
+                        "montclairboontontrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2453,7 +2828,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Wayne Route 23",
-                    "lines": ""
+                    "lines": [
+                        "montclairboontontrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2468,7 +2845,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Meadowlands",
-                    "lines": "",
+                    "lines": [
+                        "meadowlandstrack"
+                    ],
                     "sortKey": -99
                 },
                 "geometry": {
@@ -2484,7 +2863,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Pennsauken",
-                    "lines": ""
+                    "lines": [
+                        "atlanticcitytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",
@@ -2499,7 +2880,9 @@
                 "properties": {
                     "title": "Train Station",
                     "description": "Wesmont",
-                    "lines": ""
+                    "lines": [
+                        "bergencountytrack"
+                    ]
                 },
                 "geometry": {
                     "type": "Point",

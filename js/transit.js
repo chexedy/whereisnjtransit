@@ -47,13 +47,13 @@ stationMap["Mountain Stn"] = [-74.253024, 40.755365];
 stationMap["Watchung Ave."] = [-74.206934, 40.829514];
 stationMap["Upp. Montclair"] = [-74.209368, 40.842004];
 stationMap["Mt. Arlington"] = [-74.632731, 40.89659];
+stationMap["North Elizab."] = [-74.206165, 40.680265];
 
 const cookies = document.cookie.split('; ').reduce((acc, cookie) => {
     const [name, value] = cookie.split('=');
     acc[name] = value;
     return acc;
 }, {});
-console.log(cookies);
 
 function togglePanel(panel, newDiv) {
     if (panel.classList.contains("open")) {
@@ -590,8 +590,8 @@ function animateTrain(train, path, line) {
 async function updateRealtimeTrains() {
     console.log("Updating realtime trains...");
 
-    currentTrainLayers.forEach(trainId => {
-        console.log(map.getLayer(trainId + "-layer"));
+    currentTrainLayers.forEach(obj => {
+        const trainId = obj.train_id;
         if (map.getLayer(trainId + "-layer")) {
             map.removeLayer(trainId + "-layer");
         }
@@ -618,7 +618,7 @@ async function updateRealtimeTrains() {
 
         if (!train.line) continue;
 
-        currentTrainLayers.push(train.train_id);
+        currentTrainLayers.push({ train_id: train.train_id, line: line_database[train.line].id });
         const res2 = await fetch(line_database[train.line].url);
         const line = await res2.json();
 
