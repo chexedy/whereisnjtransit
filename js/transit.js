@@ -46,6 +46,7 @@ stationMap["Broadway-Fl"] = [-74.115236, 40.922505];
 stationMap["Mountain Stn"] = [-74.253024, 40.755365];
 stationMap["Watchung Ave."] = [-74.206934, 40.829514];
 stationMap["Upp. Montclair"] = [-74.209368, 40.842004];
+stationMap["Mt. Arlington"] = [-74.632731, 40.89659];
 
 const cookies = document.cookie.split('; ').reduce((acc, cookie) => {
     const [name, value] = cookie.split('=');
@@ -617,7 +618,8 @@ async function updateRealtimeTrains() {
         var newDiv = document.getElementById("default_train").cloneNode(true);
         newDiv.id = train.train_id;
         newDiv.style.display = "flex";
-        newDiv.querySelector("h3").innerHTML = `Train ${train.train_id} on ${train.line} to ${train.next_stop}`;
+        newDiv.querySelector("img").src = line_database[train.line].image;
+        newDiv.querySelector("h3").innerHTML = `${line_database[train.line].abbreviation} ${train.train_id} to ${train.next_stop}`;
         document.getElementById("currentTrainsList").appendChild(newDiv);
 
         animateTrain(train, path, line[line_database[train.line].id]);

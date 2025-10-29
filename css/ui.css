@@ -881,7 +881,7 @@ body {
 
 .current_train {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: stretch;
     gap: 0.5rem;
     cursor: pointer;
@@ -896,6 +896,7 @@ body {
 
 .current_train h3 {
     font-size: auto;
+    font-size: 1.2em;
 }
 
 .current_train:hover {
