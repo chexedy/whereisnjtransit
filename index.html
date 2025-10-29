@@ -141,7 +141,13 @@
         <h1>Current Active Trains</h1>
 
         <div class="current_trains_list" id="currentTrainsList">
-            <h3 id="NoActiveTrains" style="display: none;" id="activeTrainHeader">No active trains at the moment.</h3>
+            <div class="sidebar_search" style="display: none;" id="currentTrainSearch">
+                <input type="text" id="trainSearch" placeholder="Search by Train ID" autocomplete="off" />
+            </div>
+
+            <h3 id="NoActiveTrains" style="display: none;" id="activeTrainHeader">No active trains found.</h3>
+
+            <br>
 
             <div class="current_train" style="display: none;" id="default_train">
                 <img src="assets/lines/northeastcorridor.svg" alt="Rail Line Icon" class="current_train_image">
@@ -189,13 +195,6 @@
                 </label>
             </div>
             <div class="setting-item">
-                <span class="setting-name">Hide All Tracks</span>
-                <label class="switch">
-                    <input type="checkbox" id="tracksToggle">
-                    <span class="slider"></span>
-                </label>
-            </div>
-            <div class="setting-item">
                 <span class="setting-name">Hide All Trains</span>
                 <label class="switch">
                     <input type="checkbox" id="trainsToggle">
@@ -213,7 +212,7 @@
 
     <div class="sidebar" style="display: none;" id="mainSidebar">
         <h1>Rail Routes</h1>
-        <h4>Click on a route to hide it</h4>
+        <h4>Select a route to display it</h4>
 
         <div class="sidebar_search" id="sidebarSearch">
             <input type="text" id="stationSearch" placeholder="Search for Station" autocomplete="off" />
@@ -269,6 +268,10 @@
             <button class="sidebar_route_button" id="meadowlands" onclick="toggleLayerVisibility(this.id)">
                 <img src="assets/lines/meadowlands.svg" alt="Meadowlands Rail Line Icon">
                 <span>Meadowlands Rail Line</span>
+            </button>
+            <button class="sidebar_route_button" id="showall" onclick="toggleLayerVisibility('all')">
+                <img src="assets/service/station.svg" alt="Show All Icon">
+                <span>Show All</span>
             </button>
         </div>
         <br>

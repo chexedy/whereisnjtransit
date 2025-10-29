@@ -468,7 +468,7 @@ function travelBetweenPoints(train, path, featureCollection) {
         map.on('click', layerId, (e) => {
             new maplibregl.Popup()
                 .setLngLat(e.features[0].geometry.coordinates)
-                .setHTML(`<strong>Train ${train.train_id}</strong><br>Destination: ${train.next_stop}`)
+                .setHTML(`<strong>Train ${train.train_id}</strong><br>Next Stop: ${train.next_stop}`)
                 .addTo(map);
         });
 
@@ -544,6 +544,13 @@ function dwellAtStation(train, path) {
             }
         });
 
+        map.on('click', layerId, (e) => {
+            new maplibregl.Popup()
+                .setLngLat(e.features[0].geometry.coordinates)
+                .setHTML(`<strong>Train ${train.train_id}</strong><br>Dwelling`)
+                .addTo(map);
+        });
+
         map.on('mouseenter', layerId, () => {
             map.getCanvas().style.cursor = 'pointer';
         });
@@ -595,7 +602,7 @@ async function updateRealtimeTrains() {
 
     currentTrainLayers.length = 0;
     Array.from(document.getElementById("currentTrainsList").children).forEach(child => {
-        if (child.id !== "default_train" && child.id !== "NoActiveTrains") {
+        if (child.id !== "default_train" && child.id !== "NoActiveTrains" && child.id !== "currentTrainSearch") {
             child.remove();
         }
     });
@@ -634,14 +641,15 @@ async function updateRealtimeTrains() {
                 current_trains_button();
             }
         });
-
     }
 
     console.log(currentTrainLayers);
     if (currentTrainLayers.length > 0) {
         document.getElementById("NoActiveTrains").style.display = "none";
+        document.getElementById("currentTrainSearch").style.display = "flex";
     } else {
         document.getElementById("NoActiveTrains").style.display = "flex";
+        document.getElementById("currentTrainSearch").style.display = "none";
     }
 }
 
@@ -690,5 +698,31 @@ searchInput.addEventListener("input", () => {
         searchResults.classList.add("open");
     } else {
         searchResults.classList.remove("open");
+    }
+});
+
+const trainSearchInput = document.getElementById("trainSearch");
+const currentTrainsList = document.getElementById("currentTrainsList");
+
+trainSearchInput.addEventListener("input", () => {
+    const query = trainSearchInput.value.toLowerCase().trim();
+    const trainDivs = Array.from(currentTrainsList.getElementsByClassName("current_train"));
+
+    let anyVisible = false;
+
+    trainDivs.forEach(div => {
+        const trainIdText = div.id;
+
+        if (trainIdText.toLowerCase().includes(query)) {
+            div.style.display = "flex";
+            anyVisible = true;
+        } else {
+            div.style.display = "none";
+        }
+    });
+
+    const noTrainsEl = document.getElementById("NoActiveTrains");
+    if (noTrainsEl) {
+        noTrainsEl.style.display = anyVisible ? "none" : "block";
     }
 });

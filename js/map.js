@@ -100,34 +100,54 @@ async function addStations() {
     }
 }
 
-const disabledLayers = new Set();
-function toggleLayerVisibility(layer, boolean) {
+const enabledLayers = new Set();
+
+function toggleLayerVisibility(layer) {
     const route = document.getElementById(layer);
+    const isEnabled = enabledLayers.has(layer);
 
-    if (boolean != null) {
-        if (disabledLayers.has(layer) && boolean) {
-            disabledLayers.delete(layer);
-            map.setLayoutProperty(layer, "visibility", "visible")
-            route.style.background = "white";
-        } else if (!boolean) {
-            disabledLayers.add(layer);
+    if (layer === "all") {
+        enabledLayers.clear();
 
-            map.setLayoutProperty(layer, "visibility", "none")
-            route.style.background = "lightgrey";
-        }
+        document.querySelectorAll(".sidebar_route_button").forEach(btn => {
+            const id = btn.id;
+            if (id == 'showall') return;
+
+            map.setLayoutProperty(id, "visibility", "visible");
+            btn.style.background = "white";
+        });
+        return;
+    }
+
+    if (enabledLayers.size === 0 && !isEnabled) {
+        document.querySelectorAll(".sidebar_route_button").forEach(btn => {
+            const id = btn.id;
+            if (id == 'showall') return;
+
+            map.setLayoutProperty(id, "visibility", id === layer ? "visible" : "none");
+            const button = document.getElementById(id);
+            if (id === layer) {
+                enabledLayers.add(id);
+                button.style.background = "lightgrey";
+            } else {
+                enabledLayers.delete(id);
+                button.style.background = "white";
+            }
+        });
+        return;
+    }
+
+    if (isEnabled) {
+        enabledLayers.delete(layer);
+        map.setLayoutProperty(layer, "visibility", "none");
+        route.style.background = "white";
     } else {
-        if (disabledLayers.has(layer)) {
-            disabledLayers.delete(layer);
-            map.setLayoutProperty(layer, "visibility", "visible")
-            route.style.background = "white";
-        } else {
-            disabledLayers.add(layer);
-
-            map.setLayoutProperty(layer, "visibility", "none")
-            route.style.background = "lightgrey";
-        }
+        enabledLayers.add(layer);
+        map.setLayoutProperty(layer, "visibility", "visible");
+        route.style.background = "lightgrey";
     }
 }
+
 
 async function loadMapLayers() {
     await addTrackLines();
