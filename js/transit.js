@@ -388,8 +388,6 @@ async function getTrainPath(train, maxMinutes = 1.5) {
     return steps;
 }
 
-const currentTrainLayers = [];
-
 function findBestLine(featureCollection, prevStation, nextStation) {
     let bestLine = null;
     let minTotalDist = Infinity;
@@ -414,79 +412,57 @@ function travelBetweenPoints(train, path, featureCollection) {
     const expectedArrival = new Date(path[0].expectedArrival);
     const totalTime = expectedArrival - departureTime;
 
-    let line = findBestLine(featureCollection, path[0].prevStation, path[0].nextStation);
+    const prev = path[0].prevStation;
+    const next = path[0].nextStation;
+
+    const prevCoords = Array.isArray(prev) ? prev : [prev.lon ?? prev.lng, prev.lat];
+    const nextCoords = Array.isArray(next) ? next : [next.lon ?? next.lng, next.lat];
+
+    if (!Array.isArray(prevCoords) || !Array.isArray(nextCoords) ||
+        prevCoords.length < 2 || nextCoords.length < 2 ||
+        !Number.isFinite(prevCoords[0]) || !Number.isFinite(prevCoords[1]) ||
+        !Number.isFinite(nextCoords[0]) || !Number.isFinite(nextCoords[1])) {
+        console.warn(`Invalid station coordinates for train ${train.train_id}`, prev, next);
+        return;
+    }
+
+    let line = findBestLine(featureCollection, prevCoords, nextCoords);
     if (!line) {
         console.warn(`No suitable line found for ${train.train_id}`);
         return;
     }
 
-    let start = turf.nearestPointOnLine(line, turf.point(path[0].prevStation), { units: 'kilometers' });
-    let end = turf.nearestPointOnLine(line, turf.point(path[0].nextStation), { units: 'kilometers' });
-
-    console.log("Start point:", start, "End point:", end);
+    let start = turf.nearestPointOnLine(line, turf.point(prevCoords), { units: 'kilometers' });
+    let end = turf.nearestPointOnLine(line, turf.point(nextCoords), { units: 'kilometers' });
 
     let startDist = start.properties.location;
     let endDist = end.properties.location;
 
     if (startDist > endDist) {
         line = turf.lineString([...line.geometry.coordinates].reverse());
-        start = turf.nearestPointOnLine(line, turf.point(path[0].prevStation), { units: 'kilometers' });
-        end = turf.nearestPointOnLine(line, turf.point(path[0].nextStation), { units: 'kilometers' });
+        start = turf.nearestPointOnLine(line, turf.point(prevCoords), { units: 'kilometers' });
+        end = turf.nearestPointOnLine(line, turf.point(nextCoords), { units: 'kilometers' });
         startDist = start.properties.location;
         endDist = end.properties.location;
     }
 
-    console.log(`Start distance: ${startDist} km, End distance: ${endDist} km for train ${train.train_id}`);
-
     const sourceId = `${train.train_id}-source`;
     const layerId = `${train.train_id}-layer`;
 
-    if (!map.getSource(sourceId)) {
-        map.addSource(sourceId, { type: 'geojson', data: start });
-        map.addLayer({
-            id: layerId,
-            source: sourceId,
-            type: 'symbol',
-            layout: {
-                'icon-image': train.line,
-                'icon-size': 0.9,
-                'icon-overlap': 'always',
-                'text-field': line_database[train.line].abbreviation + ' ' + train.train_id,
-                'text-offset': [0, 1.5],
-                'text-anchor': 'top',
-                'text-size': 15,
-                'icon-allow-overlap': true,
-                'text-allow-overlap': true,
-                'text-font': ['Ubuntu Medium'],
-            },
-            "minzoom": 8
-        });
+    const src = map.getSource(sourceId);
+    if (!src) {
+        console.warn(`Missing source for ${train.train_id}, skipping animation`);
+        return;
+    }
 
-        if (cookies.darkTheme === 'true') {
-            map.setPaintProperty(layerId, 'text-color', 'rgb(255,255,255)');
-        }
-
-        map.on('click', layerId, (e) => {
-            new maplibregl.Popup()
-                .setLngLat(e.features[0].geometry.coordinates)
-                .setHTML(`<strong>Train ${train.train_id}</strong><br>Next Stop: ${train.next_stop}`)
-                .addTo(map);
-        });
-
-        map.on('mouseenter', layerId, () => {
-            map.getCanvas().style.cursor = 'pointer';
-        });
-
-        map.on('mouseleave', layerId, () => {
-            map.getCanvas().style.cursor = '';
-        });
-
-        map.moveLayer(train.train_id + "-layer", 'stations-layer');
+    if (activeTrains.has(train.train_id)) {
+        const old = activeTrains.get(train.train_id);
+        if (old.animationId) cancelAnimationFrame(old.animationId);
     }
 
     function updatePosition() {
         const now = new Date();
-        let elapsed = now - departureTime;
+        const elapsed = now - departureTime;
         let percent = elapsed / totalTime;
         percent = Math.max(0, Math.min(1, percent));
 
@@ -497,7 +473,11 @@ function travelBetweenPoints(train, path, featureCollection) {
         if (src) src.setData(currentPoint);
 
         if (percent < 1) {
-            requestAnimationFrame(updatePosition);
+            const animId = requestAnimationFrame(updatePosition);
+            activeTrains.set(train.train_id, {
+                ...activeTrains.get(train.train_id),
+                animationId: animId,
+            });
         } else {
             console.log(`Train ${train.train_id} reached ${path[0].nextStation}`);
         }
@@ -507,67 +487,46 @@ function travelBetweenPoints(train, path, featureCollection) {
 }
 
 function dwellAtStation(train, path) {
-    const point = {
-        'type': 'FeatureCollection',
-        'features': [
-            {
-                'type': 'Feature',
-                'properties': {},
-                'geometry': {
-                    'type': 'Point',
-                    'coordinates': [path[0].prevStation[0], path[0].prevStation[1]]
-                }
-            }
-        ]
-    };
+    if (!path || path.length === 0) return;
 
-    if (!map.getSource(train.train_id + "-source")) {
-        map.addSource(train.train_id + "-source", {
-            'type': 'geojson',
-            'data': point
-        });
+    const sourceId = `${train.train_id}-source`;
+    const layerId = `${train.train_id}-layer`;
 
-        map.addLayer({
-            id: layerId,
-            source: sourceId,
-            type: 'symbol',
-            layout: {
-                'icon-image': train.line,
-                'icon-size': 0.9,
-                'icon-overlap': 'always',
-                'text-field': line_database[train.line].abbreviation + ' ' + train.train_id,
-                'text-offset': [0, 1.5],
-                'text-anchor': 'top',
-                'text-size': 15,
-                'icon-allow-overlap': true,
-                'text-allow-overlap': true,
-                'text-font': ['Ubuntu Medium'],
-            },
-            "minzoom": 8
-        });
+    const prev = path[0].prevStation;
+    const coords = Array.isArray(prev)
+        ? prev
+        : [prev.lon ?? prev.lng, prev.lat];
 
-        map.on('click', layerId, (e) => {
-            new maplibregl.Popup()
-                .setLngLat(e.features[0].geometry.coordinates)
-                .setHTML(`<strong>Train ${train.train_id}</strong><br>Dwelling`)
-                .addTo(map);
-        });
-
-        map.on('mouseenter', layerId, () => {
-            map.getCanvas().style.cursor = 'pointer';
-        });
-
-        map.on('mouseleave', layerId, () => {
-            map.getCanvas().style.cursor = '';
-        });
+    if (!Array.isArray(coords) || coords.length < 2 ||
+        !Number.isFinite(coords[0]) || !Number.isFinite(coords[1])) {
+        console.warn(`Invalid dwell coordinates for ${train.train_id}`, prev);
+        return;
     }
 
-    map.moveLayer(train.train_id + "-layer", 'stations-layer');
-    console.log("Train", train.train_id, " is dwelling for " + path[0].duration + " seconds");
-    setTimeout(() => {
-        console.log("Train", train.train_id, " finished dwelling");
+    const point = turf.point(coords);
+    const src = map.getSource(sourceId);
+    if (!src) {
+        console.warn(`Missing source for ${train.train_id}, cannot dwell`);
+        return;
+    }
+
+    map.moveLayer(layerId, 'stations-layer');
+    console.log(`Train ${train.train_id} is dwelling for ${path[0].duration} seconds`);
+
+    const old = activeTrains.get(train.train_id);
+    if (old && old.dwellTimeout) clearTimeout(old.dwellTimeout);
+
+    const dwellTimeout = setTimeout(() => {
+        console.log(`Train ${train.train_id} finished dwelling`);
     }, path[0].duration * 1000);
+
+    activeTrains.set(train.train_id, {
+        ...activeTrains.get(train.train_id),
+        dwellTimeout,
+        animationId: null
+    });
 }
+
 
 function animateTrain(train, path, line) {
     if (path.length === 0) return;
@@ -589,70 +548,94 @@ function animateTrain(train, path, line) {
     }
 }
 
+const activeTrains = new Map();
+const currentTrainLayers = [];
+
 async function updateRealtimeTrains() {
     console.log("Updating realtime trains...");
 
-    currentTrainLayers.forEach(obj => {
-        const trainId = obj.train_id;
-        if (map.getLayer(trainId + "-layer")) {
-            map.removeLayer(trainId + "-layer");
-        }
-        if (map.getSource(trainId + "-source")) {
-            map.removeSource(trainId + "-source");
-        }
-    });
-
-    currentTrainLayers.length = 0;
-    Array.from(document.getElementById("currentTrainsList").children).forEach(child => {
-        if (child.id !== "default_train" && child.id !== "NoActiveTrains" && child.id !== "currentTrainSearch") {
-            child.remove();
-        }
-    });
-
-    const url = "https://whereisnjtransit-api.ayaan7m.workers.dev/realtime";
-    const res = await fetch(url);
+    const res = await fetch("https://whereisnjtransit-api.ayaan7m.workers.dev/realtime");
     const data = await res.json();
+    const newTrainIds = new Set(data.map(t => t.train_id));
+
+    for (const [trainId, info] of activeTrains) {
+        if (!newTrainIds.has(trainId)) {
+            if (info.animationId) cancelAnimationFrame(info.animationId);
+            if (info.dwellTimeout) clearTimeout(info.dwellTimeout);
+            if (map.getLayer(info.layerId)) map.removeLayer(info.layerId);
+            if (map.getSource(info.sourceId)) map.removeSource(info.sourceId);
+            activeTrains.delete(trainId);
+        }
+    }
 
     for (const train of data) {
-        console.log("Train:", train);
-        const path = await getTrainPath(train, 5);
-        console.log("Train Path", path);
-
         if (!train.line) continue;
 
-        currentTrainLayers.push({ train_id: train.train_id, line: line_database[train.line].id });
+        const path = await getTrainPath(train, 5);
+        if (!path || path.length === 0) continue;
+
         const res2 = await fetch(line_database[train.line].url);
-        const line = await res2.json();
+        const lineData = await res2.json();
 
-        var newDiv = document.getElementById("default_train").cloneNode(true);
-        newDiv.id = train.train_id;
-        newDiv.style.display = "flex";
-        newDiv.querySelector("img").src = line_database[train.line].image;
-        newDiv.querySelector("h3").innerHTML = `${line_database[train.line].abbreviation} ${train.train_id} to ${train.next_stop}`;
-        document.getElementById("currentTrainsList").appendChild(newDiv);
+        const sourceId = `${train.train_id}-source`;
+        const layerId = `${train.train_id}-layer`;
 
-        animateTrain(train, path, line[line_database[train.line].id]);
+        if (activeTrains.has(train.train_id)) {
+            const old = activeTrains.get(train.train_id);
+            if (old.animationId) cancelAnimationFrame(old.animationId);
+        }
 
-        newDiv.addEventListener("click", () => {
-            const src = map.getSource(train.train_id + "-source");
-            if (!src) return;
-            const data = src._data || src._geojson || src._options?.data;
-            if (data && data.geometry && data.geometry.coordinates) {
-                map.flyTo({ center: data.geometry.coordinates, zoom: 18, essential: true });
+        if (!map.getSource(sourceId)) {
+            const startPoint = turf.point(path[0].prevStation);
+            map.addSource(sourceId, { type: "geojson", data: startPoint });
 
-                current_trains_button();
-            }
+            map.addLayer({
+                id: layerId,
+                source: sourceId,
+                type: "symbol",
+                layout: {
+                    "icon-image": train.line,
+                    "icon-size": 0.9,
+                    "text-field": line_database[train.line].abbreviation + " " + train.train_id,
+                    "text-offset": [0, 1.5],
+                    "text-anchor": "top",
+                    "text-size": 15,
+                    "icon-allow-overlap": true,
+                    "text-allow-overlap": true,
+                    "text-font": ["Ubuntu Medium"],
+                },
+                minzoom: 8,
+            });
+
+            map.on("click", layerId, (e) => {
+                new maplibregl.Popup()
+                    .setLngLat(e.features[0].geometry.coordinates)
+                    .setHTML(
+                        `<strong>Train ${train.train_id}</strong><br>Next Stop: ${train.next_stop}`
+                    )
+                    .addTo(map);
+            });
+
+            map.on("mouseenter", layerId, () => (map.getCanvas().style.cursor = "pointer"));
+            map.on("mouseleave", layerId, () => (map.getCanvas().style.cursor = ""));
+        }
+
+        activeTrains.set(train.train_id, {
+            sourceId,
+            layerId,
+            animationId: null,
+            dwellTimeout: null,
+            line: line_database[train.line].id
         });
+
+        if (path[0].type === "dwell") {
+            dwellAtStation(train, path);
+        } else if (path[0].type === "travel") {
+            travelBetweenPoints(train, path, lineData[line_database[train.line].id]);
+        }
     }
 
-    console.log(currentTrainLayers);
-    if (currentTrainLayers.length > 0) {
-        document.getElementById("NoActiveTrains").style.display = "none";
-        document.getElementById("currentTrainSearch").style.display = "flex";
-    } else {
-        document.getElementById("NoActiveTrains").style.display = "flex";
-        document.getElementById("currentTrainSearch").style.display = "none";
-    }
+    console.log(`Active trains: ${activeTrains.size}`);
 }
 
 const searchInput = document.getElementById("stationSearch");

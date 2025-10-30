@@ -122,12 +122,12 @@ function toggleLayerVisibility(layer) {
             map.setFilter("stations-layer", ["all"]);
         }
 
-        currentTrainLayers.forEach(obj => {
-            const layerId = obj.train_id + "-layer";
+        for (const [trainId, info] of activeTrains) {
+            const layerId = `${trainId}-layer`;
             if (map.getLayer(layerId)) {
                 map.setLayoutProperty(layerId, "visibility", "visible");
             }
-        })
+        }
         return;
     }
 
@@ -168,17 +168,15 @@ function toggleLayerVisibility(layer) {
         }
     }
 
-    if (typeof currentTrainLayers !== "undefined") {
-        currentTrainLayers.forEach(obj => {
-            const layerId = `${obj.train_id}-layer`;
-            if (!map.getLayer(layerId)) return;
+    for (const [trainId, info] of activeTrains) {
+        const layerId = `${trainId}-layer`;
+        if (!map.getLayer(layerId)) continue;
 
-            if (enabledLayers.has(obj.line)) {
-                map.setLayoutProperty(layerId, "visibility", "visible");
-            } else {
-                map.setLayoutProperty(layerId, "visibility", "none");
-            }
-        })
+        if (enabledLayers.has(info.line)) {
+            map.setLayoutProperty(layerId, "visibility", "visible");
+        } else {
+            map.setLayoutProperty(layerId, "visibility", "none");
+        }
     }
 }
 
