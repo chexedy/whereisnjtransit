@@ -123,7 +123,7 @@ function toggleLayerVisibility(layer) {
         }
 
         currentTrainLayers.forEach(obj => {
-            const layerId = obj.train_id;
+            const layerId = obj.train_id + "-layer";
             if (map.getLayer(layerId)) {
                 map.setLayoutProperty(layerId, "visibility", "visible");
             }
@@ -172,9 +172,8 @@ function toggleLayerVisibility(layer) {
         currentTrainLayers.forEach(obj => {
             const layerId = `${obj.train_id}-layer`;
             if (!map.getLayer(layerId)) return;
-            console.log(layerId);
 
-            if (enabledLayers.size === 0 || enabledLayers.has(obj.line)) {
+            if (enabledLayers.has(obj.line)) {
                 map.setLayoutProperty(layerId, "visibility", "visible");
             } else {
                 map.setLayoutProperty(layerId, "visibility", "none");

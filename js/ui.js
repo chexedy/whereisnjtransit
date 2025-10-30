@@ -102,17 +102,6 @@ const settingsConfig = {
             map.setLayoutProperty('stations-layer', 'visibility', value ? 'none' : 'visible');
         }
     },
-    trainsToggle: {
-        type: "toggle",
-        default: false,
-        onChange: (value) => {
-            currentTrainLayers.forEach(trainId => {
-                if (map.getLayer(trainId + "-layer")) {
-                    map.setLayoutProperty(trainId + "-layer", 'visibility', value ? 'none' : 'visible');
-                }
-            });
-        }
-    }
 };
 
 for (const [id, config] of Object.entries(settingsConfig)) {
@@ -130,6 +119,7 @@ function station_open() {
     screen.style.transform = "translate(-50%, -50%)";
     document.getElementById("settingsScreen").style.display = "none";
     document.getElementById("aboutScreen").style.display = "none";
+    document.getElementById("currentTrainsScreen").style.display = "none";
 
     if (screen.width <= 1135) {
         document.getElementById("mainSidebar").style.display = "none";
@@ -156,6 +146,7 @@ function sidebar_open() {
 
         document.getElementById("settingsScreen").style.display = "none";
         document.getElementById("aboutScreen").style.display = "none";
+        document.getElementById("currentTrainsScreen").style.display = "none";
     } else {
         sidebar.style.display = "none";
         opener.style.left = "1vw";

@@ -458,7 +458,8 @@ function travelBetweenPoints(train, path, featureCollection) {
                 'icon-allow-overlap': true,
                 'text-allow-overlap': true,
                 'text-font': ['Ubuntu Medium'],
-            }
+            },
+            "minzoom": 8
         });
 
         if (cookies.darkTheme === 'true') {
@@ -541,7 +542,8 @@ function dwellAtStation(train, path) {
                 'icon-allow-overlap': true,
                 'text-allow-overlap': true,
                 'text-font': ['Ubuntu Medium'],
-            }
+            },
+            "minzoom": 8
         });
 
         map.on('click', layerId, (e) => {
@@ -723,6 +725,6 @@ trainSearchInput.addEventListener("input", () => {
 
     const noTrainsEl = document.getElementById("NoActiveTrains");
     if (noTrainsEl) {
-        noTrainsEl.style.display = anyVisible ? "none" : "block";
+        noTrainsEl.style.display = anyVisible ? "none" : "flex";
     }
 });
