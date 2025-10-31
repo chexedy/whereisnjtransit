@@ -107,7 +107,7 @@
                 <div class="about_panel">
                     <p>The status of the current trains operating is updated every minute. Data is sourced from the NJ
                         Transit API, which unfortunately
-                        lags behind around 30-90 seconds when dealing with realtime data. This unfortunately causes
+                        lags behind around 30-90 seconds when dealing with real-time data. This unfortunately causes
                         conflicts
                         if trains are behind schedule.</p>
                 </div>
@@ -120,6 +120,17 @@
                     <p>Please make an issue on GitHub (link in the sidebar) so I can look and find the issue. Include as
                         much information as you can as unfortunately recreating the problem is not easy as the data is
                         constantly changing.</p>
+                </div>
+            </div>
+            <div class="about_element">
+                <div class="about_title">
+                    <h3>Could this display real-time train data?</h3>
+                </div>
+                <div class="about_panel">
+                    <p>Yes, this map can be considered a proof of concept. If NJ Transit made it possible to access
+                        real-time train locations, I would not longer need to estimate them as I do currently. This
+                        would be much more accurate as you could see if a train has stopped moving, or how fast it is
+                        moving compared to others.</p>
                 </div>
             </div>
             <div class="about_element">
@@ -137,6 +148,11 @@
         </button>
     </div>
 
+    <div class="current_train" style="display: none;" id="default_train">
+        <img src="assets/lines/northeastcorridor.svg" alt="Rail Line Icon" class="current_train_image">
+        <h3>Train 1234</h1>
+    </div>
+
     <div class="current_trains" id="currentTrainsScreen">
         <h1>Current Active Trains</h1>
 
@@ -148,11 +164,6 @@
             <h3 id="NoActiveTrains" style="display: none;" id="activeTrainHeader">No active trains found.</h3>
 
             <br>
-
-            <div class="current_train" style="display: none;" id="default_train">
-                <img src="assets/lines/northeastcorridor.svg" alt="Rail Line Icon" class="current_train_image">
-                <h3>Train 1234</h1>
-            </div>
         </div>
 
         <button class="current_trains_button" onclick="current_trains_button()">

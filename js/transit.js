@@ -549,7 +549,6 @@ function animateTrain(train, path, line) {
 }
 
 const activeTrains = new Map();
-const currentTrainLayers = [];
 
 async function updateRealtimeTrains() {
     console.log("Updating realtime trains...");
@@ -565,8 +564,17 @@ async function updateRealtimeTrains() {
             if (map.getLayer(info.layerId)) map.removeLayer(info.layerId);
             if (map.getSource(info.sourceId)) map.removeSource(info.sourceId);
             activeTrains.delete(trainId);
+
+            const child = document.getElementById(trainId);
+            if (child && child.id !== "default_train" && child.id !== "NoActiveTrains" && child.id !== "currentTrainSearch") {
+                child.remove();
+            }
         }
     }
+
+    const trainList = document.getElementById("currentTrainsList");
+    const noTrains = document.getElementById("NoActiveTrains");
+    const search = document.getElementById("currentTrainSearch");
 
     for (const train of data) {
         if (!train.line) continue;
@@ -620,6 +628,8 @@ async function updateRealtimeTrains() {
             map.on("mouseleave", layerId, () => (map.getCanvas().style.cursor = ""));
         }
 
+        map.moveLayer("stations-layer");
+
         activeTrains.set(train.train_id, {
             sourceId,
             layerId,
@@ -628,11 +638,39 @@ async function updateRealtimeTrains() {
             line: line_database[train.line].id
         });
 
+        if (!document.getElementById(train.train_id)) {
+            const newDiv = document.getElementById("default_train").cloneNode(true);
+            newDiv.id = train.train_id;
+            newDiv.style.display = "flex";
+            newDiv.querySelector("img").src = line_database[train.line].image;
+            newDiv.querySelector("h3").innerHTML =
+                `${line_database[train.line].abbreviation} ${train.train_id} to ${train.next_stop}`;
+            trainList.appendChild(newDiv);
+
+            newDiv.addEventListener("click", () => {
+                const src = map.getSource(sourceId);
+                if (!src) return;
+                const data = src._data || src._geojson || src._options?.data;
+                if (data && data.geometry && data.geometry.coordinates) {
+                    map.flyTo({ center: data.geometry.coordinates, zoom: 18, essential: true });
+                    current_trains_button();
+                }
+            });
+        }
+
         if (path[0].type === "dwell") {
             dwellAtStation(train, path);
         } else if (path[0].type === "travel") {
             travelBetweenPoints(train, path, lineData[line_database[train.line].id]);
         }
+    }
+
+    if (activeTrains.size > 0) {
+        noTrains.style.display = "none";
+        search.style.display = "flex";
+    } else {
+        noTrains.style.display = "flex";
+        search.style.display = "none";
     }
 
     console.log(`Active trains: ${activeTrains.size}`);
