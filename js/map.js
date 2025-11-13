@@ -201,12 +201,12 @@ async function initMap() {
     let map_style = {
         "version": 8,
         "text-font": ["Ubuntu Regular", "Ubuntu Medium", "Ubuntu Bold", "Ubuntu Light"],
-        "glyphs": "https://map.whereisnjtransit.com/glyphs/{fontstack}/{range}.pbf",
+        "glyphs": "https://assets.chexedy.com/glyphs/{fontstack}/{range}.pbf",
         "sprite": "https://protomaps.github.io/basemaps-assets/sprites/v4/light",
         "sources": {
             "protomaps": {
                 "type": "vector",
-                "url": "pmtiles://https://map.whereisnjtransit.com/whereisnjtransit.pmtiles",
+                "url": "pmtiles://https://assets.chexedy.com/whereisnjtransit.pmtiles",
             }
         },
         "layers": basemaps.layers("protomaps", basemaps.namedFlavor("light"), { lang: "en" })
