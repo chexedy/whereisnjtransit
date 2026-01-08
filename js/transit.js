@@ -653,7 +653,9 @@ async function updateRealtimeTrains() {
                 if (!src) return;
 
                 console.log("Source data:", src);
-                const data = src._data || src._geojson || src._options?.data;
+                const data = src._data.geojson;
+
+                if (!data) return;
                 if (data && data.geometry && data.geometry.coordinates) {
                     console.log("Flying to:", data.geometry.coordinates);
                     map.flyTo({ center: data.geometry.coordinates, zoom: 18, essential: true });
