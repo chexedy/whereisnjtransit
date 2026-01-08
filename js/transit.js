@@ -648,10 +648,14 @@ async function updateRealtimeTrains() {
             trainList.appendChild(newDiv);
 
             newDiv.addEventListener("click", () => {
+                console.log("Clicked train:", train.train_id);
                 const src = map.getSource(sourceId);
                 if (!src) return;
+
+                console.log("Source data:", src);
                 const data = src._data || src._geojson || src._options?.data;
                 if (data && data.geometry && data.geometry.coordinates) {
+                    console.log("Flying to:", data.geometry.coordinates);
                     map.flyTo({ center: data.geometry.coordinates, zoom: 18, essential: true });
                     current_trains_button();
                 }

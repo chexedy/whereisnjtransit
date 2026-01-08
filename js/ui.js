@@ -14,7 +14,7 @@ function welcome_button() {
 function about_button() {
     station_close();
     document.getElementById("settingsScreen").style.display = "none";
-    document.getElementById("currentTrainsScreen").style.display = "flex";
+    document.getElementById("currentTrainsScreen").style.display = "none";
 
     const screen = document.getElementById("aboutScreen");
     if (screen.style.display === "flex") {
