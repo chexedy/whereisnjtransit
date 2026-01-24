@@ -904,6 +904,10 @@ body {
     transform: scale(1.02);
 }
 
+.copyright {
+    margin-bottom: 10vh;
+}
+
 @media (max-width: 1135px) {
     .welcome {
         width: 80%;

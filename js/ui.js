@@ -234,3 +234,6 @@ setInterval(() => {
 
     timeDisplay.textContent = "Current Time: " + formatTime(hours, minutes);
 }, 1000);
+
+const copyright = document.getElementsByClassName("copyright")[0];
+copyright.innerHTML = `&copy; ${new Date().getFullYear()} chexedy incorporated (Real)`
