@@ -115,7 +115,7 @@ function toggleLayerVisibility(layer) {
             if (id == 'showall') return;
 
             map.setLayoutProperty(id, "visibility", "visible");
-            btn.style.background = "white";
+            btn.classList.remove('route-enabled');
         });
 
         if (map.getLayer("stations-layer")) {
@@ -141,21 +141,21 @@ function toggleLayerVisibility(layer) {
 
             if (id === layer) {
                 enabledLayers.add(id);
-                button.style.background = "lightgrey";
+                button.classList.add('route-enabled');
             } else {
                 enabledLayers.delete(id);
-                button.style.background = "white";
+                button.classList.remove('route-enabled');
             }
         });
     } else {
         if (isEnabled) {
             enabledLayers.delete(layer);
             map.setLayoutProperty(layer, "visibility", "none");
-            route.style.background = "white";
+            route.classList.remove('route-enabled');
         } else {
             enabledLayers.add(layer);
             map.setLayoutProperty(layer, "visibility", "visible");
-            route.style.background = "lightgrey";
+            route.classList.add('route-enabled');
         }
     }
 
