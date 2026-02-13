@@ -1,8 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
     padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #map {
@@ -22,34 +28,64 @@ body {
     cursor: pointer;
 }
 
-.ubuntu-light {
-    font-family: "Ubuntu", sans-serif;
-    font-weight: 300;
-    font-style: normal;
-}
-
-.ubuntu-regular {
-    font-family: "Ubuntu", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.ubuntu-medium {
-    font-family: "Ubuntu", sans-serif;
-    font-weight: 500;
-    font-style: normal;
-}
-
-.ubuntu-bold {
-    font-family: "Ubuntu", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-}
-
 :root {
-    --primary-color: rgb(245, 240, 226);
-    --text-color: black;
-    --input-color: white;
+    --primary-bg: #f5f7fa;
+    --secondary-bg: #e8ecf1;
+    --tertiary-bg: #d9dfe7;
+    --card-bg: #ffffff;
+    --overlay-bg: rgba(0, 0, 0, 0.4);
+
+    --text-primary: #1a1a1a;
+    --text-secondary: #6c757d;
+    --text-tertiary: #adb5bd;
+
+    --accent-primary: #3b82f6;
+    --accent-hover: #2563eb;
+    --accent-light: #dbeafe;
+
+    --border-color: #e9ecef;
+    --border-light: #f1f3f5;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
+
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --error-color: #ef4444;
+
+    --input-bg: #ffffff;
+    --input-border: #e5e7eb;
+    --input-focus: #3b82f6;
+
+    --sidebar-width: 320px;
+}
+
+body.dark-mode {
+    --primary-bg: #0f172a;
+    --secondary-bg: #1e293b;
+    --tertiary-bg: #334155;
+    --card-bg: #1e293b;
+    --overlay-bg: rgba(0, 0, 0, 0.7);
+
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-tertiary: #64748b;
+
+    --accent-primary: #60a5fa;
+    --accent-hover: #3b82f6;
+    --accent-light: #1e3a8a;
+
+    --border-color: #334155;
+    --border-light: #475569;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.6);
+
+    --input-bg: #1e293b;
+    --input-border: #475569;
+    --input-focus: #60a5fa;
 }
 
 .overlay {
@@ -58,15 +94,39 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0);
+    background: var(--overlay-bg);
     z-index: 1059;
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -45%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
 }
 
 .welcome {
     display: flex;
-    width: 40%;
-    height: auto;
-    background: var(--primary-color);
+    width: min(540px, 90vw);
+    max-height: 90vh;
+    background: var(--card-bg);
     z-index: 1100;
     flex-direction: column;
     justify-content: flex-start;
@@ -75,67 +135,88 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    border-radius: 25px;
-    padding: 1rem 0 3rem 0;
-    box-sizing: border-box;
+    border-radius: 20px;
+    padding: 2.5rem 2rem 5rem 2rem;
+    box-shadow: var(--shadow-xl);
     overflow-y: auto;
+    animation: slideUp 0.3s ease;
+    border: 1px solid var(--border-color);
 }
 
 .welcome h1 {
-    font-family: "Ubuntu";
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: 700;
     text-align: center;
-    color: var(--text-color);
+    color: var(--text-primary);
+    margin: 0 0 1rem 0;
+    letter-spacing: -0.02em;
 }
 
 .welcome h3 {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    font-weight: 400;
+    line-height: 1.6;
     text-align: center;
-    font-family: "Ubuntu";
-    padding-left: 5%;
-    padding-right: 5%;
-    color: var(--text-color);
+    color: var(--text-secondary);
+    margin: 0 0 1rem 0;
+    padding: 0 1rem;
+}
+
+.welcome h3[style*="color: red"] {
+    color: var(--error-color) !important;
+    background: rgba(239, 68, 68, 0.1);
+    padding: 1rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--error-color);
 }
 
 .welcome_button {
     position: absolute;
-    bottom: 12px;
+    bottom: 1.5rem;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40%;
-    font-size: 1.2em;
-    font-family: "Ubuntu";
-    border-radius: 8px;
+    min-width: 160px;
+    height: 48px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 12px;
     cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
-    gap: 0.5rem;
-    flex-wrap: nowrap;
-    color: black;
-    background: var(--input-color);
-    padding: 0.3rem 0.6rem;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--accent-primary);
+    color: white;
+    border: none;
+    padding: 0 2rem;
+    box-shadow: var(--shadow-md);
+}
+
+.welcome_button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.welcome_button:not(:disabled):hover {
+    background: var(--accent-hover);
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.welcome_button:not(:disabled):active {
+    transform: translateX(-50%) translateY(0);
 }
 
 .welcome_button span {
-    font-family: "Ubuntu";
-    flex: 1 1 auto;
-    min-width: 0;
-    font-size: clamp(0.6rem, 1.2vw, 1rem);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: var(--text-color);
-}
-
-.welcome_button:hover {
-    transform: translateX(-50%) scale(1.1);
+    font-weight: 600;
 }
 
 .about,
 .settings {
     display: none;
-    width: 40%;
-    background: var(--primary-color);
+    width: min(640px, 90vw);
+    height: min(700px, 85vh);
+    background: var(--card-bg);
     z-index: 1090;
     flex-direction: column;
     justify-content: flex-start;
@@ -144,50 +225,55 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    border-radius: 25px;
-    padding: 1rem 0 3rem 0;
-    box-sizing: border-box;
-}
-
-.about {
-    height: 80%;
-    margin: auto;
+    border-radius: 20px;
+    padding: 2rem 1.5rem 5rem 1.5rem;
+    box-shadow: var(--shadow-xl);
+    animation: slideUp 0.3s ease;
+    border: 1px solid var(--border-color);
 }
 
 .about h1,
 .settings h1 {
-    font-family: "Ubuntu";
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
     text-align: center;
-    color: var(--text-color);
+    color: var(--text-primary);
+    margin: 0 0 1.5rem 0;
+    letter-spacing: -0.02em;
 }
 
 .about_button,
-.settings button,
-.current_trains_button {
+.settings_button,
+.current_trains_button,
+.station_close {
     position: absolute;
-    bottom: 12px;
+    bottom: 1.5rem;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40%;
-    font-size: 1.2em;
-    font-family: "Ubuntu";
-    border-radius: 8px;
+    min-width: 140px;
+    height: 48px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 12px;
     cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
-    gap: 0.5rem;
-    flex-wrap: nowrap;
-    color: black;
-    background: var(--input-color);
-    padding: 0.3rem 0.6rem;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--secondary-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 0 2rem;
+    box-shadow: var(--shadow-sm);
 }
 
 .about_button:hover,
-.settings button:hover,
-.current_trains_button:hover {
-    transform: translateX(-50%) scale(1.1);
+.settings_button:hover,
+.current_trains_button:hover,
+.station_close:hover {
+    background: var(--tertiary-bg);
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 .about_elements {
@@ -196,74 +282,106 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 0.5rem;
-    width: 90%;
-    font-family: "Ubuntu", sans-serif;
-    font-size: 1.2em;
+    gap: 1rem;
+    width: 100%;
     overflow-y: auto;
     padding: 0.5rem;
-}
-
-.about_elements h1 {
-    text-align: center;
-    color: var(--text-color);
 }
 
 .about_element {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 0.5rem;
-    cursor: pointer;
-    width: 80%;
-    padding: 0.5rem 1rem;
-    border-radius: 10px;
-    transition: background 0.2s, transform 0.2s;
-    background: white;
-    border: 2px solid black;
-    height: auto;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 1.25rem;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    background: var(--secondary-bg);
+    border: 1px solid var(--border-color);
 }
 
 .about_element:hover {
-    cursor: default;
+    background: var(--tertiary-bg);
+    border-color: var(--accent-primary);
 }
 
-.time_display {
-    font-family: 'Ubuntu';
-    font-size: 0.8rem;
-    color: #555;
-    margin-top: 0.25rem;
-    display: block;
-    text-align: left;
+.about_title h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.about_panel {
+    margin: 0;
+}
+
+.about_panel p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+.about_panel a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.about_panel a:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
 }
 
 .settings-list {
     display: flex;
     flex-direction: column;
-    width: 80%;
-    gap: 0.75rem;
+    width: 100%;
+    gap: 1.25rem;
     margin: 0 auto;
     overflow-y: auto;
+    padding: 0.5rem;
 }
 
 .setting-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 0;
-    font-family: "Ubuntu";
+    padding: 1rem 1.25rem;
+    background: var(--secondary-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+}
+
+.setting-item:hover {
+    background: var(--tertiary-bg);
+    border-color: var(--accent-primary);
 }
 
 .setting-name {
     font-size: 1rem;
-    color: black;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.time_display {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin: -0.5rem 0 0 1.25rem;
+    display: block;
+    text-align: left;
 }
 
 .switch {
     position: relative;
     display: inline-block;
-    width: 48px;
-    height: 26px;
+    width: 52px;
+    height: 28px;
+    flex-shrink: 0;
 }
 
 .switch input {
@@ -279,98 +397,37 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
-    transition: 0.3s;
-    border-radius: 26px;
+    background-color: var(--border-light);
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 28px;
 }
 
 .slider:before {
     position: absolute;
     content: "";
-    height: 20px;
-    width: 20px;
+    height: 22px;
+    width: 22px;
     left: 3px;
     bottom: 3px;
     background-color: white;
-    transition: 0.3s;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .switch input:checked+.slider {
-    background-color: #000000;
+    background-color: var(--accent-primary);
 }
 
 .switch input:checked+.slider:before {
-    transform: translateX(22px);
-}
-
-.station_departures {
-    display: none;
-    width: 40%;
-    background: white;
-    z-index: 1070;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 25px;
-    padding-bottom: 2.5vh;
-    position: absolute;
-}
-
-.station_departures h1 {
-    font-family: "Ubuntu";
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: var(--text-color);
-}
-
-.station_departures h4 {
-    padding: 5%;
-    font-family: "Ubuntu";
-    text-align: center;
-    color: var(--text-color);
-}
-
-.station_departure_close {
-    display: flex;
-    align-items: center;
-    width: 40%;
-    font-size: 1.2em;
-    font-family: "Ubuntu";
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
-    gap: 0.5rem;
-    flex-wrap: nowrap;
-    color: black;
-    background: var(--primary-color);
-}
-
-.station_departure_close span {
-    font-family: "Ubuntu";
-    flex: 1 1 auto;
-    min-width: 0;
-    font-size: clamp(0.6rem, 1.2vw, 1rem);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: var(--text-color);
-}
-
-.station_departure_close:hover {
-    transform: scale(1.1);
+    transform: translateX(24px);
 }
 
 .station_status {
     display: none;
-    width: 40%;
-    height: 80%;
-    background: var(--primary-color);
+    width: min(640px, 90vw);
+    height: min(700px, 85vh);
+    background: var(--card-bg);
     z-index: 1060;
     flex-direction: column;
     justify-content: flex-start;
@@ -379,17 +436,20 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    border-radius: 25px;
-    padding: 1rem 0 3rem 0;
-    box-sizing: border-box;
-    overflow-y: auto;
+    border-radius: 20px;
+    padding: 2rem 1.5rem 5rem 1.5rem;
+    box-shadow: var(--shadow-xl);
+    animation: slideUp 0.3s ease;
+    border: 1px solid var(--border-color);
 }
 
 .station_status h1 {
-    font-family: "Ubuntu";
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
     text-align: center;
-    margin: 0.5rem 0 1rem 0;
-    color: var(--text-color);
+    margin: 0 0 1.5rem 0;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
 }
 
 .station_routes {
@@ -398,73 +458,87 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 0.5rem;
-    width: 90%;
-    font-family: "Ubuntu", sans-serif;
-    font-size: 1.2em;
+    gap: 0.75rem;
+    width: 100%;
     overflow-y: auto;
     padding: 0.5rem;
 }
 
 .station_routes h3 {
     text-align: center;
-    color: var(--text-color);
+    color: var(--text-secondary);
+    font-weight: 500;
 }
 
 .station_route {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 0.5rem;
+    gap: 0;
     cursor: pointer;
-    width: 80%;
-    padding: 0.5rem 1rem;
-    border-radius: 10px;
-    transition: background 0.2s, transform 0.2s;
-    background: white;
-    border: 2px solid black;
-    height: auto;
+    width: 100%;
+    padding: 0;
+    border-radius: 12px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
 }
 
 .station_route:hover {
-    transform: scale(1.02);
+    border-color: var(--accent-primary);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
 }
 
 .station_route img {
-    width: 10%;
-    height: auto;
+    width: 48px;
+    height: 48px;
     flex-shrink: 0;
+    border-radius: 8px;
 }
 
 .station_route_header {
     display: flex;
-    gap: 0.5rem;
-    align-items: stretch;
+    gap: 1rem;
+    align-items: center;
+    padding: 1.25rem;
 }
 
 .station_route_inner {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 0.5rem;
 }
 
-.station_route_inner>div {
+.station_route_inner1,
+.station_route_inner2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    gap: 1rem;
 }
 
-.station_route_inner h1,
-.station_route_inner h3 {
+.station_route_inner h1 {
     margin: 0;
-    font-family: "Ubuntu", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: calc(0.4 * 1em + 1vh);
-    color: var(--text-color);
+}
+
+.station_route_inner h3 {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .station_info {
@@ -473,30 +547,18 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 1rem;
-    width: auto;
+    width: 100%;
     padding: 0;
     overflow: hidden;
     height: 0;
-    transition: height 0.3s ease, padding 0.3s ease;
-    background: white;
-    border-radius: 10px 10px 10px 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--tertiary-bg);
+    border-top: 1px solid var(--border-color);
 }
 
 .station_info.open {
     height: auto;
-    padding: 1rem;
-}
-
-.station_col {
-    align-items: flex-start;
-}
-
-.scheduled_col {
-    align-items: center;
-}
-
-.status_col {
-    align-items: flex-end;
+    padding: 1.25rem;
 }
 
 .station_col,
@@ -506,76 +568,41 @@ body {
     min-width: 0;
     display: flex;
     flex-direction: column;
-    height: auto;
-}
-
-.station_info .station_col h3,
-.station_info .scheduled_col h3,
-.station_info .status_col h3 {
-    margin: 0;
-    font-family: "Ubuntu", sans-serif;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: clamp(0.6rem, 2vw, 1rem);
-    color: var(--text-color);
-}
-
-.station_info .station_col h4,
-.station_info .scheduled_col h4,
-.station_info .status_col h4 {
-    margin: 0;
-    font-family: "Ubuntu", sans-serif;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: clamp(0.6rem, 2vw, 1rem);
-    color: var(--text-color);
-}
-
-.station_close {
-    position: absolute;
-    bottom: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40%;
-    font-size: 1.2em;
-    font-family: "Ubuntu";
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
     gap: 0.5rem;
-    flex-wrap: nowrap;
-    color: black;
-    background: white;
-    padding: 0.3rem 0.6rem;
 }
 
-.station_close span {
-    font-family: "Ubuntu";
-    flex: 1 1 auto;
-    min-width: 0;
-    font-size: clamp(0.6rem, 1.2vw, 1rem);
+.station_info h3 {
+    margin: 0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary);
+}
+
+.station_info h4 {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-primary);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: var(--text-color);
-}
-
-.station_close:hover {
-    transform: translateX(-50%) scale(1.1);
 }
 
 .draggable_station_status {
     position: absolute;
-    bottom: 12px;
-    right: 12px;
-    width: 6%;
-    aspect-ratio: 1 / 1;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 32px;
+    height: 32px;
     cursor: grab;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+}
+
+.draggable_station_status:hover {
+    opacity: 1;
 }
 
 .draggable_station_status:active {
@@ -590,26 +617,29 @@ body {
     justify-content: center;
     align-items: center;
     position: fixed;
-    width: 7.5vh;
-    height: auto;
-    aspect-ratio: 1 / 1;
-    background: var(--primary-color);
-    border: none;
-    font-size: 2rem;
+    width: 56px;
+    height: 56px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    font-size: 1.5rem;
     cursor: pointer;
     z-index: 1000;
-    padding: 0.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 0;
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sidebar_opener {
-    top: 1vw;
-    left: 1vw;
+    top: 1.5rem;
+    left: 1.5rem;
 }
 
-.sidebar_opener:hover {
-    transform: scale(1.1);
+.sidebar_opener:hover,
+.location:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--accent-primary);
 }
 
 .sidebar_button {
@@ -620,98 +650,112 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 80%;
-    text-align: center;
+    font-size: 1.5rem;
     cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
-    color: var(--text-color);
-}
-
-.sidebar_button:hover {
-    transform: scale(1.1);
+    color: var(--text-primary);
+    transition: color 0.2s ease;
 }
 
 .sidebar {
     position: fixed;
     top: 0;
     left: 0;
-    width: 20%;
+    width: var(--sidebar-width);
     height: 100dvh;
-    background-color: var(--primary-color);
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    background: var(--card-bg);
+    box-shadow: var(--shadow-xl);
+    border-right: 1px solid var(--border-color);
     z-index: 1080;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    padding: 2rem 1.5rem;
 }
 
 .sidebar h1 {
     text-align: center;
-    font-family: "Ubuntu";
-    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
 }
 
 .sidebar h4 {
     text-align: center;
-    font-family: "Ubuntu";
-    color: var(--text-color);
+    font-size: 0.875rem;
+    font-weight: 400;
+    margin: 0 0 1.5rem 0;
+    color: var(--text-secondary);
 }
 
 .sidebar_search {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.75rem;
     justify-content: flex-start;
     align-items: center;
-    height: auto;
+    margin-bottom: 1.5rem;
 }
 
 .sidebar_search input {
-    flex: 1 1 auto;
-    min-width: 0;
-    font-family: "Ubuntu";
-    font-size: 1.2rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    border-radius: 8px;
+    width: 100%;
+    font-size: 0.95rem;
+    font-weight: 400;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--input-border);
+    background: var(--input-bg);
+    color: var(--text-primary);
     text-align: center;
-    width: 80%;
+    transition: all 0.2s ease;
+}
+
+.sidebar_search input:focus {
+    outline: none;
+    border-color: var(--input-focus);
+    box-shadow: 0 0 0 3px var(--accent-light);
+}
+
+.sidebar_search input::placeholder {
+    color: var(--text-tertiary);
 }
 
 .search_results {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    width: 70%;
+    width: 100%;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
-    background: white;
-    border-radius: 10px;
-    border-color: black;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--secondary-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
 }
 
 .search_results.open {
-    max-height: 500px;
-    padding: 1rem;
-}
-
-.search_results h3:hover {
-    transform: scale(1.1);
+    max-height: 400px;
+    padding: 0.75rem;
+    overflow-y: auto;
 }
 
 .search_results h3 {
-    border-radius: 10px;
-    border-color: black;
+    border-radius: 8px;
     text-align: center;
     margin: 0;
-    padding: 0.5rem;
-    font-family: "Ubuntu", sans-serif;
-    font-size: clamp(1rem, 1.2vw, 1rem);
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: background 0.2s;
-    color: var(--text-color);
+    transition: all 0.2s ease;
+    color: var(--text-primary);
+}
+
+.search_results h3:hover {
+    background: var(--tertiary-bg);
+    color: var(--accent-primary);
+    transform: scale(1.02);
 }
 
 .sidebar_routes {
@@ -719,74 +763,74 @@ body {
     flex-direction: column;
     gap: 0.5rem;
     justify-content: flex-start;
-    align-items: center;
+    align-items: stretch;
+    margin-bottom: 1.5rem;
 }
 
 .sidebar_route_button {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 80%;
-    font-size: 1.2rem;
-    font-family: "Ubuntu";
-    border-radius: 8px;
+    justify-content: flex-start;
+    width: 100%;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 0.875rem 1rem;
+    border-radius: 12px;
     cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
-    gap: 0.5rem;
-    flex-wrap: nowrap;
-    background: var(--input-color);
-    text-decoration: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    gap: 0.75rem;
+    background: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
 }
 
 .sidebar_route_button img {
-    flex: 0 1 auto;
-    width: 15%;
-    height: auto;
-    min-width: 16px;
-    background-color: transparent;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border-radius: 6px;
 }
 
 .sidebar_route_button span {
-    flex: 1 1 auto;
-    min-width: 0;
-    font-size: clamp(0.6rem, 1.2vw, 1rem);
+    flex: 1;
+    text-align: left;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: var(--text-color);
 }
 
 .sidebar_route_button:hover {
-    transform: scale(1.1);
+    background: var(--tertiary-bg);
+    border-color: var(--accent-primary);
+    transform: translateX(4px);
 }
 
 .sidebar_about {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    justify-content: flex-start;
-    align-items: center;
+    margin-bottom: 1.5rem;
 }
 
 .sidebar_about button {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 80%;
-    font-size: 1.2rem;
-    font-family: "Ubuntu";
-    border-radius: 8px;
+    width: 100%;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 0.875rem 1rem;
+    border-radius: 12px;
     cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
-    gap: 0.5rem;
-    flex-wrap: nowrap;
-    color: black;
-    background: var(--input-color);
-    text-decoration: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
 }
 
 .sidebar_about button:hover {
-    transform: scale(1.1);
+    background: var(--tertiary-bg);
+    border-color: var(--accent-primary);
 }
 
 .links {
@@ -795,29 +839,28 @@ body {
     align-items: center;
     gap: 1rem;
     margin-top: auto;
+    padding-top: 1.5rem;
 }
 
 .links img {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     object-fit: contain;
+    opacity: 0.7;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    padding: 4px;
 }
 
 .links img:hover {
-    transform: scale(1.10);
+    opacity: 1;
+    transform: scale(1.1);
+    background: var(--secondary-bg);
 }
 
 .location {
-    bottom: 2vw;
-    right: 1vw;
-}
-
-.location_button img {
-    max-width: 100%;
-}
-
-.location:hover {
-    transform: scale(1.1);
+    bottom: 1.5rem;
+    right: 1.5rem;
 }
 
 .location_button {
@@ -828,17 +871,19 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: clamp(0.5rem, 3vw, 2rem);
-    text-align: center;
     cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
+}
+
+.location_button img {
+    max-width: 60%;
+    max-height: 60%;
 }
 
 .current_trains {
     display: none;
-    width: 40%;
-    height: 80%;
-    background: var(--primary-color);
+    width: min(640px, 90vw);
+    height: min(700px, 85vh);
+    background: var(--card-bg);
     z-index: 1060;
     flex-direction: column;
     justify-content: flex-start;
@@ -847,17 +892,20 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    border-radius: 25px;
-    padding: 1rem 0 3rem 0;
-    box-sizing: border-box;
-    overflow-y: auto;
+    border-radius: 20px;
+    padding: 2rem 1.5rem 5rem 1.5rem;
+    box-shadow: var(--shadow-xl);
+    animation: slideUp 0.3s ease;
+    border: 1px solid var(--border-color);
 }
 
 .current_trains h1 {
-    font-family: "Ubuntu";
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
     text-align: center;
-    margin: 0.5rem 0 1rem 0;
-    color: var(--text-color);
+    margin: 0 0 1.5rem 0;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
 }
 
 .current_trains_list {
@@ -866,111 +914,143 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 0.5rem;
-    width: 90%;
-    font-family: "Ubuntu", sans-serif;
-    font-size: 1.2em;
+    gap: 0.75rem;
+    width: 100%;
     overflow-y: auto;
     padding: 0.5rem;
 }
 
 .current_trains_list h3 {
     text-align: center;
-    color: var(--text-color);
+    color: var(--text-secondary);
+    font-weight: 500;
 }
 
 .current_train {
     display: flex;
     flex-direction: row;
-    align-items: stretch;
-    gap: 0.5rem;
+    align-items: center;
+    gap: 1rem;
     cursor: pointer;
-    width: 80%;
-    height: auto;
-    padding: 0.5rem 1rem;
-    border-radius: 10px;
-    transition: background 0.2s, transform 0.2s;
-    background: white;
-    border: 2px solid black;
-}
-
-.current_train h3 {
-    font-size: auto;
-    font-size: 1.2em;
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--secondary-bg);
+    border: 1px solid var(--border-color);
 }
 
 .current_train:hover {
-    cursor: pointer;
-    transform: scale(1.02);
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.current_train_image {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 8px;
+}
+
+.current_train h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-primary);
 }
 
 .copyright {
-    margin-bottom: 10vh;
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    text-align: center;
+    margin-top: 1rem;
 }
 
-@media (max-width: 1135px) {
-    .welcome {
-        width: 80%;
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--secondary-bg);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 10px;
+    transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-tertiary);
+}
+
+@media (max-width: 768px) {
+    :root {
+        --sidebar-width: 85vw;
     }
 
-    .welcome_button span {
-        flex: 1 1 auto;
-        min-width: 0;
-        font-size: clamp(1.2rem, 1.2vw, 1rem);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    .sidebar_opener,
+    .location {
+        width: 48px;
+        height: 48px;
     }
 
+    .sidebar_opener {
+        top: 1rem;
+        left: 1rem;
+    }
+
+    .location {
+        bottom: 1rem;
+        right: 1rem;
+    }
+
+    .welcome,
     .about,
-    .settings {
-        width: 80%;
-    }
-
-    .station_status {
-        width: 80%;
-    }
-
-    .station_status .station_routes {
-        font-size: 0.9em;
-    }
-
+    .settings,
+    .station_status,
     .current_trains {
-        width: 80%;
-        font-size: 0.9em;
-    }
-
-    .station_close span {
-        flex: 1 1 auto;
-        min-width: 0;
-        font-size: clamp(1.2rem, 1.2vw, 1rem);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .sidebar_opener .location {
-        width: 3.25vh;
-        height: auto;
-        aspect-ratio: 1 /1;
+        width: 95vw;
+        max-height: 90vh;
+        padding: 1.5rem 1rem 4rem 1rem;
     }
 
     .sidebar {
-        width: 80%;
+        padding: 1.5rem 1rem;
+    }
+
+    .sidebar h1 {
+        font-size: 1.25rem;
     }
 
     .sidebar_route_button img {
-        flex-shrink: 0;
         width: 28px;
         height: 28px;
     }
+}
 
-    .sidebar_route_button span {
-        flex: 1 1 auto;
-        min-width: 0;
-        font-size: clamp(1.2rem, 1.2vw, 1rem);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+@media (max-width: 480px) {
+
+    .welcome h1,
+    .about h1,
+    .settings h1,
+    .station_status h1,
+    .current_trains h1 {
+        font-size: 1.5rem;
+    }
+
+    .setting-item {
+        padding: 0.875rem 1rem;
+    }
+
+    .station_route_header {
+        padding: 1rem;
+    }
+
+    .station_info.open {
+        padding: 1rem;
     }
 }

@@ -213,10 +213,9 @@ async function initMap() {
     }
 
     if (cookies.darkTheme === 'true') {
-        console.log(document.getElementById('darkToggle').checked);
         map_style.sprite = `https://protomaps.github.io/basemaps-assets/sprites/v4/dark`;
         map_style.layers = basemaps.layers("protomaps", basemaps.namedFlavor("dark"), { lang: "en" });
-        document.querySelector(':root').style.setProperty('--primary-color', 'darkgrey');
+        document.body.classList.add('dark-mode');
     }
 
     map = new maplibregl.Map({
