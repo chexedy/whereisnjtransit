@@ -80,7 +80,6 @@ function togglePanel(panel, newDiv) {
     }
 }
 
-
 function updateStation(departures) {
     if (departures.length == 0) {
         document.getElementById("NoCurrentDepartures").style.display = "flex";

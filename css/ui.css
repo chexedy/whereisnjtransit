@@ -482,7 +482,7 @@ body.dark-mode {
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     background: var(--secondary-bg);
     border: 1px solid var(--border-color);
-    overflow: hidden;
+    overflow: visible;
 }
 
 .station_route:hover {
@@ -503,6 +503,7 @@ body.dark-mode {
     gap: 1rem;
     align-items: center;
     padding: 1.25rem;
+    width: 100%;
 }
 
 .station_route_inner {
@@ -539,6 +540,19 @@ body.dark-mode {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.station_route_inner h3[style*="color: orange"],
+.station_route_inner h3[style*="color: orange"] {
+    color: var(--warning-color) !important;
+}
+
+.station_route_inner h3[style*="color: green"] {
+    color: var(--success-color) !important;
+}
+
+.station_route_inner h3[style*="color: red"] {
+    color: var(--error-color) !important;
 }
 
 .station_info {
