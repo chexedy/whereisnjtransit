@@ -504,7 +504,7 @@ body.dark-mode {
     display: flex;
     gap: 1rem;
     align-items: center;
-    padding: 1.25rem;
+    padding: 0.5rem;
     width: 100%;
     min-height: fit-content;
     flex-shrink: 0;
@@ -1091,7 +1091,7 @@ body.dark-mode {
     }
 
     .station_route_header {
-        padding: 1rem;
+        padding: 0.5rem;
     }
 
     .station_info.open {
