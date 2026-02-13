@@ -12,15 +12,15 @@ This is an interactive map that allows you to:
 The site uses NJ Transit's third-party API for its data. Unfortunately, the API is a bit behind when it comes to real-time information, which can cause the site to lag behind if there are delays. I primarily made it as a concept for an official NJ Transit map, as their current system does not have such a thing.
 
 ## Interactive Map
-<img width="1913" height="857" alt="image" src="https://github.com/user-attachments/assets/b0ad166b-c90f-4418-be49-611f3ea19006" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/3003b1cf-a569-4d04-afd1-076cab22cce1" />
 Select lines and view their tracks, stations, and trains
 
 ## Station Departure History
-<img width="1918" height="865" alt="image" src="https://github.com/user-attachments/assets/45b7522a-484c-4d7f-8614-e64cabdd6cb2" />
+<img width="1920" height="1080" alt="transit" src="https://github.com/user-attachments/assets/61e1421d-2825-4edd-bf58-6611c7a87979" />
 Select a station to see upcoming departures
 
 ## Currently Active Trains
-<img width="1918" height="856" alt="image" src="https://github.com/user-attachments/assets/90c21195-7db1-4d89-9493-ddfc1378c252" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/2589048b-4c28-48ae-9665-f3eb9f37b5a0" />
 Search trains by their ID and select one to jump to its current estimated position
 
 ## Tools Used
