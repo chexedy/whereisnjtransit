@@ -185,7 +185,6 @@ async function loadMapLayers() {
     await addStations();
 }
 
-
 async function initMap() {
     const bounds = [
         [-76.58039, 38.80348],
@@ -258,7 +257,7 @@ async function initMap() {
             }
         }
 
-        await updateRealtimeTrains();
+        await updateRealtimeTrains(cookies.darkTheme === 'true');
         const button = document.getElementById("welcomeButton");
         button.disabled = false;
         button.querySelector("span").textContent = "Close";

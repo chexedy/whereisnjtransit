@@ -549,7 +549,7 @@ function animateTrain(train, path, line) {
 
 const activeTrains = new Map();
 
-async function updateRealtimeTrains() {
+async function updateRealtimeTrains(darkTheme) {
     console.log("Updating realtime trains...");
 
     const res = await fetch("https://whereisnjtransit-api.ayaan7m.workers.dev/realtime");
@@ -607,6 +607,7 @@ async function updateRealtimeTrains() {
                     "text-offset": [0, 1.5],
                     "text-anchor": "top",
                     "text-size": 15,
+                    "text-color": darkTheme ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)",
                     "icon-allow-overlap": true,
                     "text-allow-overlap": true,
                     "text-font": ["Ubuntu Medium"],

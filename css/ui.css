@@ -426,7 +426,7 @@ body.dark-mode {
 .station_status {
     display: none;
     width: min(640px, 90vw);
-    height: min(700px, 85vh);
+    height: min(800px, 85vh);
     background: var(--card-bg);
     z-index: 1060;
     flex-direction: column;
@@ -447,7 +447,7 @@ body.dark-mode {
     font-size: clamp(1.5rem, 3vw, 2rem);
     font-weight: 700;
     text-align: center;
-    margin: 0 0 1.5rem 0;
+    margin: 0 0 1rem 0;
     color: var(--text-primary);
     letter-spacing: -0.02em;
 }
