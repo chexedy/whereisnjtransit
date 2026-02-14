@@ -607,10 +607,12 @@ async function updateRealtimeTrains(darkTheme) {
                     "text-offset": [0, 1.5],
                     "text-anchor": "top",
                     "text-size": 15,
-                    "text-color": darkTheme ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)",
                     "icon-allow-overlap": true,
                     "text-allow-overlap": true,
                     "text-font": ["Ubuntu Medium"],
+                },
+                paint: {
+                    "text-color": darkTheme ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)",
                 },
                 minzoom: 8,
             });
