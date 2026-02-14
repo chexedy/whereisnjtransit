@@ -98,7 +98,6 @@
                 </div>
             </div>
         </div>
-        <br>
 
         <button class="station_close" onclick="station_close()" id="stationClose">
             <span>Close</span>
@@ -127,7 +126,7 @@
                 <div class="about_panel">
                     <p>The status of the current trains operating is updated every minute. Data is sourced from the NJ
                         Transit API, which unfortunately
-                        lags behind around 30-90 seconds when dealing with real-time data. This unfortunately causes
+                        lags behind around 30-60 seconds when dealing with real-time data. This unfortunately causes
                         conflicts
                         if trains are behind schedule.</p>
                 </div>
@@ -182,8 +181,6 @@
             </div>
 
             <h3 id="NoActiveTrains" style="display: none;" id="activeTrainHeader">No active trains found.</h3>
-
-            <br>
         </div>
 
         <button class="current_trains_button" onclick="current_trains_button()">
@@ -226,8 +223,6 @@
                 </label>
             </div>
         </div>
-
-        <br>
 
         <button class="settings_button" onclick="settings_button()" id="settingsButton">
             <span>Close</span>
@@ -304,10 +299,15 @@
             <button onclick="settings_button()">Settings</button>
         </div>
         <div class="links">
-            <a href="https://github.com/chexedy/whereisnjtransit" target="_blank"><img
-                    src="./assets/links/github-mark.svg" alt="GitHub Logo"></a>
-            <a href="https://www.linkedin.com/in/ayaan7m/" target="_blank"><img src="assets/links/linkedin.svg"
-                    alt="LinkedIn Logo"></a>
+            <a href="https://chexedy.com/" target="_blank">
+                <img src="./assets/links/logo.svg" alt="My Logo">
+            </a>
+            <a href="https://github.com/chexedy/whereisnjtransit" target="_blank">
+                <img src="./assets/links/github-mark.svg" alt="GitHub Logo">
+            </a>
+            <a href="https://www.linkedin.com/in/ayaan7m/" target="_blank">
+                <img src="assets/links/linkedin.svg" alt="LinkedIn Logo">
+            </a>
         </div>
 
         <h4 class="copyright"></h4>
