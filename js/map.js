@@ -40,17 +40,26 @@ async function addTrackLines() {
     }
 }
 
-async function addStations() {
+async function addStations(cookies) {
     const res = await fetch('json/stations.json');
     const data = await res.json();
 
     try {
-        const image = await new Promise((resolve, reject) => {
+        var image = await new Promise((resolve, reject) => {
             const img = new Image();
-            img.src = "/assets/service/station.svg";
+            img.src = "/assets/service/station_light.svg";
             img.onload = () => resolve(img);
             img.onerror = (e) => reject(e);
         });
+
+        if (cookies.darkTheme === 'true') {
+            image = await new Promise((resolve, reject) => {
+                const img2 = new Image();
+                img2.src = "/assets/service/station_dark.svg";
+                img2.onload = () => resolve(img2);
+                img2.onerror = (e) => reject(e);
+            });
+        }
 
         if (!map.hasImage('station-icon')) {
             map.addImage('station-icon', image);
@@ -180,9 +189,9 @@ function toggleLayerVisibility(layer) {
     }
 }
 
-async function loadMapLayers() {
+async function loadMapLayers(cookies) {
     await addTrackLines();
-    await addStations();
+    await addStations(cookies);
 }
 
 async function initMap() {
@@ -215,6 +224,15 @@ async function initMap() {
         map_style.sprite = `https://protomaps.github.io/basemaps-assets/sprites/v4/dark`;
         map_style.layers = basemaps.layers("protomaps", basemaps.namedFlavor("dark"), { lang: "en" });
         document.body.classList.add('dark-mode');
+
+        document.getElementById("showall_img").src = "assets/service/station_dark.svg";
+        var link = document.querySelector("link[rel~='icon']");
+        if (!link) {
+            link = document.createElement('link');
+            link.rel = 'icon';
+            document.head.appendChild(link);
+        }
+        link.href = "/assets/service/station_dark.svg";
     }
 
     map = new maplibregl.Map({
@@ -226,7 +244,7 @@ async function initMap() {
 
     map.on('load', async () => {
         map.fitBounds(bounds, { padding: 40, animate: false });
-        await loadMapLayers(map);
+        await loadMapLayers(cookies);
 
         if (cookies.darkTheme === 'true') {
             document.getElementById('darkToggle').checked = true;[]
